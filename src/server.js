@@ -12,6 +12,7 @@ import React from 'react';
 
 const app = express();
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')))
+app.use('/src', express.static(path.join(__dirname, '../src')))
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -31,21 +32,16 @@ const renderFullPage = html => {
 	<!doctype html>
 	<html lang="utf-8">
 		<head>
-			<link rel="stylesheet" href="/node_modules/todomvc-common/base.css">
-			<link rel="stylesheet" href="/node_modules/todomvc-app-css/index.css">
+			
+			<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+			<link rel="stylesheet" href="/src/css/styles.css">
 			<script>
 				window.initialState = ${initialStateJSON}
 			</script>
 		</head>
 		<body>
-			<section id="todoapp" class="todoapp">${html}</section>
+			<section class="container" id="todoapp" class="todoapp">${html}</section>
 			<script src="/static/bundle.js"></script>
-			<footer class="info">
-				<p>Double-click to edit a todo</p>
-				<p>TodoMVC powered by React and <a href="http://github.com/mobxjs/mobx/">MobX</a>. Created by <a href="http://github.com/mweststrate/">mweststrate</a></p>
-				<p>Based on the base React TodoMVC by <a href="http://github.com/petehunt/">petehunt</a></p>
-				<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-			</footer>
 		</body>
 	</html>
 	`
