@@ -17,6 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+//app.use('/bootstrap', Express.static(__dirname + '/node_modules/bootstrap/dist/'));
 
 // universal routing and rendering
 app.get('*', (req, res) => {
