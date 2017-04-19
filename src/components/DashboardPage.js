@@ -8,7 +8,7 @@ import Medal from './Medal';
 import Flag from './Flag';
 import athletes from '../data/athletes';
 
-export default class AthletePage extends React.Component {
+export default class DashboardPage extends React.Component {
   render() {
     const id = this.props.params.id;
     const athlete = athletes.filter((athlete) => athlete.id === id)[0];

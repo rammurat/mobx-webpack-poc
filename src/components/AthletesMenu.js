@@ -8,7 +8,7 @@ export default class AthletesMenu extends React.Component {
     return (
       <nav className="athletes-menu">
         {this.props.athletes.map(menuAthlete => {
-          return <Link key={menuAthlete.id} to={`/athlete/${menuAthlete.id}`} activeClassName="active">
+          return <Link key={menuAthlete.id} to={`/dashboard/${menuAthlete.id}`} activeClassName="active">
             {menuAthlete.name}
           </Link>;
         })}
