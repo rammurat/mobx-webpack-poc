@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import FormData from 'form-data';
 import { browserHistory } from 'react-router';
 
 export default class Login extends React.Component {
@@ -38,10 +37,11 @@ export default class Login extends React.Component {
         if (!this.showFormErrors()) {
             console.log('form is invalid: do not submit');
         } else {
+            console.log('form is valid: submit');
+
             //create object to send 
-            const form = new FormData();
-            form.append('username', this.state.username);
-            form.append('password', this.state.password);
+            let form = {'username': this.state.username,'password': this.state.password};
+            console.log(form);
 
             //redirect user to dashbaord page 
             fetch('/login', { 
@@ -50,11 +50,16 @@ export default class Login extends React.Component {
                     headers: { 'Content-Type': 'application/json' }
                 })
                 .then(res => res.json())
-                .then(
-                    json => browserHistory.push('/listing')
-                );
+                .then(function(json){
+                    
+                    console.log(json);
+                    if(json.success){
+                        browserHistory.push('/listing');
+                    }else{
+                        alert("Invalid credentials. Enter 'admin/admin' to login");
+                    }
+                });
 
-            console.log('form is valid: submit');
         }
     }
     

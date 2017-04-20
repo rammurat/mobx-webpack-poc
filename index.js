@@ -21,7 +21,7 @@ app.post('/login', function(req, res) {
 	
     //validate user credentials
     if (data && data.username === "admin" && data.password === "admin") {
-		res.status(200).send(JSON.stringify({ success: true }));
+		res.status(201).send(JSON.stringify({ success: true }));
 	} else {
 		res.status(200).send(JSON.stringify({ success: false, error: "User not valid" }));
 	}
