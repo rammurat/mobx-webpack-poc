@@ -1,6 +1,8 @@
 'use strict';
 
 import React from 'react';
+import FormData from 'form-data';
+import { browserHistory } from 'react-router';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -36,8 +38,22 @@ export default class Login extends React.Component {
         if (!this.showFormErrors()) {
             console.log('form is invalid: do not submit');
         } else {
-     
-            document.forms['login'].submit();
+            //create object to send 
+            const form = new FormData();
+            form.append('username', this.state.username);
+            form.append('password', this.state.password);
+
+            //redirect user to dashbaord page 
+            fetch('/login', { 
+                    method: 'POST', 
+                    body: JSON.stringify(form),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(res => res.json())
+                .then(
+                    json => browserHistory.push('/listing')
+                );
+
             console.log('form is valid: submit');
         }
     }

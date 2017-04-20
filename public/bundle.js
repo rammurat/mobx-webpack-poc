@@ -32810,6 +32810,12 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _formData = __webpack_require__(/*! form-data */ 262);
+	
+	var _formData2 = _interopRequireDefault(_formData);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 182);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -32864,8 +32870,22 @@
 	            if (!this.showFormErrors()) {
 	                console.log('form is invalid: do not submit');
 	            } else {
+	                //create object to send 
+	                var form = new _formData2.default();
+	                form.append('username', this.state.username);
+	                form.append('password', this.state.password);
 	
-	                document.forms['login'].submit();
+	                //redirect user to dashbaord page 
+	                fetch('/login', {
+	                    method: 'POST',
+	                    body: JSON.stringify(form),
+	                    headers: { 'Content-Type': 'application/json' }
+	                }).then(function (res) {
+	                    return res.json();
+	                }).then(function (json) {
+	                    return _reactRouter.browserHistory.push('/listing');
+	                });
+	
 	                console.log('form is valid: submit');
 	            }
 	        }
@@ -33768,6 +33788,17 @@
 	}(_react.Component);
 	
 	exports.default = Main;
+
+/***/ }),
+/* 262 */
+/*!************************************!*\
+  !*** ./~/form-data/lib/browser.js ***!
+  \************************************/
+/***/ (function(module, exports) {
+
+	/* eslint-env browser */
+	module.exports = typeof self == 'object' ? self.FormData : window.FormData;
+
 
 /***/ })
 /******/ ]);
