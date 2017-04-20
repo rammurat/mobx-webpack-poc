@@ -35,28 +35,28 @@ export default class listing extends React.Component{
         )) : "";
 
         //render html
-        return <div>
-            <h2>Products Listing</h2>
-            <table className="table table-striped table-responsive">
+        return <div className="row productTable">
+            <h2>Trade Listing</h2>
+            <table className="table table-striped table-responsive table-bordered">
                 <thead>
                     <tr>
-                        <th>Trade Type</th>  
+                        <th>Trade Number</th>  
                         <th>Market Type</th>
-                       <th> Direction  </th>
-                      <th>  Price</th>  
-                       <th> Price UOM</th>   
-                      <th>  Quantity</th>   
-                      <th>  Quantity UOM</th>
-                      <th>  Total Quantity</th> 
-                      <th>  Total QuantityUOM</th>   
-                      <th>  Trade Date</th> 
-                      <th>  Start Date</th> 
-                      <th>  End Date   </th>
-                      <th>  Product Code   </th>
-                      <th>  Delivery Location</th>   
-                       <th> Paymet Days</th>
-                       <th> Payment Terms   </th>
-                       <th> MOT</th>
+                        <th> Direction  </th>
+                        <th>  Price</th>  
+                        <th> Price UOM</th>   
+                        <th>  Quantity</th>   
+                        <th>  Quantity UOM</th>
+                        <th>  Total Quantity</th> 
+                        <th>  Total QuantityUOM</th>   
+                        <th>  Trade Date</th> 
+                        <th>  Start Date</th> 
+                        <th>  End Date   </th>
+                        <th>  Product Code   </th>
+                        <th>  Delivery Location</th>   
+                        <th> Paymet Days</th>
+                        <th> Payment Terms   </th>
+                        <th> MOT</th>
                         <th>Deal Status</th>
                     </tr>
                 </thead>

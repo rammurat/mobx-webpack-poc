@@ -32281,7 +32281,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 250);
 	
@@ -32370,10 +32370,6 @@
 	        _initDefineProp(this, "listingData", _descriptor6, this);
 	
 	        _initDefineProp(this, "matchingData", _descriptor7, this);
-	
-	        _initDefineProp(this, "detailData", _descriptor8, this);
-	
-	        _initDefineProp(this, "formData", _descriptor9, this);
 	    }
 	
 	    _createClass(AppStore, [{
@@ -32440,251 +32436,129 @@
 	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, "matchingData", [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
-	        return [{
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Trade Type",
-	            seller: "SHLTR16TB0342:1",
-	            buyer: "SHLTR16TB0342:2"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Market Type",
-	            seller: "Chevron Products Company, a division of Chevron USA Inc.",
-	            buyer: "Chevron Products Company"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Direction",
-	            seller: "SHLTR16TB0342:1",
-	            buyer: "SHLTR16TB0342:2"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Price",
-	            seller: "SHLTR16TB0342:1",
-	            buyer: "SHLTR16TB0342:2"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "PriceUOM",
-	            seller: "SHLTR16TB0342:1",
-	            buyer: "SHLTR16TB0342:2"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Quantity",
-	            seller: "33",
-	            buyer: "444"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Quantity UOM",
-	            seller: "22AA",
-	            buyer: "33BB"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Total Quantity",
-	            seller: "331",
-	            buyer: "3332"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Total QuantityUOM",
-	            seller: "BBl:1",
-	            buyer: "BBl:2"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Trade Date",
-	            seller: "8-March",
-	            buyer: "12-March"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Start Date",
-	            seller: "6-March",
-	            buyer: "12-March"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "End Date",
-	            seller: "4-March",
-	            buyer: "12-March"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Product Code",
-	            seller: "Mars",
-	            buyer: "Jupiter"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Delivery Location",
-	            seller: "Abu dhabi",
-	            buyer: "Australia"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Paymet Days",
-	            seller: "SHLTR16TB0342:1",
-	            buyer: "SHLTR16TB0342:2"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Payment Terms",
-	            seller: "NA",
-	            buyer: "NA"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "MOT",
-	            seller: "Pipeline",
-	            buyer: "Pipeline 2"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productValue: "Deal Status",
-	            seller: "ACTIVE",
-	            buyer: "DEACTIVE"
-	        }];
-	    }
-	}), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, "detailData", [_mobx.observable], {
-	    enumerable: true,
-	    initializer: function initializer() {
-	        return [{
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Trade Type",
-	            productValue: "SHLTR16TB0342:1"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Market Type",
-	            productValue: "Chevron Products Company, a division of Chevron USA Inc."
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Direction",
-	            productValue: "SHLTR16TB0342:1"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Price",
-	            productValue: "SHLTR16TB0342:1"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Price UOM",
-	            productValue: "SHLTR16TB0342:1"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Quantity",
-	            productValue: "33"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Quantity UOM",
-	            productValue: "22AA"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Total Quantity",
-	            productValue: "331"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Total QuantityUOM",
-	            productValue: "BBl:1"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Trade Date",
-	            productValue: "8-March"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Start Date",
-	            productValue: "6-March"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "End Date",
-	            productValue: "4-March"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Product Code",
-	            productValue: "Mars"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Delivery Location",
-	            productValue: "Abu dhabi"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Paymet Days",
-	            productValue: "SHLTR16TB0342:1"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Payment Terms",
-	            productValue: "NA"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "MOT",
-	            productValue: "Pipeline"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            productKey: "Deal Status",
-	            productValue: "ACTIVE"
-	        }];
-	    }
-	}), _descriptor9 = _applyDecoratedDescriptor(_class3.prototype, "formData", [_mobx.observable], {
-	    enumerable: true,
-	    initializer: function initializer() {
-	        return [{
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Trade Type",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Market Type",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Direction",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Price",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Price UOM",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Quantity",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Quantity UOM",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Total Quantity",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Total QuantityUOM",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Trade Date",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Start Date",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "End Date",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Product Code",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Delivery Location",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Paymet Days",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Payment Terms",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "MOT",
-	            formValue: ""
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Deal Status",
-	            formValue: ""
-	        }];
+	        return {
+	            "TradeNumber": {
+	                "ValA": "A01",
+	                "ValB": "A01",
+	                "Match": false
+	            },
+	            "BuyerName": {
+	                "ValA": "A02",
+	                "ValB": "A02",
+	                "Match": false
+	            },
+	            "SellerName": {
+	                "ValA": "A03",
+	                "ValB": "A03",
+	                "Match": false
+	            },
+	            "BuyerID": {
+	                "ValA": "A04",
+	                "ValB": "A04",
+	                "Match": true
+	            },
+	            "SellerID": {
+	                "ValA": "A05",
+	                "ValB": "A05",
+	                "Match": true
+	            },
+	            "TradeType": {
+	                "ValA": "A06",
+	                "ValB": "A06",
+	                "Match": false
+	            },
+	            "MarketType": {
+	                "ValA": "A07",
+	                "ValB": "A07",
+	                "Match": false
+	            },
+	            "Price": {
+	                "ValA": "A08",
+	                "ValB": "A08",
+	                "Match": true
+	            },
+	            "PriceUOM": {
+	                "ValA": "A09",
+	                "ValB": "A09",
+	                "Match": false
+	            },
+	            "Quantity": {
+	                "ValA": "A10",
+	                "ValB": "A10",
+	                "Match": false
+	            },
+	            "QuantityUOM": {
+	                "ValA": "A11",
+	                "ValB": "A11",
+	                "Match": false
+	            },
+	            "TotalQuantity": {
+	                "ValA": "A12",
+	                "ValB": "A12",
+	                "Match": true
+	            },
+	            "TotalQuantityUOM": {
+	                "ValA": "A13",
+	                "ValB": "A13",
+	                "Match": true
+	            },
+	            "TradeDate": {
+	                "ValA": "A14",
+	                "ValB": "A14",
+	                "Match": true
+	            },
+	            "StartDate": {
+	                "ValA": "A15",
+	                "ValB": "A15",
+	                "Match": false
+	            },
+	            "EndDate": {
+	                "ValA": "A16",
+	                "ValB": "A16",
+	                "Match": true
+	            },
+	            "ProductCode": {
+	                "ValA": "A17",
+	                "ValB": "A17",
+	                "Match": true
+	            },
+	            "DeliveryLocation": {
+	                "ValA": "A18",
+	                "ValB": "A18",
+	                "Match": true
+	            },
+	            "PaymetDays": {
+	                "ValA": "A19",
+	                "ValB": "A19",
+	                "Match": false
+	            },
+	            "PaymentTerms": {
+	                "ValA": "A20",
+	                "ValB": "A20",
+	                "Match": true
+	            },
+	            "Mot": {
+	                "ValA": "A21",
+	                "ValB": "A21",
+	                "Match": true
+	            },
+	            "Owner": {
+	                "ValA": "A22",
+	                "ValB": "A22",
+	                "Match": false
+	            },
+	            "CreatorUser": {
+	                "ValA": "A23",
+	                "ValB": "A23",
+	                "Match": false
+	            },
+	            "CreationTimestamp": {
+	                "ValA": "2017-04-18 09:40:38.380852684 +0000 UTC",
+	                "ValB": "2017-04-18 09:42:30.822722935 +0000 UTC",
+	                "Match": false
+	            },
+	            "DealStatus": "Matched"
+	        };
 	    }
 	})), _class3);
 	exports.default = new AppStore();
@@ -32743,12 +32617,12 @@
 	                    { className: 'form-group', key: input.id },
 	                    _react2.default.createElement(
 	                        'label',
-	                        { htmlFor: 'item', id: 'usernameLabel', className: 'col-sm-2 control-label' },
+	                        { htmlFor: 'item', id: 'usernameLabel', className: 'col-sm-6 control-label' },
 	                        input.formKey
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'col-sm-10' },
+	                        { className: 'col-sm-6' },
 	                        _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'item', placeholder: input.formKey, ref: 'username', onChange: _this2.handleChange, required: true }),
 	                        _react2.default.createElement('div', { className: 'error', id: 'usernameError' })
 	                    )
@@ -32767,7 +32641,7 @@
 	                        _react2.default.createElement(
 	                            'h2',
 	                            { className: 'form-signin-heading' },
-	                            'Add Form'
+	                            'Add Trade'
 	                        ),
 	                        formFields,
 	                        _react2.default.createElement(
@@ -33326,12 +33200,22 @@
 	                    _react2.default.createElement(
 	                        'td',
 	                        null,
-	                        item.seller
+	                        item.ValA
 	                    ),
 	                    _react2.default.createElement(
 	                        'td',
 	                        null,
-	                        item.buyer
+	                        item.ValB
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.Match,
+	                        _react2.default.createElement(
+	                            'button',
+	                            { type: 'button', 'class': 'btn btn-success' },
+	                            'Matched'
+	                        )
 	                    )
 	                );
 	            }) : "";
@@ -33540,15 +33424,15 @@
 	            //render html
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { className: 'row productTable' },
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    'Products Listing'
+	                    'Trade Listing'
 	                ),
 	                _react2.default.createElement(
 	                    'table',
-	                    { className: 'table table-striped table-responsive' },
+	                    { className: 'table table-striped table-responsive table-bordered' },
 	                    _react2.default.createElement(
 	                        'thead',
 	                        null,
@@ -33558,7 +33442,7 @@
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Trade Type'
+	                                'Trade Number'
 	                            ),
 	                            _react2.default.createElement(
 	                                'th',
@@ -33715,11 +33599,7 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'navbar-header' },
-	                            _react2.default.createElement(
-	                                'a',
-	                                { className: 'navbar-brand', href: '#' },
-	                                'Scotch Cars'
-	                            )
+	                            _react2.default.createElement('a', { className: 'navbar-brand', href: '#' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
@@ -33733,7 +33613,7 @@
 	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
 	                                        { to: '/', activeClassName: 'active' },
-	                                        'Login'
+	                                        'Home'
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
@@ -33742,7 +33622,7 @@
 	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
 	                                        { to: '/addForm', activeClassName: 'active' },
-	                                        'Add Form'
+	                                        'Add Trade'
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
@@ -33770,6 +33650,15 @@
 	                                        _reactRouter.Link,
 	                                        { to: '/matching', activeClassName: 'active' },
 	                                        'Matching'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/signout', activeClassName: 'active' },
+	                                        'Signout'
 	                                    )
 	                                )
 	                            )

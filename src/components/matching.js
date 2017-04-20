@@ -14,8 +14,9 @@ export default class matching extends React.Component{
         const matchingTable = matchingData ? matchingData.map(item => (
             <tr key={item.id}>
                 <td>{item.productValue}</td>
-                <td>{item.seller}</td>
-                <td>{item.buyer}</td>
+                <td>{item.ValA}</td>
+                <td>{item.ValB}</td>
+                <td>{item.Match}<button type="button" class="btn btn-success">Matched</button></td>
             </tr>    
         )) : "";
 

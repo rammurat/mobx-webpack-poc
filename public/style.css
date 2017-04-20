@@ -25,3 +25,14 @@ select.active:invalid {
     font-size: 12px;
     margin-top: 5px;
 }
+
+.productTable{
+    overflow-x: scroll;
+}
+.navbar{
+    top:5px;
+}
+
+form{
+    max-width : 400px;
+}
