@@ -10,7 +10,7 @@ import Listing from './components/listing.js'
 import Login from './components/login.js'
 import Matching from './components/matching.js'
 
-//load product store
+//load trade store
 import AppStore from './store/appStore.js';
 
 render(

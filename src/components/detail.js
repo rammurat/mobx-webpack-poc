@@ -20,11 +20,11 @@ export default class detail extends React.Component{
 
         //render html
         return <div>
-            <h2>Product Detail</h2>
+            <h2>Trade Detail</h2>
             <table className="table table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th>Product</th>  
+                        <th>Trade</th>  
                         <th>Description</th>
                     </tr>
                 </thead>

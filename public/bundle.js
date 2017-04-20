@@ -103,7 +103,7 @@
 	    )
 	), document.getElementById('container'));
 	
-	//load product store
+	//load trade store
 
 /***/ }),
 /* 1 */
@@ -33150,7 +33150,7 @@
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    'Product Detail'
+	                    'Trade Detail'
 	                ),
 	                _react2.default.createElement(
 	                    'table',
@@ -33164,7 +33164,7 @@
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Product'
+	                                'Trade'
 	                            ),
 	                            _react2.default.createElement(
 	                                'th',
@@ -33492,6 +33492,8 @@
 	
 	var _mobxReact = __webpack_require__(/*! mobx-react */ 249);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 182);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33525,7 +33527,11 @@
 	                    _react2.default.createElement(
 	                        'td',
 	                        null,
-	                        item.tradeType
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '/detail', activeClassName: 'active' },
+	                            item.tradeType
+	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'td',
@@ -33696,7 +33702,7 @@
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                '  Product Code   '
+	                                '  Trade Code   '
 	                            ),
 	                            _react2.default.createElement(
 	                                'th',
@@ -33815,25 +33821,7 @@
 	                                    null,
 	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
-	                                        { to: '/addForm', activeClassName: '' },
-	                                        'Add Trade'
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        _reactRouter.Link,
-	                                        { to: '/detail', activeClassName: '' },
-	                                        'Detail'
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        _reactRouter.Link,
-	                                        { to: '/listing', activeClassName: '' },
+	                                        { to: '/listing', activeClassName: 'active' },
 	                                        'Listing'
 	                                    )
 	                                ),
@@ -33842,7 +33830,7 @@
 	                                    null,
 	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
-	                                        { to: '/matching', activeClassName: '' },
+	                                        { to: '/matching', activeClassName: 'active' },
 	                                        'Matching'
 	                                    )
 	                                ),
@@ -33851,7 +33839,16 @@
 	                                    null,
 	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
-	                                        { to: '/', activeClassName: '' },
+	                                        { to: '/addForm', activeClassName: 'active' },
+	                                        'Add Trade'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/', activeClassName: 'active' },
 	                                        'Signout'
 	                                    )
 	                                )

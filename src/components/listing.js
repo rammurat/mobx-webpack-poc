@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from "mobx-react"; 
+import { Link } from 'react-router';
 
 @observer
 export default class listing extends React.Component{
@@ -13,7 +14,7 @@ export default class listing extends React.Component{
         //group item categories
         const listingTable = listingData ? listingData.map(item => (
             <tr key={item.id}>
-                <td>{item.tradeType}</td>
+                <td><Link to="/detail" activeClassName="active">{item.tradeType}</Link></td>
                 <td>{item.marketType}</td>
                 <td>{item.direction}</td>
                 <td>{item.price}</td>
@@ -52,7 +53,7 @@ export default class listing extends React.Component{
                         <th>  Trade Date</th> 
                         <th>  Start Date</th> 
                         <th>  End Date   </th>
-                        <th>  Product Code   </th>
+                        <th>  Trade Code   </th>
                         <th>  Delivery Location</th>   
                         <th> Paymet Days</th>
                         <th> Payment Terms   </th>
