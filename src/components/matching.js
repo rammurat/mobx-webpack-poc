@@ -8,7 +8,7 @@ export default class matching extends React.Component{
     render(){
 
         //get objects from store
-        const {matchingData} = this.props.store;
+        const {matchingData} = this.props.route.data;
 
         //group item categories
         const matchingTable = matchingData ? matchingData.map(item => (

@@ -8,7 +8,7 @@ export default class listing extends React.Component{
     render(){
 
         //get objects from store
-        const {listingData} = this.props.store;
+        const {listingData} = this.props.route.data;
 
         //group item categories
         const listingTable = listingData ? listingData.map(item => (

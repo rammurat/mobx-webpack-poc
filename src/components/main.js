@@ -13,9 +13,11 @@ class Main extends Component {
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
                                 {/* Change from a to Link */}
-                                <li><Link to="/" activeClassName="active">Home</Link></li>
-                                <li><Link to="/cars" activeClassName="active">Cars</Link></li>
-                                <li><Link to="/about" activeClassName="active">About</Link></li>
+                                <li><Link to="/" activeClassName="active">Login</Link></li>
+                                <li><Link to="/addForm" activeClassName="active">Add Form</Link></li>
+                                <li><Link to="/detail" activeClassName="active">Detail</Link></li>
+                                <li><Link to="/listing" activeClassName="active">Listing</Link></li>
+                                <li><Link to="/matching" activeClassName="active">Matching</Link></li>
                             </ul>
                         </div>
                     </div>

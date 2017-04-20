@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { observer } from "mobx-react"; 
 
 @observer
-export default class matching extends React.Component{
+export default class detail extends React.Component{
 
     render(){
 
         //get objects from store
-        const {detailData} = this.props.store;
+        const {detailData} = this.props.route.data;
 
         //group item categories
         const detailTable = detailData ? detailData.map(item => (

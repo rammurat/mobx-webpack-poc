@@ -57,25 +57,29 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 182);
 	
-	var _main = __webpack_require__(/*! ./components/main.jsx */ 245);
+	var _main = __webpack_require__(/*! ./components/main.js */ 261);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _login = __webpack_require__(/*! ./components/login.jsx */ 252);
+	var _addForm = __webpack_require__(/*! ./components/addForm.js */ 253);
+	
+	var _addForm2 = _interopRequireDefault(_addForm);
+	
+	var _detail = __webpack_require__(/*! ./components/detail.js */ 255);
+	
+	var _detail2 = _interopRequireDefault(_detail);
+	
+	var _listing = __webpack_require__(/*! ./components/listing.js */ 260);
+	
+	var _listing2 = _interopRequireDefault(_listing);
+	
+	var _login = __webpack_require__(/*! ./components/login.js */ 254);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _about = __webpack_require__(/*! ./components/about.jsx */ 246);
+	var _matching = __webpack_require__(/*! ./components/matching.js */ 259);
 	
-	var _about2 = _interopRequireDefault(_about);
-	
-	var _car = __webpack_require__(/*! ./components/car.jsx */ 247);
-	
-	var _car2 = _interopRequireDefault(_car);
-	
-	var _detail = __webpack_require__(/*! ./components/detail.jsx */ 248);
-	
-	var _detail2 = _interopRequireDefault(_detail);
+	var _matching2 = _interopRequireDefault(_matching);
 	
 	var _appStore = __webpack_require__(/*! ./store/appStore.js */ 251);
 	
@@ -83,67 +87,23 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var data = [{
-	    id: 1,
-	    name: 'Honda Accord Crosstour',
-	    year: '2010',
-	    model: 'Accord Crosstour',
-	    make: 'Honda',
-	    media: 'http://media.ed.edmunds-media.com/honda/accord-crosstour/2010/oem/2010_honda_accord-crosstour_4dr-hatchback_ex-l_fq_oem_4_500.jpg',
-	    price: '$16,811'
-	
-	}, {
-	    id: 2,
-	    name: 'Mercedes-Benz AMG GT Coupe',
-	    year: '2016',
-	    model: 'AMG',
-	    make: 'Mercedes Benz',
-	    media: 'http://media.ed.edmunds-media.com/mercedes-benz/amg-gt/2016/oem/2016_mercedes-benz_amg-gt_coupe_s_fq_oem_1_717.jpg',
-	    price: '$138,157'
-	
-	}, {
-	    id: 3,
-	    name: 'BMW X6 SUV',
-	    year: '2016',
-	    model: 'X6',
-	    make: 'BMW',
-	    media: 'http://media.ed.edmunds-media.com/bmw/x6/2016/oem/2016_bmw_x6_4dr-suv_xdrive50i_fq_oem_1_717.jpg',
-	    price: '$68,999'
-	}, {
-	    id: 4,
-	    name: 'Ford Edge SUV',
-	    year: '2016',
-	    model: 'Edge',
-	    make: 'Ford',
-	    media: 'http://media.ed.edmunds-media.com/ford/edge/2016/oem/2016_ford_edge_4dr-suv_sport_fq_oem_6_717.jpg',
-	    price: '$36,275'
-	}, {
-	    id: 5,
-	    name: 'Dodge Viper Coupe',
-	    year: '2017',
-	    model: 'Viper',
-	    make: 'Dodge',
-	    media: 'http://media.ed.edmunds-media.com/dodge/viper/2017/oem/2017_dodge_viper_coupe_acr_fq_oem_3_717.jpg',
-	    price: '$123,890'
-	}];
-	
-	//load product store
-	
 	// Import routing components
-	
-	
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
 	    _react2.default.createElement(
 	        _reactRouter.Route,
 	        { component: _main2.default },
-	        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _login2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/cars', component: _car2.default, data: data }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/cars/:id', component: _detail2.default, data: _appStore2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _login2.default, data: _appStore2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/addForm', component: _addForm2.default, data: _appStore2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/detail', component: _detail2.default, data: _appStore2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/listing', component: _listing2.default, data: _appStore2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _login2.default, data: _appStore2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/matching', component: _matching2.default, data: _appStore2.default })
 	    )
 	), document.getElementById('container'));
+	
+	//load product store
 
 /***/ }),
 /* 1 */
@@ -28256,364 +28216,10 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 245 */
-/*!*********************************!*\
-  !*** ./src/components/main.jsx ***!
-  \*********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 182);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Main = function (_Component) {
-	    _inherits(Main, _Component);
-	
-	    function Main() {
-	        _classCallCheck(this, Main);
-	
-	        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
-	    }
-	
-	    _createClass(Main, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'nav',
-	                    { className: 'navbar navbar-default' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'container-fluid' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'navbar-header' },
-	                            _react2.default.createElement(
-	                                'a',
-	                                { className: 'navbar-brand', href: '#' },
-	                                'Scotch Cars'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-	                            _react2.default.createElement(
-	                                'ul',
-	                                { className: 'nav navbar-nav' },
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        _reactRouter.Link,
-	                                        { to: '/', activeClassName: 'active' },
-	                                        'Home'
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        _reactRouter.Link,
-	                                        { to: '/cars', activeClassName: 'active' },
-	                                        'Cars'
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        _reactRouter.Link,
-	                                        { to: '/about', activeClassName: 'active' },
-	                                        'About'
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    this.props.children
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Main;
-	}(_react.Component);
-	
-	exports.default = Main;
-
-/***/ }),
-/* 246 */
-/*!**********************************!*\
-  !*** ./src/components/about.jsx ***!
-  \**********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var About = function (_Component) {
-	    _inherits(About, _Component);
-	
-	    function About() {
-	        _classCallCheck(this, About);
-	
-	        return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
-	    }
-	
-	    _createClass(About, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'h1',
-	                null,
-	                'About Me Page'
-	            );
-	        }
-	    }]);
-	
-	    return About;
-	}(_react.Component);
-	
-	exports.default = About;
-
-/***/ }),
-/* 247 */
-/*!********************************!*\
-  !*** ./src/components/car.jsx ***!
-  \********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 182);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Car = function (_Component) {
-	    _inherits(Car, _Component);
-	
-	    function Car() {
-	        _classCallCheck(this, Car);
-	
-	        return _possibleConstructorReturn(this, (Car.__proto__ || Object.getPrototypeOf(Car)).apply(this, arguments));
-	    }
-	
-	    _createClass(Car, [{
-	        key: 'render',
-	        value: function render() {
-	            // Get data from route props
-	            var cars = this.props.route.data;
-	            // Map through cars and return linked cars
-	            var carNode = cars.map(function (car) {
-	                return _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    {
-	                        to: "/cars/" + car.id,
-	                        className: 'list-group-item',
-	                        key: car.id },
-	                    car.name
-	                );
-	            });
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Cars page'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'list-group' },
-	                    carNode
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Car;
-	}(_react.Component);
-	
-	exports.default = Car;
-
-/***/ }),
-/* 248 */
-/*!***********************************!*\
-  !*** ./src/components/detail.jsx ***!
-  \***********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _class;
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 182);
-	
-	var _mobxReact = __webpack_require__(/*! mobx-react */ 249);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CarDetail = (0, _mobxReact.observer)(_class = function (_Component) {
-		_inherits(CarDetail, _Component);
-	
-		function CarDetail() {
-			_classCallCheck(this, CarDetail);
-	
-			return _possibleConstructorReturn(this, (CarDetail.__proto__ || Object.getPrototypeOf(CarDetail)).apply(this, arguments));
-		}
-	
-		_createClass(CarDetail, [{
-			key: 'handleRedirect',
-			value: function handleRedirect() {
-				_reactRouter.browserHistory.push('/cars');
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var tempdata = this.props.route.data;
-				var id = this.props.params.id;
-	
-				//get objects from store
-				var detailData = this.props.route.data.detailData;
-	
-				//group item categories
-	
-				var detailTable = detailData ? detailData.map(function (item) {
-					return _react2.default.createElement(
-						'tr',
-						{ key: item.id },
-						_react2.default.createElement(
-							'td',
-							null,
-							item.productKey
-						),
-						_react2.default.createElement(
-							'td',
-							null,
-							item.productValue
-						)
-					);
-				}) : "";
-	
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'h2',
-						null,
-						'Product Detail'
-					),
-					_react2.default.createElement(
-						'table',
-						{ className: 'table table-striped table-responsive' },
-						_react2.default.createElement(
-							'thead',
-							null,
-							_react2.default.createElement(
-								'tr',
-								null,
-								_react2.default.createElement(
-									'th',
-									null,
-									'Product'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
-									'Description'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'tbody',
-							null,
-							detailTable
-						)
-					)
-				);
-			}
-		}]);
-	
-		return CarDetail;
-	}(_react.Component)) || _class;
-	
-	exports.default = CarDetail;
-
-/***/ }),
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
 /* 249 */
 /*!*******************************!*\
   !*** ./~/mobx-react/index.js ***!
@@ -33084,10 +32690,111 @@
 	exports.default = new AppStore();
 
 /***/ }),
-/* 252 */
-/*!**********************************!*\
-  !*** ./src/components/login.jsx ***!
-  \**********************************/
+/* 252 */,
+/* 253 */
+/*!***********************************!*\
+  !*** ./src/components/addForm.js ***!
+  \***********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var addForm = function (_React$Component) {
+	    _inherits(addForm, _React$Component);
+	
+	    function addForm() {
+	        _classCallCheck(this, addForm);
+	
+	        return _possibleConstructorReturn(this, (addForm.__proto__ || Object.getPrototypeOf(addForm)).apply(this, arguments));
+	    }
+	
+	    _createClass(addForm, [{
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            //get objects from store
+	            var formData = this.props.route.data.formData;
+	
+	            //group item categories
+	
+	            var formFields = formData ? formData.map(function (input) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group', key: input.id },
+	                    _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: 'item', id: 'usernameLabel', className: 'col-sm-2 control-label' },
+	                        input.formKey
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-10' },
+	                        _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'item', placeholder: input.formKey, ref: 'username', onChange: _this2.handleChange, required: true }),
+	                        _react2.default.createElement('div', { className: 'error', id: 'usernameError' })
+	                    )
+	                );
+	            }) : "";
+	
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container-fluid' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'form',
+	                        { className: 'form-horizontal', id: 'login', name: 'login', method: 'post', action: '/listing', noValidate: true },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            { className: 'form-signin-heading' },
+	                            'Add Form'
+	                        ),
+	                        formFields,
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            _react2.default.createElement(
+	                                'button',
+	                                { className: 'btn btn-primary center-block' },
+	                                'Add'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return addForm;
+	}(_react2.default.Component);
+	
+	exports.default = addForm;
+
+/***/ }),
+/* 254 */
+/*!*********************************!*\
+  !*** ./src/components/login.js ***!
+  \*********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33311,6 +33018,756 @@
 	}(_react2.default.Component);
 	
 	exports.default = Login;
+
+/***/ }),
+/* 255 */
+/*!**********************************!*\
+  !*** ./src/components/detail.js ***!
+  \**********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _class;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 256);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _mobxReact = __webpack_require__(/*! mobx-react */ 249);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var detail = (0, _mobxReact.observer)(_class = function (_React$Component) {
+	    _inherits(detail, _React$Component);
+	
+	    function detail() {
+	        _classCallCheck(this, detail);
+	
+	        return _possibleConstructorReturn(this, (detail.__proto__ || Object.getPrototypeOf(detail)).apply(this, arguments));
+	    }
+	
+	    _createClass(detail, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            //get objects from store
+	            var detailData = this.props.route.data.detailData;
+	
+	            //group item categories
+	
+	            var detailTable = detailData ? detailData.map(function (item) {
+	                return _react2.default.createElement(
+	                    'tr',
+	                    { key: item.id },
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.productKey
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.productValue
+	                    )
+	                );
+	            }) : "";
+	
+	            //render html
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Product Detail'
+	                ),
+	                _react2.default.createElement(
+	                    'table',
+	                    { className: 'table table-striped table-responsive' },
+	                    _react2.default.createElement(
+	                        'thead',
+	                        null,
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Product'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Description'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'tbody',
+	                        null,
+	                        detailTable
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return detail;
+	}(_react2.default.Component)) || _class;
+	
+	exports.default = detail;
+
+/***/ }),
+/* 256 */
+/*!*******************************!*\
+  !*** ./~/prop-types/index.js ***!
+  \*******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+	
+	if (process.env.NODE_ENV !== 'production') {
+	  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+	    Symbol.for &&
+	    Symbol.for('react.element')) ||
+	    0xeac7;
+	
+	  var isValidElement = function(object) {
+	    return typeof object === 'object' &&
+	      object !== null &&
+	      object.$$typeof === REACT_ELEMENT_TYPE;
+	  };
+	
+	  // By explicitly using `prop-types` you are opting into new development behavior.
+	  // http://fb.me/prop-types-in-prod
+	  var throwOnDirectAccess = true;
+	  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ 31)(isValidElement, throwOnDirectAccess);
+	} else {
+	  // By explicitly using `prop-types` you are opting into new production behavior.
+	  // http://fb.me/prop-types-in-prod
+	  module.exports = __webpack_require__(/*! ./factoryWithThrowingShims */ 257)();
+	}
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 3)))
+
+/***/ }),
+/* 257 */
+/*!**************************************************!*\
+  !*** ./~/prop-types/factoryWithThrowingShims.js ***!
+  \**************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+	
+	'use strict';
+	
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 12);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 8);
+	
+	module.exports = function() {
+	  // Important!
+	  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+	  function shim() {
+	    invariant(
+	      false,
+	      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+	      'Use PropTypes.checkPropTypes() to call them. ' +
+	      'Read more at http://fb.me/use-check-prop-types'
+	    );
+	  };
+	  shim.isRequired = shim;
+	  function getShim() {
+	    return shim;
+	  };
+	  var ReactPropTypes = {
+	    array: shim,
+	    bool: shim,
+	    func: shim,
+	    number: shim,
+	    object: shim,
+	    string: shim,
+	    symbol: shim,
+	
+	    any: shim,
+	    arrayOf: getShim,
+	    element: shim,
+	    instanceOf: getShim,
+	    node: shim,
+	    objectOf: getShim,
+	    oneOf: getShim,
+	    oneOfType: getShim,
+	    shape: getShim
+	  };
+	
+	  ReactPropTypes.checkPropTypes = emptyFunction;
+	  ReactPropTypes.PropTypes = ReactPropTypes;
+	
+	  return ReactPropTypes;
+	};
+
+
+/***/ }),
+/* 258 */,
+/* 259 */
+/*!************************************!*\
+  !*** ./src/components/matching.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _class;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 256);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _mobxReact = __webpack_require__(/*! mobx-react */ 249);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var matching = (0, _mobxReact.observer)(_class = function (_React$Component) {
+	    _inherits(matching, _React$Component);
+	
+	    function matching() {
+	        _classCallCheck(this, matching);
+	
+	        return _possibleConstructorReturn(this, (matching.__proto__ || Object.getPrototypeOf(matching)).apply(this, arguments));
+	    }
+	
+	    _createClass(matching, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            //get objects from store
+	            var matchingData = this.props.route.data.matchingData;
+	
+	            //group item categories
+	
+	            var matchingTable = matchingData ? matchingData.map(function (item) {
+	                return _react2.default.createElement(
+	                    'tr',
+	                    { key: item.id },
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.productValue
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.seller
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.buyer
+	                    )
+	                );
+	            }) : "";
+	
+	            //render html
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Deal Matching'
+	                ),
+	                _react2.default.createElement(
+	                    'table',
+	                    { className: 'table table-striped table-responsive' },
+	                    _react2.default.createElement(
+	                        'thead',
+	                        null,
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Type'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Seller'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Buyer'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'tbody',
+	                        null,
+	                        matchingTable
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return matching;
+	}(_react2.default.Component)) || _class;
+	
+	exports.default = matching;
+
+/***/ }),
+/* 260 */
+/*!***********************************!*\
+  !*** ./src/components/listing.js ***!
+  \***********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _class;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 256);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _mobxReact = __webpack_require__(/*! mobx-react */ 249);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var listing = (0, _mobxReact.observer)(_class = function (_React$Component) {
+	    _inherits(listing, _React$Component);
+	
+	    function listing() {
+	        _classCallCheck(this, listing);
+	
+	        return _possibleConstructorReturn(this, (listing.__proto__ || Object.getPrototypeOf(listing)).apply(this, arguments));
+	    }
+	
+	    _createClass(listing, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            //get objects from store
+	            var listingData = this.props.route.data.listingData;
+	
+	            //group item categories
+	
+	            var listingTable = listingData ? listingData.map(function (item) {
+	                return _react2.default.createElement(
+	                    'tr',
+	                    { key: item.id },
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.tradeType
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.marketType
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.direction
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.price
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.priceUOM
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.quantity
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.quantityUOM
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.totalQuantity
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.totalQuantityUOM
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.tradedate
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.startDate
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.endDate
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.productCode
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.deliveryLocation
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.paymetDays
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.paymentTerms
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.mOT
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        item.dealStatus
+	                    )
+	                );
+	            }) : "";
+	
+	            //render html
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Products Listing'
+	                ),
+	                _react2.default.createElement(
+	                    'table',
+	                    { className: 'table table-striped table-responsive' },
+	                    _react2.default.createElement(
+	                        'thead',
+	                        null,
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Trade Type'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Market Type'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                ' Direction  '
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Price'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                ' Price UOM'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Quantity'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Quantity UOM'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Total Quantity'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Total QuantityUOM'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Trade Date'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Start Date'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  End Date   '
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Product Code   '
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                '  Delivery Location'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                ' Paymet Days'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                ' Payment Terms   '
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                ' MOT'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Deal Status'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'tbody',
+	                        null,
+	                        listingTable
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return listing;
+	}(_react2.default.Component)) || _class;
+	
+	exports.default = listing;
+
+/***/ }),
+/* 261 */
+/*!********************************!*\
+  !*** ./src/components/main.js ***!
+  \********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 182);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Main = function (_Component) {
+	    _inherits(Main, _Component);
+	
+	    function Main() {
+	        _classCallCheck(this, Main);
+	
+	        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+	    }
+	
+	    _createClass(Main, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'nav',
+	                    { className: 'navbar navbar-default' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'container-fluid' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'navbar-header' },
+	                            _react2.default.createElement(
+	                                'a',
+	                                { className: 'navbar-brand', href: '#' },
+	                                'Scotch Cars'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	                            _react2.default.createElement(
+	                                'ul',
+	                                { className: 'nav navbar-nav' },
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/', activeClassName: 'active' },
+	                                        'Login'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/addForm', activeClassName: 'active' },
+	                                        'Add Form'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/detail', activeClassName: 'active' },
+	                                        'Detail'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/listing', activeClassName: 'active' },
+	                                        'Listing'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/matching', activeClassName: 'active' },
+	                                        'Matching'
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    this.props.children
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Main;
+	}(_react.Component);
+	
+	exports.default = Main;
 
 /***/ })
 /******/ ]);

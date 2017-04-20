@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-export default class Login extends React.Component {
+export default class addForm extends React.Component {
     
   render() {
 
        //get objects from store
-        const {formData} = this.props.store;
+        const {formData} = this.props.route.data;
 
         //group item categories
         const formFields = formData ? formData.map(input => (
