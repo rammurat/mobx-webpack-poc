@@ -34,6 +34,8 @@ export default class listing extends React.Component{
             </tr>    
         )) : "";
 
+        console.log(listingTable);
+
         //render html
         return <div className="row productTable">
             <h2>Trade Listing</h2>

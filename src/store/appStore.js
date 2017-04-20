@@ -189,7 +189,7 @@ export class AppStore{
             "Match":false
         },
         "DealStatus":"Matched"
-        }
+    }
 }
 
 export default new AppStore;

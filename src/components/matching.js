@@ -11,18 +11,32 @@ export default class matching extends React.Component{
         const {matchingData} = this.props.route.data;
 
         //group item categories
-        const matchingTable = matchingData ? matchingData.map(item => (
-            <tr key={item.id}>
-                <td>{item.productValue}</td>
-                <td>{item.ValA}</td>
-                <td>{item.ValB}</td>
-                <td>{item.Match}<button type="button" class="btn btn-success">Matched</button></td>
-            </tr>    
-        )) : "";
+        function getTable(){
+            var data = [];
+            const matchingTable = Object.keys(matchingData).forEach(function (key) {
+                
+                if(key !== "DealStatus"){
+                    var statusClass = (matchingData[key].Match === true) ? "btn btn-success" : "btn btn-warning",
+                        status = (matchingData[key].Match === true) ? "Yes" : "No"
+                    data.push(<tr key={Date.now() + Math.random()}>
+                        <td>{key}</td>
+                        <td>{matchingData[key].ValA}</td>
+                        <td>{matchingData[key].ValB}</td>
+                        <td>{matchingData[key].Match}<button type="button" className={statusClass}>{status}</button></td>
+                    </tr>) 
+                }
+            });
+
+            return data;
+        }
 
         //render html
         return <div>
             <h2>Deal Matching</h2>
+            <div className="well">
+                <span className="pull-left"> <strong>Deal Status</strong> </span> 
+                <span className="pull-right"> <button type="button" className="btn btn-success">Matched</button> </span>
+            </div>
             <table className="table table-striped table-responsive">
                 <thead>
                     <tr>
@@ -32,7 +46,7 @@ export default class matching extends React.Component{
                     </tr>
                 </thead>
                 <tbody>
-                    {matchingTable}
+                    {getTable()}
                 </tbody>
             </table>
         </div>

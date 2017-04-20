@@ -36,3 +36,7 @@ select.active:invalid {
 form{
     max-width : 400px;
 }
+
+.well{
+    height: 75px;
+}

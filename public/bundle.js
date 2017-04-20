@@ -33188,37 +33188,47 @@
 	
 	            //group item categories
 	
-	            var matchingTable = matchingData ? matchingData.map(function (item) {
-	                return _react2.default.createElement(
-	                    'tr',
-	                    { key: item.id },
-	                    _react2.default.createElement(
-	                        'td',
-	                        null,
-	                        item.productValue
-	                    ),
-	                    _react2.default.createElement(
-	                        'td',
-	                        null,
-	                        item.ValA
-	                    ),
-	                    _react2.default.createElement(
-	                        'td',
-	                        null,
-	                        item.ValB
-	                    ),
-	                    _react2.default.createElement(
-	                        'td',
-	                        null,
-	                        item.Match,
-	                        _react2.default.createElement(
-	                            'button',
-	                            { type: 'button', 'class': 'btn btn-success' },
-	                            'Matched'
-	                        )
-	                    )
-	                );
-	            }) : "";
+	            function getTable() {
+	                var data = [];
+	                var matchingTable = Object.keys(matchingData).forEach(function (key) {
+	
+	                    if (key !== "DealStatus") {
+	                        var statusClass = matchingData[key].Match === true ? "btn btn-success" : "btn btn-warning",
+	                            status = matchingData[key].Match === true ? "Yes" : "No";
+	                        data.push(_react2.default.createElement(
+	                            'tr',
+	                            { key: Date.now() + Math.random() },
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                key
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                matchingData[key].ValA
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                matchingData[key].ValB
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                matchingData[key].Match,
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { type: 'button', className: statusClass },
+	                                    status
+	                                )
+	                            )
+	                        ));
+	                    }
+	                });
+	
+	                return data;
+	            }
 	
 	            //render html
 	            return _react2.default.createElement(
@@ -33228,6 +33238,32 @@
 	                    'h2',
 	                    null,
 	                    'Deal Matching'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'well' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'pull-left' },
+	                        ' ',
+	                        _react2.default.createElement(
+	                            'strong',
+	                            null,
+	                            'Deal Status'
+	                        ),
+	                        ' '
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'pull-right' },
+	                        ' ',
+	                        _react2.default.createElement(
+	                            'button',
+	                            { type: 'button', className: 'btn btn-success' },
+	                            'Matched'
+	                        ),
+	                        ' '
+	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'table',
@@ -33258,7 +33294,7 @@
 	                    _react2.default.createElement(
 	                        'tbody',
 	                        null,
-	                        matchingTable
+	                        getTable()
 	                    )
 	                )
 	            );
@@ -33420,6 +33456,8 @@
 	                    )
 	                );
 	            }) : "";
+	
+	            console.log(listingTable);
 	
 	            //render html
 	            return _react2.default.createElement(
