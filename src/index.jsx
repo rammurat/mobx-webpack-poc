@@ -3,11 +3,11 @@ import { render } from 'react-dom';
 // Import routing components
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
-import Main from './common/main.component.jsx'
-import Home from './common/home.component.jsx'
-import About from './common/about.component.jsx'
-import Car from './car/car.component.jsx'
-import CarDetail from './car/car-detail.component.jsx'
+import Main from './components/main.jsx'
+import Login from './components/login.jsx'
+import About from './components/about.jsx'
+import Car from './components/car.jsx'
+import CarDetail from './components/detail.jsx'
 
 
 //load product store
@@ -67,7 +67,7 @@ const data = [
 render(
     <Router history={browserHistory}>
         <Route component={Main}>
-            <Route path="/" component={Home}/>
+            <Route path="/" component={Login}/>
             <Route path="/cars" component={Car} data={data}/>
             {/* Parameter route*/}
             <Route path="/cars/:id" component={CarDetail} data={AppStore}/>

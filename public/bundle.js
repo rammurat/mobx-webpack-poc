@@ -57,27 +57,27 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 182);
 	
-	var _mainComponent = __webpack_require__(/*! ./common/main.component.jsx */ 245);
+	var _main = __webpack_require__(/*! ./components/main.jsx */ 245);
 	
-	var _mainComponent2 = _interopRequireDefault(_mainComponent);
+	var _main2 = _interopRequireDefault(_main);
 	
-	var _homeComponent = __webpack_require__(/*! ./common/home.component.jsx */ 246);
+	var _login = __webpack_require__(/*! ./components/login.jsx */ 252);
 	
-	var _homeComponent2 = _interopRequireDefault(_homeComponent);
+	var _login2 = _interopRequireDefault(_login);
 	
-	var _aboutComponent = __webpack_require__(/*! ./common/about.component.jsx */ 247);
+	var _about = __webpack_require__(/*! ./components/about.jsx */ 246);
 	
-	var _aboutComponent2 = _interopRequireDefault(_aboutComponent);
+	var _about2 = _interopRequireDefault(_about);
 	
-	var _carComponent = __webpack_require__(/*! ./car/car.component.jsx */ 248);
+	var _car = __webpack_require__(/*! ./components/car.jsx */ 247);
 	
-	var _carComponent2 = _interopRequireDefault(_carComponent);
+	var _car2 = _interopRequireDefault(_car);
 	
-	var _carDetailComponent = __webpack_require__(/*! ./car/car-detail.component.jsx */ 249);
+	var _detail = __webpack_require__(/*! ./components/detail.jsx */ 248);
 	
-	var _carDetailComponent2 = _interopRequireDefault(_carDetailComponent);
+	var _detail2 = _interopRequireDefault(_detail);
 	
-	var _appStore = __webpack_require__(/*! ./store/appStore.js */ 252);
+	var _appStore = __webpack_require__(/*! ./store/appStore.js */ 251);
 	
 	var _appStore2 = _interopRequireDefault(_appStore);
 	
@@ -137,11 +137,11 @@
 	    { history: _reactRouter.browserHistory },
 	    _react2.default.createElement(
 	        _reactRouter.Route,
-	        { component: _mainComponent2.default },
-	        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _homeComponent2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/cars', component: _carComponent2.default, data: data }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/cars/:id', component: _carDetailComponent2.default, data: _appStore2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _aboutComponent2.default })
+	        { component: _main2.default },
+	        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _login2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/cars', component: _car2.default, data: data }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/cars/:id', component: _detail2.default, data: _appStore2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default })
 	    )
 	), document.getElementById('container'));
 
@@ -28257,9 +28257,9 @@
 
 /***/ }),
 /* 245 */
-/*!***************************************!*\
-  !*** ./src/common/main.component.jsx ***!
-  \***************************************/
+/*!*********************************!*\
+  !*** ./src/components/main.jsx ***!
+  \*********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28367,61 +28367,9 @@
 
 /***/ }),
 /* 246 */
-/*!***************************************!*\
-  !*** ./src/common/home.component.jsx ***!
-  \***************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Home = function (_Component) {
-	    _inherits(Home, _Component);
-	
-	    function Home() {
-	        _classCallCheck(this, Home);
-	
-	        return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
-	    }
-	
-	    _createClass(Home, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Home Page'
-	            );
-	        }
-	    }]);
-	
-	    return Home;
-	}(_react.Component);
-	
-	exports.default = Home;
-
-/***/ }),
-/* 247 */
-/*!****************************************!*\
-  !*** ./src/common/about.component.jsx ***!
-  \****************************************/
+/*!**********************************!*\
+  !*** ./src/components/about.jsx ***!
+  \**********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28470,10 +28418,10 @@
 	exports.default = About;
 
 /***/ }),
-/* 248 */
-/*!***********************************!*\
-  !*** ./src/car/car.component.jsx ***!
-  \***********************************/
+/* 247 */
+/*!********************************!*\
+  !*** ./src/components/car.jsx ***!
+  \********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28546,10 +28494,10 @@
 	exports.default = Car;
 
 /***/ }),
-/* 249 */
-/*!******************************************!*\
-  !*** ./src/car/car-detail.component.jsx ***!
-  \******************************************/
+/* 248 */
+/*!***********************************!*\
+  !*** ./src/components/detail.jsx ***!
+  \***********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28569,7 +28517,7 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 182);
 	
-	var _mobxReact = __webpack_require__(/*! mobx-react */ 250);
+	var _mobxReact = __webpack_require__(/*! mobx-react */ 249);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28666,7 +28614,7 @@
 	exports.default = CarDetail;
 
 /***/ }),
-/* 250 */
+/* 249 */
 /*!*******************************!*\
   !*** ./~/mobx-react/index.js ***!
   \*******************************/
@@ -28674,7 +28622,7 @@
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(/*! react */ 1), __webpack_require__(/*! mobx */ 251), __webpack_require__(/*! react-dom */ 36));
+			module.exports = factory(__webpack_require__(/*! react */ 1), __webpack_require__(/*! mobx */ 250), __webpack_require__(/*! react-dom */ 36));
 		else if(typeof define === 'function' && define.amd)
 			define(["react", "mobx", "react-dom"], factory);
 		else if(typeof exports === 'object')
@@ -29780,7 +29728,7 @@
 	});
 
 /***/ }),
-/* 251 */
+/* 250 */
 /*!****************************!*\
   !*** ./~/mobx/lib/mobx.js ***!
   \****************************/
@@ -32712,7 +32660,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 252 */
+/* 251 */
 /*!*******************************!*\
   !*** ./src/store/appStore.js ***!
   \*******************************/
@@ -32729,7 +32677,7 @@
 	
 	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
 	
-	var _mobx = __webpack_require__(/*! mobx */ 251);
+	var _mobx = __webpack_require__(/*! mobx */ 250);
 	
 	function _initDefineProp(target, property, descriptor, context) {
 	    if (!descriptor) return;
@@ -33134,6 +33082,235 @@
 	    }
 	})), _class3);
 	exports.default = new AppStore();
+
+/***/ }),
+/* 252 */
+/*!**********************************!*\
+  !*** ./src/components/login.jsx ***!
+  \**********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Login = function (_React$Component) {
+	    _inherits(Login, _React$Component);
+	
+	    function Login(props) {
+	        _classCallCheck(this, Login);
+	
+	        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+	
+	        _this.state = {
+	            username: '',
+	            password: ''
+	        };
+	
+	        _this.handleChange = _this.handleChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        return _this;
+	    }
+	
+	    //update current field state on change 
+	
+	
+	    _createClass(Login, [{
+	        key: 'handleChange',
+	        value: function handleChange(e) {
+	            //add active class
+	            e.target.classList.add('active');
+	
+	            //set state
+	            this.setState(_defineProperty({}, e.target.name, e.target.value));
+	
+	            //validate and show error
+	            this.showInputError(e.target.name);
+	        }
+	
+	        //handle form submission 
+	
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(e) {
+	            e.preventDefault();
+	
+	            if (!this.showFormErrors()) {
+	                console.log('form is invalid: do not submit');
+	            } else {
+	
+	                document.forms['login'].submit();
+	                console.log('form is valid: submit');
+	            }
+	        }
+	
+	        //reset form
+	
+	    }, {
+	        key: 'resetForm',
+	        value: function resetForm() {
+	            //get all input and select menus of form, if new form fields will introduce it will handle automatically 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            //traverse input fields
+	            inputs.forEach(function (input) {
+	                input.classList.remove('active');
+	                input.value = "";
+	            });
+	
+	            //traverse select fields 
+	            selects.forEach(function (select) {
+	                select.classList.remove('active');
+	                select.value = "";
+	            });
+	        }
+	
+	        //show errors
+	
+	    }, {
+	        key: 'showFormErrors',
+	        value: function showFormErrors() {
+	            var _this2 = this;
+	
+	            //get form fields 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            var isFormValid = true;
+	
+	            //traverse input fields 
+	            inputs.forEach(function (input) {
+	                //add error
+	                input.classList.add('active');
+	
+	                var isInputValid = _this2.showInputError(input.name);
+	
+	                if (!isInputValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            //traverse select menu fields
+	            selects.forEach(function (select) {
+	                //add error
+	                select.classList.add('active');
+	
+	                var isSelectValid = _this2.showInputError(select.name);
+	
+	                if (!isSelectValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            return isFormValid;
+	        }
+	
+	        //validate input fields 
+	
+	    }, {
+	        key: 'showInputError',
+	        value: function showInputError(refName) {
+	            //fetch field
+	            var validity = this.refs[refName].validity;
+	            var label = document.getElementById(refName + 'Label').textContent;
+	            var error = document.getElementById(refName + 'Error');
+	
+	            //validate field
+	            if (!validity.valid) {
+	                if (validity.valueMissing) {
+	                    error.textContent = label + ' is a required field';
+	                } else if (validity.patternMismatch) {
+	                    error.textContent = label + ' price should be in digits';
+	                }
+	                return false;
+	            }
+	
+	            //update error message
+	            error.textContent = '';
+	            return true;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container-fluid' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3' },
+	                        _react2.default.createElement(
+	                            'form',
+	                            { id: 'login', name: 'login', method: 'post', action: '/listing', noValidate: true },
+	                            _react2.default.createElement(
+	                                'h2',
+	                                { className: 'form-signin-heading' },
+	                                'Login'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'form-group' },
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    { className: 'sr-only', htmlFor: 'item', id: 'usernameLabel' },
+	                                    'Username'
+	                                ),
+	                                _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'item', placeholder: 'Username', ref: 'username', onChange: this.handleChange, required: true }),
+	                                _react2.default.createElement('div', { className: 'error', id: 'usernameError' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'form-group' },
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    { className: 'sr-only', htmlFor: 'price', id: 'passwordLabel' },
+	                                    'Password'
+	                                ),
+	                                _react2.default.createElement('input', { name: 'password', className: 'form-control', id: 'password', placeholder: 'Password', ref: 'password', onChange: this.handleChange, required: true }),
+	                                _react2.default.createElement('div', { className: 'error', id: 'passwordError' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'form-group' },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-primary', onClick: this.handleSubmit },
+	                                    'Login'
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Login;
+	}(_react2.default.Component);
+	
+	exports.default = Login;
 
 /***/ })
 /******/ ]);
