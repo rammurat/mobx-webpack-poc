@@ -28,6 +28,7 @@
     "express": "^4.14.0",
     "form-data": "^2.1.4",
     "history": "^3.0.0",
+    "log4js": "^1.1.1",
     "mobx": "^3.1.9",
     "mobx-react": "^4.1.8",
     "node-fetch": "^1.6.3",

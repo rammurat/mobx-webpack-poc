@@ -1,4 +1,29 @@
 import {observable,computed} from 'mobx';
+//const api = require("api");
+
+function mData(contractId){
+        
+    const form = {contractId : contractId };
+    console.log('form',form);
+    
+    return fetch('/matchingData', { 
+        method: 'POST', 
+        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(function(json){
+        console.log('JSON data',json);
+        return json;
+    });
+}
+
+var mmData = mData("A01");
+
+mmData.then(function(data){
+    console.log('data before store',data);
+});   
+
 
 class newProduct{
     //observer each product
@@ -16,10 +41,20 @@ class newProduct{
     }
 }
 
+    
+
+// api.getMatchingData("A01").then(function(data){
+//     console.log('data before store',data);
+
+//     matchingData = data;
+// });
+
+
 export class AppStore{
     //observer product list and master categories
     @observable productList = [];
-   
+    @observable matchingData2 = [];
+
     //create item
     createProduct(product){
         this.productList.push( new newProduct(product));

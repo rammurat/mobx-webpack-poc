@@ -33446,7 +33446,7 @@
   \**********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -33455,7 +33455,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 251);
 	
@@ -33504,54 +33504,89 @@
 	    throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 	}
 	
+	//const api = require("api");
+	
+	function mData(contractId) {
+	
+	    var form = { contractId: contractId };
+	    console.log('form', form);
+	
+	    return fetch('/matchingData', {
+	        method: 'POST',
+	        body: JSON.stringify(form),
+	        headers: { 'Content-Type': 'application/json' }
+	    }).then(function (res) {
+	        return res.json();
+	    }).then(function (json) {
+	        console.log('JSON data', json);
+	        return json;
+	    });
+	}
+	
+	var mmData = mData("A01");
+	
+	mmData.then(function (data) {
+	    console.log('data before store', data);
+	});
+	
 	var newProduct = (_class =
 	
 	//initialize product
 	function newProduct(product) {
 	    _classCallCheck(this, newProduct);
 	
-	    _initDefineProp(this, "id", _descriptor, this);
+	    _initDefineProp(this, 'id', _descriptor, this);
 	
-	    _initDefineProp(this, "name", _descriptor2, this);
+	    _initDefineProp(this, 'name', _descriptor2, this);
 	
-	    _initDefineProp(this, "price", _descriptor3, this);
+	    _initDefineProp(this, 'price', _descriptor3, this);
 	
-	    _initDefineProp(this, "category", _descriptor4, this);
+	    _initDefineProp(this, 'category', _descriptor4, this);
 	
 	    this.id = parseInt(Date.now()) + "_" + Math.random(20);
 	    this.name = product.name;
 	    this.price = product.price;
 	    this.category = product.category;
-	}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "id", [_mobx.observable], {
+	}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'id', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: null
-	}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "name", [_mobx.observable], {
+	}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'name', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: null
-	}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "price", [_mobx.observable], {
+	}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'price', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: null
-	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "category", [_mobx.observable], {
+	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'category', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: null
 	})), _class);
+	
+	// api.getMatchingData("A01").then(function(data){
+	//     console.log('data before store',data);
+	
+	//     matchingData = data;
+	// });
+	
+	
 	var AppStore = exports.AppStore = (_class3 = function () {
 	    function AppStore() {
 	        _classCallCheck(this, AppStore);
 	
-	        _initDefineProp(this, "productList", _descriptor5, this);
+	        _initDefineProp(this, 'productList', _descriptor5, this);
 	
-	        _initDefineProp(this, "listingData", _descriptor6, this);
+	        _initDefineProp(this, 'matchingData2', _descriptor6, this);
 	
-	        _initDefineProp(this, "matchingData", _descriptor7, this);
+	        _initDefineProp(this, 'listingData', _descriptor7, this);
 	
-	        _initDefineProp(this, "detailData", _descriptor8, this);
+	        _initDefineProp(this, 'matchingData', _descriptor8, this);
 	
-	        _initDefineProp(this, "formData", _descriptor9, this);
+	        _initDefineProp(this, 'detailData', _descriptor9, this);
+	
+	        _initDefineProp(this, 'formData', _descriptor10, this);
 	    }
 	
 	    _createClass(AppStore, [{
-	        key: "createProduct",
+	        key: 'createProduct',
 	
 	
 	        //create item
@@ -33561,12 +33596,17 @@
 	    }]);
 	
 	    return AppStore;
-	}(), (_descriptor5 = _applyDecoratedDescriptor(_class3.prototype, "productList", [_mobx.observable], {
+	}(), (_descriptor5 = _applyDecoratedDescriptor(_class3.prototype, 'productList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [];
 	    }
-	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, "listingData", [_mobx.observable], {
+	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData2', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return [];
+	    }
+	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -33611,7 +33651,7 @@
 	            dealStatus: "ACTIVE"
 	        }];
 	    }
-	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, "matchingData", [_mobx.observable], {
+	}), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -33738,7 +33778,7 @@
 	            "DealStatus": "Matched"
 	        };
 	    }
-	}), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, "detailData", [_mobx.observable], {
+	}), _descriptor9 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -33815,7 +33855,7 @@
 	            productValue: "ACTIVE"
 	        }];
 	    }
-	}), _descriptor9 = _applyDecoratedDescriptor(_class3.prototype, "formData", [_mobx.observable], {
+	}), _descriptor10 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
