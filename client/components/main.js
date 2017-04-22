@@ -16,7 +16,7 @@ class Main extends Component {
                                 <li><Link to="/" activeClassName="active">Home</Link></li>
                                 <li><Link to="/listing" activeClassName="active">Listing</Link></li>
                                 <li><Link to="/matching" activeClassName="active">Matching</Link></li>
-                                <li><Link to="/addForm" activeClassName="active">Add Trade</Link></li>
+                                <li><Link to="/addTrade" activeClassName="active">Add Trade</Link></li>
                                 <li><Link to="/" activeClassName="active">Signout</Link></li>
                             </ul>
                         </div>

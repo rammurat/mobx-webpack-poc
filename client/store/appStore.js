@@ -206,76 +206,131 @@ export class AppStore{
 
     @observable formData =[{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Trade Type",
-        formValue : "",
+        fieldKey :  "Trade Type",
+        fieldValue : "",
+        fieldName : "tradeType" ,
+        fieldLabel : "tradeTypeLabel" ,
+        fieldError : "tradeTypeError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Market Type",
-        formValue : "",
+        fieldKey :  "Market Type",
+        fieldValue : "",
+        fieldName : "marketType" ,
+        fieldLabel : "marketTypeLabel" ,
+        fieldError : "marketTypeError" 
+
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Direction",
-        formValue : ""
+        fieldKey :  "Direction",
+        fieldValue : "",
+        fieldName : "direction",
+        fieldLabel : "directionLabel" ,
+        fieldError : "directionError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Price",
-        formValue : ""
+        fieldKey :  "Price",
+        fieldValue : "",
+        fieldName : "price",
+        fieldLabel : "priceLabel" ,
+        fieldError : "priceError"  
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Price UOM",
-        formValue : ""
+        fieldKey :  "Price UOM",
+        fieldValue : "",
+        fieldName : "priceUom" ,
+        fieldLabel : "priceUomLabel" ,
+        fieldError : "priceUomError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Quantity",
-        formValue : ""
+        fieldKey :  "Quantity",
+        fieldValue : "",
+        fieldName : "quantity" ,
+        fieldLabel : "quantityLabel" ,
+        fieldError : "quantityError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Quantity UOM",
-        formValue : ""
+        fieldKey :  "Quantity UOM",
+        fieldValue : "",
+        fieldName : "quantityUom" ,
+        fieldLabel : "quantityUomLabel" ,
+        fieldError : "quantityUomError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Total Quantity",
-        formValue : ""
+        fieldKey :  "Total Quantity",
+        fieldValue : "",
+        fieldName : "totalQuantity" ,
+        fieldLabel : "totalQuantityLabel" ,
+        fieldError : "totalQuantityError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Total QuantityUOM",
-        formValue : ""
+        fieldKey :  "Total QuantityUOM",
+        fieldValue : "",
+        fieldName : "totalQuantityUom",
+        fieldLabel : "totalQuantityUomLabel" ,
+        fieldError : "totalQuantityUomError"  
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Trade Date",
-        formValue : ""
+        fieldKey :  "Trade Date",
+        fieldValue : "",
+        fieldName : "tradeDate" ,
+        fieldLabel : "tradeDateLabel" ,
+        fieldError : "tradeDateError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Start Date",
-        formValue : ""
+        fieldKey :  "Start Date",
+        fieldValue : "",
+        fieldName : "startDate" ,
+        fieldLabel : "startDateLabel" ,
+        fieldError : "startDateError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "End Date",
-        formValue : ""
+        fieldKey :  "End Date",
+        fieldValue : "",
+        fieldName : "endDate" ,
+        fieldLabel : "endDateLabel" ,
+        fieldError : "endDateError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Product Code",
-        formValue : ""
+        fieldKey :  "Product Code",
+        fieldValue : "",
+        fieldName : "productCode" ,
+        fieldLabel : "productCodeLabel" ,
+        fieldError : "productCodeError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Delivery Location",
-        formValue : ""
+        fieldKey :  "Delivery Location",
+        fieldValue : "",
+        fieldName : "deliveryLocation",
+        fieldLabel : "deliveryLocationLabel" ,
+        fieldError : "deliveryLocationError"  
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Paymet Days",
-        formValue : ""
+        fieldKey :  "Paymet Days",
+        fieldValue : "",
+        fieldName : "paymentDays" ,
+        fieldLabel : "paymentDaysLabel" ,
+        fieldError : "paymentDaysError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Payment Terms",
-        formValue : ""
+        fieldKey :  "Payment Terms",
+        fieldValue : "",
+        fieldName : "paymentTerms" ,
+        fieldLabel : "paymentTermsLabel" ,
+        fieldError : "paymentTermsError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "MOT",
-        formValue : ""
+        fieldKey :  "MOT",
+        fieldValue : "",
+        fieldName : "mot" ,
+        fieldLabel : "motLabel" ,
+        fieldError : "motError" 
     },{
         id : Date.now() + "_" + Math.random(), 
-        formKey :  "Deal Status",
-        formValue : ""
+        fieldKey :  "Deal Status",
+        fieldValue : "",
+        fieldName : "dealStatus" ,
+        fieldLabel : "dealStatusLabel" ,
+        fieldError : "dealStatusError" 
     }]
 }
 

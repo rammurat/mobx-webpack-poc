@@ -3,8 +3,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-export default class Login extends React.Component {
-    constructor(props) {
+export default class addTrade extends React.Component {
+      constructor(props) {
         super(props);
 
         this.state = {
@@ -138,29 +138,36 @@ export default class Login extends React.Component {
         error.textContent = '';
         return true;
     }
+  
     
   render() {
+
+       //get objects from store
+        const {formData} = this.props.route.data;
+
+        //group item categories
+        const formFields = formData ? formData.map(input => (
+            <div className="form-group col-md-6" key={input.id}>
+                <label htmlFor={input.fieldName} id={input.fieldLabel} className="col-sm-6 control-label">{input.fieldKey}</label>
+                <div className="col-sm-6">
+                    <input name={input.fieldName} className="form-control" id={input.fieldName} placeholder={input.formKey} ref={input.fieldName} onChange={ this.handleChange } required/>
+                    <div className="error" id={input.fieldError} />
+                </div>
+            </div> 
+        )) : "";
+
     return (
         <div className="container-fluid">
+            <h4 className="form-signin-heading">Add Trade</h4>
             <div className="row">
-                <div className="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                    <form  id="login" name="login" method="post" action="/listing" noValidate>
-                        <h2 className="form-signin-heading">Login</h2>
-                        <div className="form-group">
-                            <label className="sr-only" htmlFor="username" id="usernameLabel">Username</label>
-                            <input name="username" className="form-control" id="username" placeholder="Username" ref="username" onChange={ this.handleChange } required/>
-                            <div className="error" id="usernameError" />
-                        </div>
-                        <div className="form-group">
-                            <label className="sr-only" htmlFor="password" id="passwordLabel">Password</label>
-                            <input name="password" className="form-control" id="password" placeholder="Password" ref="password" onChange={ this.handleChange } required/>
-                            <div className="error" id="passwordError" />
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-primary" onClick={this.handleSubmit}>Login</button>
-                        </div>
-                    </form>
-                </div>
+                <form className="form-horizontal"  id="addTrade" name="addTrade" method="post" action="/listing" noValidate>
+                    <div className="row">
+                        {formFields}
+                    </div>
+                    <div className="row">
+                        <button className="btn btn-primary center-block" onClick={this.handleSubmit}>Add</button>
+                    </div>
+                </form>
             </div>
         </div>
     );

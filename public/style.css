@@ -33,7 +33,7 @@ select.active:invalid {
     top:5px;
 }
 
-form{
+#login{
     max-width : 400px;
 }
 

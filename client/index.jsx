@@ -5,7 +5,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 
 import Home from './components/main.js'
-import AddForm from './components/addForm.js'
+import AddTrade from './components/addTrade.js'
 import Detail from './components/detail.js'
 import Listing from './components/listing.js'
 import Login from './components/login.js'
@@ -22,7 +22,7 @@ render(
     <Router history={browserHistory}>
         <Route component={Home}>
             <Route path="/" component={Login} data={AppStore}/>
-            <Route path="/addForm" component={AddForm} data={AppStore}/>
+            <Route path="/addTrade" component={AddTrade} data={AppStore}/>
             <Route path="/detail" component={Detail} data={AppStore}/>
             <Route path="/listing" component={Listing} data={AppStore}/>
             <Route path="/login" component={Login} data={AppStore}/>

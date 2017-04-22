@@ -61,9 +61,9 @@
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _addForm = __webpack_require__(/*! ./components/addForm.js */ 246);
+	var _addTrade = __webpack_require__(/*! ./components/addTrade.js */ 271);
 	
-	var _addForm2 = _interopRequireDefault(_addForm);
+	var _addTrade2 = _interopRequireDefault(_addTrade);
 	
 	var _detail = __webpack_require__(/*! ./components/detail.js */ 247);
 	
@@ -103,7 +103,7 @@
 	        _reactRouter.Route,
 	        { component: _main2.default },
 	        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _login2.default, data: _appStore2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/addForm', component: _addForm2.default, data: _appStore2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/addTrade', component: _addTrade2.default, data: _appStore2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/detail', component: _detail2.default, data: _appStore2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/listing', component: _listing2.default, data: _appStore2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _login2.default, data: _appStore2.default }),
@@ -28314,7 +28314,7 @@
 	                                    null,
 	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
-	                                        { to: '/addForm', activeClassName: 'active' },
+	                                        { to: '/addTrade', activeClassName: 'active' },
 	                                        'Add Trade'
 	                                    )
 	                                ),
@@ -28346,106 +28346,7 @@
 	exports.default = Main;
 
 /***/ }),
-/* 246 */
-/*!**************************************!*\
-  !*** ./client/components/addForm.js ***!
-  \**************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var addForm = function (_React$Component) {
-	    _inherits(addForm, _React$Component);
-	
-	    function addForm() {
-	        _classCallCheck(this, addForm);
-	
-	        return _possibleConstructorReturn(this, (addForm.__proto__ || Object.getPrototypeOf(addForm)).apply(this, arguments));
-	    }
-	
-	    _createClass(addForm, [{
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            //get objects from store
-	            var formData = this.props.route.data.formData;
-	
-	            //group item categories
-	
-	            var formFields = formData ? formData.map(function (input) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    { className: 'form-group', key: input.id },
-	                    _react2.default.createElement(
-	                        'label',
-	                        { htmlFor: 'item', id: 'usernameLabel', className: 'col-sm-6 control-label' },
-	                        input.formKey
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-sm-6' },
-	                        _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'item', placeholder: input.formKey, ref: 'username', onChange: _this2.handleChange, required: true }),
-	                        _react2.default.createElement('div', { className: 'error', id: 'usernameError' })
-	                    )
-	                );
-	            }) : "";
-	
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'container-fluid' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'form',
-	                        { className: 'form-horizontal', id: 'login', name: 'login', method: 'post', action: '/listing', noValidate: true },
-	                        _react2.default.createElement(
-	                            'h2',
-	                            { className: 'form-signin-heading' },
-	                            'Add Trade'
-	                        ),
-	                        formFields,
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'button',
-	                                { className: 'btn btn-primary center-block' },
-	                                'Add'
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return addForm;
-	}(_react2.default.Component);
-	
-	exports.default = addForm;
-
-/***/ }),
+/* 246 */,
 /* 247 */
 /*!*************************************!*\
   !*** ./client/components/detail.js ***!
@@ -33254,10 +33155,10 @@
 	                                { className: 'form-group' },
 	                                _react2.default.createElement(
 	                                    'label',
-	                                    { className: 'sr-only', htmlFor: 'item', id: 'usernameLabel' },
+	                                    { className: 'sr-only', htmlFor: 'username', id: 'usernameLabel' },
 	                                    'Username'
 	                                ),
-	                                _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'item', placeholder: 'Username', ref: 'username', onChange: this.handleChange, required: true }),
+	                                _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'username', placeholder: 'Username', ref: 'username', onChange: this.handleChange, required: true }),
 	                                _react2.default.createElement('div', { className: 'error', id: 'usernameError' })
 	                            ),
 	                            _react2.default.createElement(
@@ -33265,7 +33166,7 @@
 	                                { className: 'form-group' },
 	                                _react2.default.createElement(
 	                                    'label',
-	                                    { className: 'sr-only', htmlFor: 'price', id: 'passwordLabel' },
+	                                    { className: 'sr-only', htmlFor: 'password', id: 'passwordLabel' },
 	                                    'Password'
 	                                ),
 	                                _react2.default.createElement('input', { name: 'password', className: 'form-control', id: 'password', placeholder: 'Password', ref: 'password', onChange: this.handleChange, required: true }),
@@ -33806,76 +33707,131 @@
 	    initializer: function initializer() {
 	        return [{
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Trade Type",
-	            formValue: ""
+	            fieldKey: "Trade Type",
+	            fieldValue: "",
+	            fieldName: "tradeType",
+	            fieldLabel: "tradeTypeLabel",
+	            fieldError: "tradeTypeError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Market Type",
-	            formValue: ""
+	            fieldKey: "Market Type",
+	            fieldValue: "",
+	            fieldName: "marketType",
+	            fieldLabel: "marketTypeLabel",
+	            fieldError: "marketTypeError"
+	
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Direction",
-	            formValue: ""
+	            fieldKey: "Direction",
+	            fieldValue: "",
+	            fieldName: "direction",
+	            fieldLabel: "directionLabel",
+	            fieldError: "directionError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Price",
-	            formValue: ""
+	            fieldKey: "Price",
+	            fieldValue: "",
+	            fieldName: "price",
+	            fieldLabel: "priceLabel",
+	            fieldError: "priceError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Price UOM",
-	            formValue: ""
+	            fieldKey: "Price UOM",
+	            fieldValue: "",
+	            fieldName: "priceUom",
+	            fieldLabel: "priceUomLabel",
+	            fieldError: "priceUomError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Quantity",
-	            formValue: ""
+	            fieldKey: "Quantity",
+	            fieldValue: "",
+	            fieldName: "quantity",
+	            fieldLabel: "quantityLabel",
+	            fieldError: "quantityError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Quantity UOM",
-	            formValue: ""
+	            fieldKey: "Quantity UOM",
+	            fieldValue: "",
+	            fieldName: "quantityUom",
+	            fieldLabel: "quantityUomLabel",
+	            fieldError: "quantityUomError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Total Quantity",
-	            formValue: ""
+	            fieldKey: "Total Quantity",
+	            fieldValue: "",
+	            fieldName: "totalQuantity",
+	            fieldLabel: "totalQuantityLabel",
+	            fieldError: "totalQuantityError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Total QuantityUOM",
-	            formValue: ""
+	            fieldKey: "Total QuantityUOM",
+	            fieldValue: "",
+	            fieldName: "totalQuantityUom",
+	            fieldLabel: "totalQuantityUomLabel",
+	            fieldError: "totalQuantityUomError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Trade Date",
-	            formValue: ""
+	            fieldKey: "Trade Date",
+	            fieldValue: "",
+	            fieldName: "tradeDate",
+	            fieldLabel: "tradeDateLabel",
+	            fieldError: "tradeDateError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Start Date",
-	            formValue: ""
+	            fieldKey: "Start Date",
+	            fieldValue: "",
+	            fieldName: "startDate",
+	            fieldLabel: "startDateLabel",
+	            fieldError: "startDateError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "End Date",
-	            formValue: ""
+	            fieldKey: "End Date",
+	            fieldValue: "",
+	            fieldName: "endDate",
+	            fieldLabel: "endDateLabel",
+	            fieldError: "endDateError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Product Code",
-	            formValue: ""
+	            fieldKey: "Product Code",
+	            fieldValue: "",
+	            fieldName: "productCode",
+	            fieldLabel: "productCodeLabel",
+	            fieldError: "productCodeError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Delivery Location",
-	            formValue: ""
+	            fieldKey: "Delivery Location",
+	            fieldValue: "",
+	            fieldName: "deliveryLocation",
+	            fieldLabel: "deliveryLocationLabel",
+	            fieldError: "deliveryLocationError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Paymet Days",
-	            formValue: ""
+	            fieldKey: "Paymet Days",
+	            fieldValue: "",
+	            fieldName: "paymentDays",
+	            fieldLabel: "paymentDaysLabel",
+	            fieldError: "paymentDaysError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Payment Terms",
-	            formValue: ""
+	            fieldKey: "Payment Terms",
+	            fieldValue: "",
+	            fieldName: "paymentTerms",
+	            fieldLabel: "paymentTermsLabel",
+	            fieldError: "paymentTermsError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "MOT",
-	            formValue: ""
+	            fieldKey: "MOT",
+	            fieldValue: "",
+	            fieldName: "mot",
+	            fieldLabel: "motLabel",
+	            fieldError: "motError"
 	        }, {
 	            id: Date.now() + "_" + Math.random(),
-	            formKey: "Deal Status",
-	            formValue: ""
+	            fieldKey: "Deal Status",
+	            fieldValue: "",
+	            fieldName: "dealStatus",
+	            fieldLabel: "dealStatusLabel",
+	            fieldError: "dealStatusError"
 	        }];
 	    }
 	})), _class3);
@@ -35411,6 +35367,260 @@
 	
 	})));
 
+
+/***/ }),
+/* 271 */
+/*!***************************************!*\
+  !*** ./client/components/addTrade.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 182);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var addTrade = function (_React$Component) {
+	    _inherits(addTrade, _React$Component);
+	
+	    function addTrade(props) {
+	        _classCallCheck(this, addTrade);
+	
+	        var _this = _possibleConstructorReturn(this, (addTrade.__proto__ || Object.getPrototypeOf(addTrade)).call(this, props));
+	
+	        _this.state = {
+	            username: '',
+	            password: ''
+	        };
+	
+	        _this.handleChange = _this.handleChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        return _this;
+	    }
+	
+	    //update current field state on change 
+	
+	
+	    _createClass(addTrade, [{
+	        key: 'handleChange',
+	        value: function handleChange(e) {
+	            //add active class
+	            e.target.classList.add('active');
+	
+	            //set state
+	            this.setState(_defineProperty({}, e.target.name, e.target.value));
+	
+	            //validate and show error
+	            this.showInputError(e.target.name);
+	        }
+	
+	        //handle form submission 
+	
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(e) {
+	            e.preventDefault();
+	
+	            if (!this.showFormErrors()) {
+	                console.log('form is invalid: do not submit');
+	            } else {
+	                console.log('form is valid: submit');
+	
+	                //create object to send 
+	                var form = { 'username': this.state.username, 'password': this.state.password };
+	                console.log(form);
+	
+	                //redirect user to dashbaord page 
+	                fetch('/login', {
+	                    method: 'POST',
+	                    body: JSON.stringify(form),
+	                    headers: { 'Content-Type': 'application/json' }
+	                }).then(function (res) {
+	                    return res.json();
+	                }).then(function (json) {
+	
+	                    console.log(json);
+	                    if (json.success) {
+	                        _reactRouter.browserHistory.push('/listing');
+	                    } else {
+	                        alert("Invalid credentials. Enter 'admin/admin' to login");
+	                    }
+	                });
+	            }
+	        }
+	
+	        //reset form
+	
+	    }, {
+	        key: 'resetForm',
+	        value: function resetForm() {
+	            //get all input and select menus of form, if new form fields will introduce it will handle automatically 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            //traverse input fields
+	            inputs.forEach(function (input) {
+	                input.classList.remove('active');
+	                input.value = "";
+	            });
+	
+	            //traverse select fields 
+	            selects.forEach(function (select) {
+	                select.classList.remove('active');
+	                select.value = "";
+	            });
+	        }
+	
+	        //show errors
+	
+	    }, {
+	        key: 'showFormErrors',
+	        value: function showFormErrors() {
+	            var _this2 = this;
+	
+	            //get form fields 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            var isFormValid = true;
+	
+	            //traverse input fields 
+	            inputs.forEach(function (input) {
+	                //add error
+	                input.classList.add('active');
+	
+	                var isInputValid = _this2.showInputError(input.name);
+	
+	                if (!isInputValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            //traverse select menu fields
+	            selects.forEach(function (select) {
+	                //add error
+	                select.classList.add('active');
+	
+	                var isSelectValid = _this2.showInputError(select.name);
+	
+	                if (!isSelectValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            return isFormValid;
+	        }
+	
+	        //validate input fields 
+	
+	    }, {
+	        key: 'showInputError',
+	        value: function showInputError(refName) {
+	            //fetch field
+	            var validity = this.refs[refName].validity;
+	            var label = document.getElementById(refName + 'Label').textContent;
+	            var error = document.getElementById(refName + 'Error');
+	
+	            //validate field
+	            if (!validity.valid) {
+	                if (validity.valueMissing) {
+	                    error.textContent = label + ' is a required field';
+	                } else if (validity.patternMismatch) {
+	                    error.textContent = label + ' price should be in digits';
+	                }
+	                return false;
+	            }
+	
+	            //update error message
+	            error.textContent = '';
+	            return true;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this3 = this;
+	
+	            //get objects from store
+	            var formData = this.props.route.data.formData;
+	
+	            //group item categories
+	
+	            var formFields = formData ? formData.map(function (input) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group col-md-6', key: input.id },
+	                    _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: input.fieldName, id: input.fieldLabel, className: 'col-sm-6 control-label' },
+	                        input.fieldKey
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement('input', { name: input.fieldName, className: 'form-control', id: input.fieldName, placeholder: input.formKey, ref: input.fieldName, onChange: _this3.handleChange, required: true }),
+	                        _react2.default.createElement('div', { className: 'error', id: input.fieldError })
+	                    )
+	                );
+	            }) : "";
+	
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container-fluid' },
+	                _react2.default.createElement(
+	                    'h4',
+	                    { className: 'form-signin-heading' },
+	                    'Add Trade'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'form',
+	                        { className: 'form-horizontal', id: 'addTrade', name: 'addTrade', method: 'post', action: '/listing', noValidate: true },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            formFields
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            _react2.default.createElement(
+	                                'button',
+	                                { className: 'btn btn-primary center-block', onClick: this.handleSubmit },
+	                                'Add'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return addTrade;
+	}(_react2.default.Component);
+	
+	exports.default = addTrade;
 
 /***/ })
 /******/ ]);
