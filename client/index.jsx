@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 // Import routing components
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
+
 import Home from './components/main.js'
 import AddForm from './components/addForm.js'
 import Detail from './components/detail.js'
@@ -12,6 +13,10 @@ import Matching from './components/matching.js'
 
 //load trade store
 import AppStore from './store/appStore.js';
+// AppStore.fetchMatchingData("A01");
+// AppStore.fetchListingData("A01");
+
+AppStore.getMorePizzas();
 
 render(
     <Router history={browserHistory}>

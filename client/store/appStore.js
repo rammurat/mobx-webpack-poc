@@ -1,29 +1,7 @@
-import {observable,computed} from 'mobx';
-//const api = require("api");
-
-function mData(contractId){
-        
-    const form = {contractId : contractId };
-    console.log('form',form);
-    
-    return fetch('/matchingData', { 
-        method: 'POST', 
-        body: JSON.stringify(form),
-        headers: { 'Content-Type': 'application/json' }
-    })
-    .then(res => res.json())
-    .then(function(json){
-        console.log('JSON data',json);
-        return json;
-    });
-}
-
-var mmData = mData("A01");
-
-mmData.then(function(data){
-    console.log('data before store',data);
-});   
-
+import {observable,computed,reaction,action} from 'mobx';
+import fetch from 'isomorphic-fetch';
+import {fromPromise} from 'mobx-utils';
+import { bindPromise } from 'mobx-promise'
 
 class newProduct{
     //observer each product
@@ -38,192 +16,118 @@ class newProduct{
         this.name = product.name
         this.price = product.price
         this.category = product.category
+
     }
 }
-
-    
-
-// api.getMatchingData("A01").then(function(data){
-//     console.log('data before store',data);
-
-//     matchingData = data;
-// });
-
 
 export class AppStore{
     //observer product list and master categories
     @observable productList = [];
-    @observable matchingData2 = [];
+    @observable matchingData = [];
+
+    @observable listingData = {
+        data: {},
+        promiseState: {}
+    };
+
+    
+    @action getMorePizzas(contractId) {
+        const form = {contractId : contractId };
+        
+        const listingDataPromise = fetch('/listingData', { 
+            method: 'POST', 
+            body: JSON.stringify(form),
+            headers: { 'Content-Type': 'application/json' }
+        })      
+        .then((res) => res.json())
+
+        bindPromise(listingDataPromise)
+            .to(this.listingData)
+            .then((result) => console.log(this.listingData))
+            .catch((err) => alert(err))
+    }
 
     //create item
     createProduct(product){
         this.productList.push( new newProduct(product));
     }
 
-    @observable listingData = [{
-      id : Date.now() + "_" + Math.random(), 
-      tradeType:"SHLTR16TB0342:1",  
-      marketType:"Chevron Products Company, a division of Chevron USA Inc.", 
-      direction:"Chevron Products Company, a division of Chevron USA Inc.",   
-      price:"90",   
-      priceUOM:"USD/BBL",   
-      quantity:"100000",    
-      quantityUOM:"BBl",    
-      totalQuantity:"10000",  
-      totalQuantityUOM:"BBl",   
-      tradedate:"15-3-2017",  
-      startDate:"1-Apr",  
-      endDate:"30-Apr",    
-      productCode:"MARS",    
-      deliveryLocation:"Clovelly",   
-      paymetDays:"20", 
-      paymentTerms:"",   
-      mOT:"Pipeline", 
-      dealStatus:"ACTIVE"
-    },{
-      id : Date.now() + "_" + Math.random(),
-      tradeType:"SHLTR16TB0342:2",  
-      marketType:"Chevron Products Company, ", 
-      direction:"Chevron Products Company, a division of Chevron USA Inc.",   
-      price:"90",   
-      priceUOM:"USD/BBL",   
-      quantity:"30000",    
-      quantityUOM:"BBl",    
-      totalQuantity:"30000",  
-      totalQuantityUOM:"BBl",   
-      tradedate:"15-3-2017",  
-      startDate:"1-Apr",  
-      endDate:"30-Apr",    
-      productCode:"MARS",    
-      deliveryLocation:"Clovelly",   
-      paymetDays:"20", 
-      paymentTerms:"",   
-      mOT:"Pipeline", 
-      dealStatus:"ACTIVE"
-    }]
+    fetchMatchingData(contractId){
+        const form = {contractId : contractId };
+        
+        fetch('/matchingData', { 
+            method: 'POST', 
+            body: JSON.stringify(form),
+            headers: { 'Content-Type': 'application/json' }
+        })      
+        .then((res) => this.matchingData = res.json())
+        .catch(() => this.matchingData = []);
 
-    @observable matchingData = {
-        "TradeNumber":{
-            "ValA":"A01",
-            "ValB":"A01",
-            "Match":false
-        },
-        "BuyerName":{
-            "ValA":"A02",
-            "ValB":"A02",
-            "Match":false
-        },
-        "SellerName":{
-            "ValA":"A03",
-            "ValB":"A03",
-            "Match":false
-        },
-        "BuyerID":{
-            "ValA":"A04",
-            "ValB":"A04",
-            "Match":true
-        },
-        "SellerID":{
-            "ValA":"A05",
-            "ValB":"A05",
-            "Match":true
-        },
-        "TradeType":{
-            "ValA":"A06",
-            "ValB":"A06",
-            "Match":false
-        },
-        "MarketType":{
-            "ValA":"A07",
-            "ValB":"A07",
-            "Match":false
-        },
-        "Price":{
-            "ValA":"A08",
-            "ValB":"A08",
-            "Match":true
-        },
-        "PriceUOM":{
-            "ValA":"A09",
-            "ValB":"A09",
-            "Match":false
-        },
-        "Quantity":{
-            "ValA":"A10",
-            "ValB":"A10",
-            "Match":false
-        },
-        "QuantityUOM":{
-            "ValA":"A11",
-            "ValB":"A11",
-            "Match":false
-        },
-        "TotalQuantity":{
-            "ValA":"A12",
-            "ValB":"A12",
-            "Match":true
-        },
-        "TotalQuantityUOM":{
-            "ValA":"A13",
-            "ValB":"A13",
-            "Match":true
-        },
-        "TradeDate":{
-            "ValA":"A14",
-            "ValB":"A14",
-            "Match":true
-        },
-        "StartDate":{
-            "ValA":"A15",
-            "ValB":"A15",
-            "Match":false
-        },
-        "EndDate":{
-            "ValA":"A16",
-            "ValB":"A16",
-            "Match":true
-        },
-        "ProductCode":{
-            "ValA":"A17",
-            "ValB":"A17",
-            "Match":true
-        },
-        "DeliveryLocation":{
-            "ValA":"A18",
-            "ValB":"A18",
-            "Match":true
-        },
-        "PaymetDays":{
-            "ValA":"A19",
-            "ValB":"A19",
-            "Match":false
-        },
-        "PaymentTerms":{
-            "ValA":"A20",
-            "ValB":"A20",
-            "Match":true
-        },
-        "Mot":{
-            "ValA":"A21",
-            "ValB":"A21",
-            "Match":true
-        },
-        "Owner":{
-            "ValA":"A22",
-            "ValB":"A22",
-            "Match":false
-        },
-        "CreatorUser":{
-            "ValA":"A23",
-            "ValB":"A23",
-            "Match":false
-        },
-        "CreationTimestamp":{
-            "ValA":"2017-04-18 09:40:38.380852684 +0000 UTC",
-            "ValB":"2017-04-18 09:42:30.822722935 +0000 UTC",
-            "Match":false
-        },
-        "DealStatus":"Matched"
+    }
+
+    fetchListingData2(contractId){
+        const form = {contractId : contractId };
+        
+        this.updateListing = [];
+
+        fetch('/listingData', { 
+            method: 'POST', 
+            body: JSON.stringify(form),
+            headers: { 'Content-Type': 'application/json' }
+        })      
+        .then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            console.log(response.json());
+            return response.json();
+        })
+        .then(function(data) {
+            this.updateListing(data);
+        });
+    }
+
+    fetchListingData(contractId){
+        const form = {contractId : contractId };
+
+        var fetchResult = fromPromise( fetch('/listingData', { 
+            method: 'POST', 
+            body: JSON.stringify(form),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(res => {
+            if (res.status >= 200 && res.status < 300) {
+                return Promise.resolve(res)
+            } else {
+                return Promise.reject(new Error(res.statusText))
+            }
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            console.log(data);
+            return data
+        }).catch(err => {
+            console.log(err)
+        }) )
+
+        console.log(fetchResult);
+
+        switch(fetchResult.state) {
+            case "pending": return this.test(fetchResult.value)
+            case "rejected": return this.test(fetchResult.value)
+            case "fulfilled": return this.test(fetchResult.value)
+        }        
+
+        console.log(fetchResult);
+    }
+
+    
+    test(d){
+        console.log(d);
+    }
+
+    updateListing(data){
+        console.log(data);
+        matchingData = data;
     }
 
     @observable detailData =[{

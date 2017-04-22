@@ -27,6 +27,55 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // 	})
 // });
 
+app.post('/listingData', function (request, response){
+    const params = request.body;
+
+	console.log(params);
+	response.setHeader('Content-Type', 'application/json');
+	response.send(JSON.stringify([{
+			id : Date.now() + "_" + Math.random(), 
+			tradeType:"SHLTR16TB0342:1",  
+			marketType:"Chevron Products Company, a division of Chevron USA Inc.", 
+			direction:"Chevron Products Company, a division of Chevron USA Inc.",   
+			price:"90",   
+			priceUOM:"USD/BBL",   
+			quantity:"100000",    
+			quantityUOM:"BBl",    
+			totalQuantity:"10000",  
+			totalQuantityUOM:"BBl",   
+			tradedate:"15-3-2017",  
+			startDate:"1-Apr",  
+			endDate:"30-Apr",    
+			productCode:"MARS",    
+			deliveryLocation:"Clovelly",   
+			paymetDays:"20", 
+			paymentTerms:"",   
+			mOT:"Pipeline", 
+			dealStatus:"ACTIVE"
+			},{
+			id : Date.now() + "_" + Math.random(),
+			tradeType:"SHLTR16TB0342:2",  
+			marketType:"Chevron Products Company, ", 
+			direction:"Chevron Products Company, a division of Chevron USA Inc.",   
+			price:"90",   
+			priceUOM:"USD/BBL",   
+			quantity:"30000",    
+			quantityUOM:"BBl",    
+			totalQuantity:"30000",  
+			totalQuantityUOM:"BBl",   
+			tradedate:"15-3-2017",  
+			startDate:"1-Apr",  
+			endDate:"30-Apr",    
+			productCode:"MARS",    
+			deliveryLocation:"Clovelly",   
+			paymetDays:"20", 
+			paymentTerms:"",   
+			mOT:"Pipeline", 
+			dealStatus:"ACTIVE"
+		}]
+	))
+});
+
 app.post('/matchingData', function (request, response){
     const params = request.body;
 
