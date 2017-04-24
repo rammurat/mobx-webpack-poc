@@ -61,7 +61,7 @@
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _addTrade = __webpack_require__(/*! ./components/addTrade.js */ 271);
+	var _addTrade = __webpack_require__(/*! ./components/addTrade.js */ 246);
 	
 	var _addTrade2 = _interopRequireDefault(_addTrade);
 	
@@ -87,14 +87,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// AppStore.fetchMatchingData("A01");
-	// AppStore.fetchListingData("A01");
-	
 	// Import routing components
-	_appStore2.default.getMorePizzas();
+	_appStore2.default.fetchListingData("A01");
 	
 	//load trade store
 	
+	_appStore2.default.fetchMatchingData("A01");
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRouter.Router,
@@ -28346,7 +28344,260 @@
 	exports.default = Main;
 
 /***/ }),
-/* 246 */,
+/* 246 */
+/*!***************************************!*\
+  !*** ./client/components/addTrade.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 182);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var addTrade = function (_React$Component) {
+	    _inherits(addTrade, _React$Component);
+	
+	    function addTrade(props) {
+	        _classCallCheck(this, addTrade);
+	
+	        var _this = _possibleConstructorReturn(this, (addTrade.__proto__ || Object.getPrototypeOf(addTrade)).call(this, props));
+	
+	        _this.state = {
+	            username: '',
+	            password: ''
+	        };
+	
+	        _this.handleChange = _this.handleChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        return _this;
+	    }
+	
+	    //update current field state on change 
+	
+	
+	    _createClass(addTrade, [{
+	        key: 'handleChange',
+	        value: function handleChange(e) {
+	            //add active class
+	            e.target.classList.add('active');
+	
+	            //set state
+	            this.setState(_defineProperty({}, e.target.name, e.target.value));
+	
+	            //validate and show error
+	            this.showInputError(e.target.name);
+	        }
+	
+	        //handle form submission 
+	
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(e) {
+	            e.preventDefault();
+	
+	            if (!this.showFormErrors()) {
+	                console.log('form is invalid: do not submit');
+	            } else {
+	                console.log('form is valid: submit');
+	
+	                //create object to send 
+	                var form = { 'username': this.state.username, 'password': this.state.password };
+	                console.log(form);
+	
+	                //redirect user to dashbaord page 
+	                fetch('/login', {
+	                    method: 'POST',
+	                    body: JSON.stringify(form),
+	                    headers: { 'Content-Type': 'application/json' }
+	                }).then(function (res) {
+	                    return res.json();
+	                }).then(function (json) {
+	
+	                    console.log(json);
+	                    if (json.success) {
+	                        _reactRouter.browserHistory.push('/listing');
+	                    } else {
+	                        alert("Invalid credentials. Enter 'admin/admin' to login");
+	                    }
+	                });
+	            }
+	        }
+	
+	        //reset form
+	
+	    }, {
+	        key: 'resetForm',
+	        value: function resetForm() {
+	            //get all input and select menus of form, if new form fields will introduce it will handle automatically 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            //traverse input fields
+	            inputs.forEach(function (input) {
+	                input.classList.remove('active');
+	                input.value = "";
+	            });
+	
+	            //traverse select fields 
+	            selects.forEach(function (select) {
+	                select.classList.remove('active');
+	                select.value = "";
+	            });
+	        }
+	
+	        //show errors
+	
+	    }, {
+	        key: 'showFormErrors',
+	        value: function showFormErrors() {
+	            var _this2 = this;
+	
+	            //get form fields 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            var isFormValid = true;
+	
+	            //traverse input fields 
+	            inputs.forEach(function (input) {
+	                //add error
+	                input.classList.add('active');
+	
+	                var isInputValid = _this2.showInputError(input.name);
+	
+	                if (!isInputValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            //traverse select menu fields
+	            selects.forEach(function (select) {
+	                //add error
+	                select.classList.add('active');
+	
+	                var isSelectValid = _this2.showInputError(select.name);
+	
+	                if (!isSelectValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            return isFormValid;
+	        }
+	
+	        //validate input fields 
+	
+	    }, {
+	        key: 'showInputError',
+	        value: function showInputError(refName) {
+	            //fetch field
+	            var validity = this.refs[refName].validity;
+	            var label = document.getElementById(refName + 'Label').textContent;
+	            var error = document.getElementById(refName + 'Error');
+	
+	            //validate field
+	            if (!validity.valid) {
+	                if (validity.valueMissing) {
+	                    error.textContent = label + ' is a required field';
+	                } else if (validity.patternMismatch) {
+	                    error.textContent = label + ' price should be in digits';
+	                }
+	                return false;
+	            }
+	
+	            //update error message
+	            error.textContent = '';
+	            return true;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this3 = this;
+	
+	            //get objects from store
+	            var formData = this.props.route.data.formData;
+	
+	            //group item categories
+	
+	            var formFields = formData ? formData.map(function (input) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group col-md-6', key: input.id },
+	                    _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: input.fieldName, id: input.fieldLabel, className: 'col-sm-6 control-label' },
+	                        input.fieldKey
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement('input', { name: input.fieldName, className: 'form-control', id: input.fieldName, placeholder: input.formKey, ref: input.fieldName, onChange: _this3.handleChange, required: true }),
+	                        _react2.default.createElement('div', { className: 'error', id: input.fieldError })
+	                    )
+	                );
+	            }) : "";
+	
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container-fluid' },
+	                _react2.default.createElement(
+	                    'h4',
+	                    { className: 'form-signin-heading' },
+	                    'Add Trade'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'form',
+	                        { className: 'form-horizontal', id: 'addTrade', name: 'addTrade', method: 'post', action: '/listing', noValidate: true },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            formFields
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            _react2.default.createElement(
+	                                'button',
+	                                { className: 'btn btn-primary center-block', onClick: this.handleSubmit },
+	                                'Add'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return addTrade;
+	}(_react2.default.Component);
+	
+	exports.default = addTrade;
+
+/***/ }),
 /* 247 */
 /*!*************************************!*\
   !*** ./client/components/detail.js ***!
@@ -32932,7 +33183,7 @@
 	                    return _react2.default.createElement(
 	                        'div',
 	                        null,
-	                        ' No pizza for you. '
+	                        ' No trades available. '
 	                    );
 	            }
 	        }
@@ -33239,127 +33490,144 @@
 	    }
 	
 	    _createClass(matching, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {}
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	
 	            //get objects from store
 	            var matchingData = this.props.route.data.matchingData;
 	
-	            //group item categories
 	
-	            function getTable() {
-	                var data = [];
-	                var matchingTable = Object.keys(matchingData).forEach(function (key) {
+	            console.log(matchingData);
 	
-	                    if (key !== "DealStatus") {
-	                        var statusClass = matchingData[key].Match === true ? "btn btn-success" : "btn btn-warning",
-	                            status = matchingData[key].Match === true ? "Yes" : "No";
-	                        data.push(_react2.default.createElement(
-	                            'tr',
-	                            { key: Date.now() + Math.random() },
+	            switch (matchingData.promiseState) {
+	                case 'pending':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        ' Loading yummy pizzas... '
+	                    );
+	
+	                case 'fulfilled':
+	                    //group item categories
+	                    var getTable = function getTable() {
+	                        var data = [];
+	                        var matchingTable = Object.keys(matchingData.data).forEach(function (key) {
+	
+	                            if (key !== "DealStatus") {
+	                                var statusClass = matchingData.data[key].Match === true ? "btn btn-success" : "btn btn-warning",
+	                                    status = matchingData.data[key].Match === true ? "Yes" : "No";
+	                                data.push(_react2.default.createElement(
+	                                    'tr',
+	                                    { key: Date.now() + Math.random() },
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        key
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        matchingData.data[key].ValA
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        matchingData.data[key].ValB
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        matchingData.data[key].Match,
+	                                        _react2.default.createElement(
+	                                            'button',
+	                                            { type: 'button', className: statusClass },
+	                                            status
+	                                        )
+	                                    )
+	                                ));
+	                            }
+	                        });
+	
+	                        return data;
+	                    };
+	
+	                    //render html
+	
+	
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            'Deal Matching'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'well' },
 	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                key
+	                                'span',
+	                                { className: 'pull-left' },
+	                                ' ',
+	                                _react2.default.createElement(
+	                                    'strong',
+	                                    null,
+	                                    'Deal Status'
+	                                ),
+	                                ' '
 	                            ),
 	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                matchingData[key].ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                matchingData[key].ValB
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                matchingData[key].Match,
+	                                'span',
+	                                { className: 'pull-right' },
+	                                ' ',
 	                                _react2.default.createElement(
 	                                    'button',
-	                                    { type: 'button', className: statusClass },
-	                                    status
-	                                )
+	                                    { type: 'button', className: 'btn btn-success' },
+	                                    'Matched'
+	                                ),
+	                                ' '
 	                            )
-	                        ));
-	                    }
-	                });
-	
-	                return data;
-	            }
-	
-	            //render html
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    'Deal Matching'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'well' },
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'pull-left' },
-	                        ' ',
-	                        _react2.default.createElement(
-	                            'strong',
-	                            null,
-	                            'Deal Status'
 	                        ),
-	                        ' '
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'pull-right' },
-	                        ' ',
 	                        _react2.default.createElement(
-	                            'button',
-	                            { type: 'button', className: 'btn btn-success' },
-	                            'Matched'
-	                        ),
-	                        ' '
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'table',
-	                    { className: 'table table-striped table-responsive' },
-	                    _react2.default.createElement(
-	                        'thead',
-	                        null,
-	                        _react2.default.createElement(
-	                            'tr',
-	                            null,
+	                            'table',
+	                            { className: 'table table-striped table-responsive' },
 	                            _react2.default.createElement(
-	                                'th',
+	                                'thead',
 	                                null,
-	                                'Type'
+	                                _react2.default.createElement(
+	                                    'tr',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        'Type'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        'Seller'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        'Buyer'
+	                                    )
+	                                )
 	                            ),
 	                            _react2.default.createElement(
-	                                'th',
+	                                'tbody',
 	                                null,
-	                                'Seller'
-	                            ),
-	                            _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                'Buyer'
+	                                getTable()
 	                            )
 	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'tbody',
+	                    );
+	                case 'rejected':
+	                    return _react2.default.createElement(
+	                        'div',
 	                        null,
-	                        getTable()
-	                    )
-	                )
-	            );
+	                        ' No trades available. '
+	                    );
+	            }
 	        }
 	    }]);
 	
@@ -33480,9 +33748,9 @@
 	
 	        _initDefineProp(this, 'productList', _descriptor5, this);
 	
-	        _initDefineProp(this, 'matchingData', _descriptor6, this);
+	        _initDefineProp(this, 'listingData', _descriptor6, this);
 	
-	        _initDefineProp(this, 'listingData', _descriptor7, this);
+	        _initDefineProp(this, 'matchingData', _descriptor7, this);
 	
 	        _initDefineProp(this, 'detailData', _descriptor8, this);
 	
@@ -33490,8 +33758,8 @@
 	    }
 	
 	    _createClass(AppStore, [{
-	        key: 'getMorePizzas',
-	        value: function getMorePizzas(contractId) {
+	        key: 'fetchListingData',
+	        value: function fetchListingData(contractId) {
 	            var _this = this;
 	
 	            var form = { contractId: contractId };
@@ -33510,6 +33778,27 @@
 	                return alert(err);
 	            });
 	        }
+	    }, {
+	        key: 'fetchMatchingData',
+	        value: function fetchMatchingData(contractId) {
+	            var _this2 = this;
+	
+	            var form = { contractId: contractId };
+	
+	            var matchingDataPromise = (0, _isomorphicFetch2.default)('/matchingData', {
+	                method: 'POST',
+	                body: JSON.stringify(form),
+	                headers: { 'Content-Type': 'application/json' }
+	            }).then(function (res) {
+	                return res.json();
+	            });
+	
+	            (0, _mobxPromise.bindPromise)(matchingDataPromise).to(this.matchingData).then(function (result) {
+	                return console.log(_this2.matchingData);
+	            }).catch(function (err) {
+	                return alert(err);
+	            });
+	        }
 	
 	        //create item
 	
@@ -33518,92 +33807,72 @@
 	        value: function createProduct(product) {
 	            this.productList.push(new newProduct(product));
 	        }
-	    }, {
-	        key: 'fetchMatchingData',
-	        value: function fetchMatchingData(contractId) {
-	            var _this2 = this;
 	
-	            var form = { contractId: contractId };
+	        // fetchListingData2(contractId){
+	        //     const form = {contractId : contractId };
 	
-	            (0, _isomorphicFetch2.default)('/matchingData', {
-	                method: 'POST',
-	                body: JSON.stringify(form),
-	                headers: { 'Content-Type': 'application/json' }
-	            }).then(function (res) {
-	                return _this2.matchingData = res.json();
-	            }).catch(function () {
-	                return _this2.matchingData = [];
-	            });
-	        }
-	    }, {
-	        key: 'fetchListingData2',
-	        value: function fetchListingData2(contractId) {
-	            var form = { contractId: contractId };
+	        //     this.updateListing = [];
 	
-	            this.updateListing = [];
+	        //     fetch('/listingData', { 
+	        //         method: 'POST', 
+	        //         body: JSON.stringify(form),
+	        //         headers: { 'Content-Type': 'application/json' }
+	        //     })      
+	        //     .then(function(response) {
+	        //         if (response.status >= 400) {
+	        //             throw new Error("Bad response from server");
+	        //         }
+	        //         console.log(response.json());
+	        //         return response.json();
+	        //     })
+	        //     .then(function(data) {
+	        //         this.updateListing(data);
+	        //     });
+	        // }
 	
-	            (0, _isomorphicFetch2.default)('/listingData', {
-	                method: 'POST',
-	                body: JSON.stringify(form),
-	                headers: { 'Content-Type': 'application/json' }
-	            }).then(function (response) {
-	                if (response.status >= 400) {
-	                    throw new Error("Bad response from server");
-	                }
-	                console.log(response.json());
-	                return response.json();
-	            }).then(function (data) {
-	                this.updateListing(data);
-	            });
-	        }
-	    }, {
-	        key: 'fetchListingData',
-	        value: function fetchListingData(contractId) {
-	            var form = { contractId: contractId };
+	        // fetchListingData(contractId){
+	        //     const form = {contractId : contractId };
 	
-	            var fetchResult = (0, _mobxUtils.fromPromise)((0, _isomorphicFetch2.default)('/listingData', {
-	                method: 'POST',
-	                body: JSON.stringify(form),
-	                headers: { 'Content-Type': 'application/json' }
-	            }).then(function (res) {
-	                if (res.status >= 200 && res.status < 300) {
-	                    return Promise.resolve(res);
-	                } else {
-	                    return Promise.reject(new Error(res.statusText));
-	                }
-	            }).then(function (res) {
-	                return res.json();
-	            }).then(function (data) {
-	                console.log(data);
-	                return data;
-	            }).catch(function (err) {
-	                console.log(err);
-	            }));
+	        //     var fetchResult = fromPromise( fetch('/listingData', { 
+	        //         method: 'POST', 
+	        //         body: JSON.stringify(form),
+	        //         headers: { 'Content-Type': 'application/json' }
+	        //     }).then(res => {
+	        //         if (res.status >= 200 && res.status < 300) {
+	        //             return Promise.resolve(res)
+	        //         } else {
+	        //             return Promise.reject(new Error(res.statusText))
+	        //         }
+	        //     }).then(res => {
+	        //         return res.json()
+	        //     }).then(data => {
+	        //         console.log(data);
+	        //         return data
+	        //     }).catch(err => {
+	        //         console.log(err)
+	        //     }) )
 	
-	            console.log(fetchResult);
+	        //     console.log(fetchResult);
 	
-	            switch (fetchResult.state) {
-	                case "pending":
-	                    return this.test(fetchResult.value);
-	                case "rejected":
-	                    return this.test(fetchResult.value);
-	                case "fulfilled":
-	                    return this.test(fetchResult.value);
-	            }
+	        //     switch(fetchResult.state) {
+	        //         case "pending": return this.test(fetchResult.value)
+	        //         case "rejected": return this.test(fetchResult.value)
+	        //         case "fulfilled": return this.test(fetchResult.value)
+	        //     }        
 	
-	            console.log(fetchResult);
-	        }
-	    }, {
-	        key: 'test',
-	        value: function test(d) {
-	            console.log(d);
-	        }
-	    }, {
-	        key: 'updateListing',
-	        value: function updateListing(data) {
-	            console.log(data);
-	            matchingData = data;
-	        }
+	        //     console.log(fetchResult);
+	        // }
+	
+	
+	        // test(d){
+	        //     console.log(d);
+	        // }
+	
+	        // updateListing(data){
+	        //     console.log(data);
+	        //     matchingData = data;
+	        // }
+	
 	    }]);
 	
 	    return AppStore;
@@ -33612,12 +33881,7 @@
 	    initializer: function initializer() {
 	        return [];
 	    }
-	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
-	    enumerable: true,
-	    initializer: function initializer() {
-	        return [];
-	    }
-	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
+	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -33625,7 +33889,15 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class3.prototype, 'getMorePizzas', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'getMorePizzas'), _class3.prototype), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
+	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return {
+	            data: {},
+	            promiseState: {}
+	        };
+	    }
+	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -35367,260 +35639,6 @@
 	
 	})));
 
-
-/***/ }),
-/* 271 */
-/*!***************************************!*\
-  !*** ./client/components/addTrade.js ***!
-  \***************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 182);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var addTrade = function (_React$Component) {
-	    _inherits(addTrade, _React$Component);
-	
-	    function addTrade(props) {
-	        _classCallCheck(this, addTrade);
-	
-	        var _this = _possibleConstructorReturn(this, (addTrade.__proto__ || Object.getPrototypeOf(addTrade)).call(this, props));
-	
-	        _this.state = {
-	            username: '',
-	            password: ''
-	        };
-	
-	        _this.handleChange = _this.handleChange.bind(_this);
-	        _this.handleSubmit = _this.handleSubmit.bind(_this);
-	        return _this;
-	    }
-	
-	    //update current field state on change 
-	
-	
-	    _createClass(addTrade, [{
-	        key: 'handleChange',
-	        value: function handleChange(e) {
-	            //add active class
-	            e.target.classList.add('active');
-	
-	            //set state
-	            this.setState(_defineProperty({}, e.target.name, e.target.value));
-	
-	            //validate and show error
-	            this.showInputError(e.target.name);
-	        }
-	
-	        //handle form submission 
-	
-	    }, {
-	        key: 'handleSubmit',
-	        value: function handleSubmit(e) {
-	            e.preventDefault();
-	
-	            if (!this.showFormErrors()) {
-	                console.log('form is invalid: do not submit');
-	            } else {
-	                console.log('form is valid: submit');
-	
-	                //create object to send 
-	                var form = { 'username': this.state.username, 'password': this.state.password };
-	                console.log(form);
-	
-	                //redirect user to dashbaord page 
-	                fetch('/login', {
-	                    method: 'POST',
-	                    body: JSON.stringify(form),
-	                    headers: { 'Content-Type': 'application/json' }
-	                }).then(function (res) {
-	                    return res.json();
-	                }).then(function (json) {
-	
-	                    console.log(json);
-	                    if (json.success) {
-	                        _reactRouter.browserHistory.push('/listing');
-	                    } else {
-	                        alert("Invalid credentials. Enter 'admin/admin' to login");
-	                    }
-	                });
-	            }
-	        }
-	
-	        //reset form
-	
-	    }, {
-	        key: 'resetForm',
-	        value: function resetForm() {
-	            //get all input and select menus of form, if new form fields will introduce it will handle automatically 
-	            var inputs = document.querySelectorAll('input');
-	            var selects = document.querySelectorAll('select');
-	
-	            //traverse input fields
-	            inputs.forEach(function (input) {
-	                input.classList.remove('active');
-	                input.value = "";
-	            });
-	
-	            //traverse select fields 
-	            selects.forEach(function (select) {
-	                select.classList.remove('active');
-	                select.value = "";
-	            });
-	        }
-	
-	        //show errors
-	
-	    }, {
-	        key: 'showFormErrors',
-	        value: function showFormErrors() {
-	            var _this2 = this;
-	
-	            //get form fields 
-	            var inputs = document.querySelectorAll('input');
-	            var selects = document.querySelectorAll('select');
-	
-	            var isFormValid = true;
-	
-	            //traverse input fields 
-	            inputs.forEach(function (input) {
-	                //add error
-	                input.classList.add('active');
-	
-	                var isInputValid = _this2.showInputError(input.name);
-	
-	                if (!isInputValid) {
-	                    isFormValid = false;
-	                }
-	            });
-	
-	            //traverse select menu fields
-	            selects.forEach(function (select) {
-	                //add error
-	                select.classList.add('active');
-	
-	                var isSelectValid = _this2.showInputError(select.name);
-	
-	                if (!isSelectValid) {
-	                    isFormValid = false;
-	                }
-	            });
-	
-	            return isFormValid;
-	        }
-	
-	        //validate input fields 
-	
-	    }, {
-	        key: 'showInputError',
-	        value: function showInputError(refName) {
-	            //fetch field
-	            var validity = this.refs[refName].validity;
-	            var label = document.getElementById(refName + 'Label').textContent;
-	            var error = document.getElementById(refName + 'Error');
-	
-	            //validate field
-	            if (!validity.valid) {
-	                if (validity.valueMissing) {
-	                    error.textContent = label + ' is a required field';
-	                } else if (validity.patternMismatch) {
-	                    error.textContent = label + ' price should be in digits';
-	                }
-	                return false;
-	            }
-	
-	            //update error message
-	            error.textContent = '';
-	            return true;
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this3 = this;
-	
-	            //get objects from store
-	            var formData = this.props.route.data.formData;
-	
-	            //group item categories
-	
-	            var formFields = formData ? formData.map(function (input) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    { className: 'form-group col-md-6', key: input.id },
-	                    _react2.default.createElement(
-	                        'label',
-	                        { htmlFor: input.fieldName, id: input.fieldLabel, className: 'col-sm-6 control-label' },
-	                        input.fieldKey
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-sm-6' },
-	                        _react2.default.createElement('input', { name: input.fieldName, className: 'form-control', id: input.fieldName, placeholder: input.formKey, ref: input.fieldName, onChange: _this3.handleChange, required: true }),
-	                        _react2.default.createElement('div', { className: 'error', id: input.fieldError })
-	                    )
-	                );
-	            }) : "";
-	
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'container-fluid' },
-	                _react2.default.createElement(
-	                    'h4',
-	                    { className: 'form-signin-heading' },
-	                    'Add Trade'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'form',
-	                        { className: 'form-horizontal', id: 'addTrade', name: 'addTrade', method: 'post', action: '/listing', noValidate: true },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            formFields
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            _react2.default.createElement(
-	                                'button',
-	                                { className: 'btn btn-primary center-block', onClick: this.handleSubmit },
-	                                'Add'
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return addTrade;
-	}(_react2.default.Component);
-	
-	exports.default = addTrade;
 
 /***/ })
 /******/ ]);

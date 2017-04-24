@@ -23,15 +23,19 @@ class newProduct{
 export class AppStore{
     //observer product list and master categories
     @observable productList = [];
-    @observable matchingData = [];
 
     @observable listingData = {
         data: {},
         promiseState: {}
     };
 
+     @observable matchingData = {
+        data: {},
+        promiseState: {}
+    };
+
     
-    @action getMorePizzas(contractId) {
+    @action fetchListingData(contractId) {
         const form = {contractId : contractId };
         
         const listingDataPromise = fetch('/listingData', { 
@@ -47,88 +51,91 @@ export class AppStore{
             .catch((err) => alert(err))
     }
 
+    @action fetchMatchingData(contractId) {
+        const form = {contractId : contractId };
+        
+        const matchingDataPromise = fetch('/matchingData', { 
+            method: 'POST', 
+            body: JSON.stringify(form),
+            headers: { 'Content-Type': 'application/json' }
+        })      
+        .then((res) => res.json())
+
+        bindPromise(matchingDataPromise)
+            .to(this.matchingData)
+            .then((result) => console.log(this.matchingData))
+            .catch((err) => alert(err))
+    }
+
     //create item
     createProduct(product){
         this.productList.push( new newProduct(product));
     }
 
-    fetchMatchingData(contractId){
-        const form = {contractId : contractId };
+    // fetchListingData2(contractId){
+    //     const form = {contractId : contractId };
         
-        fetch('/matchingData', { 
-            method: 'POST', 
-            body: JSON.stringify(form),
-            headers: { 'Content-Type': 'application/json' }
-        })      
-        .then((res) => this.matchingData = res.json())
-        .catch(() => this.matchingData = []);
+    //     this.updateListing = [];
 
-    }
+    //     fetch('/listingData', { 
+    //         method: 'POST', 
+    //         body: JSON.stringify(form),
+    //         headers: { 'Content-Type': 'application/json' }
+    //     })      
+    //     .then(function(response) {
+    //         if (response.status >= 400) {
+    //             throw new Error("Bad response from server");
+    //         }
+    //         console.log(response.json());
+    //         return response.json();
+    //     })
+    //     .then(function(data) {
+    //         this.updateListing(data);
+    //     });
+    // }
 
-    fetchListingData2(contractId){
-        const form = {contractId : contractId };
-        
-        this.updateListing = [];
+    // fetchListingData(contractId){
+    //     const form = {contractId : contractId };
 
-        fetch('/listingData', { 
-            method: 'POST', 
-            body: JSON.stringify(form),
-            headers: { 'Content-Type': 'application/json' }
-        })      
-        .then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            console.log(response.json());
-            return response.json();
-        })
-        .then(function(data) {
-            this.updateListing(data);
-        });
-    }
+    //     var fetchResult = fromPromise( fetch('/listingData', { 
+    //         method: 'POST', 
+    //         body: JSON.stringify(form),
+    //         headers: { 'Content-Type': 'application/json' }
+    //     }).then(res => {
+    //         if (res.status >= 200 && res.status < 300) {
+    //             return Promise.resolve(res)
+    //         } else {
+    //             return Promise.reject(new Error(res.statusText))
+    //         }
+    //     }).then(res => {
+    //         return res.json()
+    //     }).then(data => {
+    //         console.log(data);
+    //         return data
+    //     }).catch(err => {
+    //         console.log(err)
+    //     }) )
 
-    fetchListingData(contractId){
-        const form = {contractId : contractId };
+    //     console.log(fetchResult);
 
-        var fetchResult = fromPromise( fetch('/listingData', { 
-            method: 'POST', 
-            body: JSON.stringify(form),
-            headers: { 'Content-Type': 'application/json' }
-        }).then(res => {
-            if (res.status >= 200 && res.status < 300) {
-                return Promise.resolve(res)
-            } else {
-                return Promise.reject(new Error(res.statusText))
-            }
-        }).then(res => {
-            return res.json()
-        }).then(data => {
-            console.log(data);
-            return data
-        }).catch(err => {
-            console.log(err)
-        }) )
+    //     switch(fetchResult.state) {
+    //         case "pending": return this.test(fetchResult.value)
+    //         case "rejected": return this.test(fetchResult.value)
+    //         case "fulfilled": return this.test(fetchResult.value)
+    //     }        
 
-        console.log(fetchResult);
-
-        switch(fetchResult.state) {
-            case "pending": return this.test(fetchResult.value)
-            case "rejected": return this.test(fetchResult.value)
-            case "fulfilled": return this.test(fetchResult.value)
-        }        
-
-        console.log(fetchResult);
-    }
+    //     console.log(fetchResult);
+    // }
 
     
-    test(d){
-        console.log(d);
-    }
+    // test(d){
+    //     console.log(d);
+    // }
 
-    updateListing(data){
-        console.log(data);
-        matchingData = data;
-    }
+    // updateListing(data){
+    //     console.log(data);
+    //     matchingData = data;
+    // }
 
     @observable detailData =[{
         id : Date.now() + "_" + Math.random(), 

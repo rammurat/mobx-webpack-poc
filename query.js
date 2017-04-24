@@ -39,9 +39,10 @@ function init() {
 		chain.addPeer(new Peer(config.peers[i].peer_url));
 	}
 }
+init();
 
 module.exports.getContractData = function(contractID){
-init();
+
 
 var arr = [];
 arr.push("singleContract")

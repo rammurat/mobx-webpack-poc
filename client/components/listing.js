@@ -80,7 +80,7 @@ export default class listing extends React.Component{
                 </div>
 
             case 'rejected':
-                return <div > No pizza for you. </div>
+                return <div > No trades available. </div>
         }
     }
 }

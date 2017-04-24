@@ -13,10 +13,9 @@ import Matching from './components/matching.js'
 
 //load trade store
 import AppStore from './store/appStore.js';
-// AppStore.fetchMatchingData("A01");
-// AppStore.fetchListingData("A01");
 
-AppStore.getMorePizzas();
+AppStore.fetchListingData("A01");
+AppStore.fetchMatchingData("A01");
 
 render(
     <Router history={browserHistory}>
