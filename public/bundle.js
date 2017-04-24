@@ -87,13 +87,14 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	//AppStore.fetchListingData("A01");
+	//AppStore.fetchMatchingData("A01");
+	
 	// Import routing components
-	_appStore2.default.fetchListingData("A01");
+	_appStore2.default.addTrador();
 	
 	//load trade store
 	
-	_appStore2.default.fetchMatchingData("A01");
-	_appStore2.default.addTrador();
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRouter.Router,
@@ -33811,6 +33812,8 @@
 	        key: 'addTrador',
 	        value: function addTrador() {
 	            var _this3 = this;
+	
+	            var form = { id: 1 };
 	
 	            var tradorStatusPromise = (0, _isomorphicFetch2.default)('/addTrador', {
 	                method: 'POST',

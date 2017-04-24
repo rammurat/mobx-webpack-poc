@@ -107,7 +107,7 @@ export class AppStore{
     }
 
     @action addTrador() {
-        
+        const form = {id : 1};
         
         const tradorStatusPromise = fetch('/addTrador', { 
             method: 'POST', 
