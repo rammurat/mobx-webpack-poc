@@ -28851,7 +28851,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { type: 'text', name: 'price', className: 'form-control', value: '', id: 'price', ref: 'price', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement('input', { type: 'text', name: 'price', className: 'form-control', value: '', id: 'price', ref: 'price', required: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'priceError' })
 	                                )
 	                            ),

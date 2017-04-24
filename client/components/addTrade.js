@@ -327,7 +327,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="price" id="priceLabel" className="col-sm-6 control-label">Price</label>
     <div className="col-sm-6">
-        <input type="text" name="price" className="form-control" value="" id="price" ref="price" onChange={ this.handleChange } required/>
+        <input type="text" name="price" className="form-control" value="" id="price" ref="price"  required/>
         <div className="error" id="priceError" />
     </div>
 </div>
@@ -458,6 +458,7 @@ export default class addTrade extends React.Component {
         <div className="error" id="ownerNameError" />
     </div>
 </div>
+
 
                         
                     </div>
