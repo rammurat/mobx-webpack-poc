@@ -28451,14 +28451,17 @@
 	                    organisationsList = _props$route$data.organisationsList,
 	                    getOrganisation = _props$route$data.getOrganisation;
 	
+	                var sellerId = getOrganisation(organisationsList, { name: e.target.value });
+	
+	                console.log(sellerId.id);
 	
 	                this.setState({
 	                    sellerName: e.target.value
 	                });
 	
-	                // this.setState({
-	                //     sellerID: getOrganisation(organisationsList,{name : e.target.value});
-	                // }); 
+	                this.setState({
+	                    sellerID: sellerId.id
+	                });
 	            }
 	
 	            //validate and show error

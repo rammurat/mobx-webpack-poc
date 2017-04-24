@@ -62,14 +62,18 @@ export default class addTrade extends React.Component {
 
         if(e.target.name === "sellerName"){
             const { organisationsList,getOrganisation } = this.props.route.data;
+            let sellerId = getOrganisation(organisationsList,{name : e.target.value});
+
+            console.log(sellerId.id);
 
             this.setState({
                 sellerName: e.target.value
             }); 
 
-            // this.setState({
-            //     sellerID: getOrganisation(organisationsList,{name : e.target.value});
-            // }); 
+            this.setState({
+                sellerID: sellerId.id
+            }); 
+
         }
 
         //validate and show error
