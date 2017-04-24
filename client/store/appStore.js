@@ -2,6 +2,7 @@ import {observable,computed,reaction,action} from 'mobx';
 import fetch from 'isomorphic-fetch';
 import {fromPromise} from 'mobx-utils';
 import { bindPromise } from 'mobx-promise'
+const uuidV1 = require('uuid/v1');
 
 class newProduct{
     //observer each product
@@ -21,26 +22,42 @@ class newProduct{
 }
 
 export class AppStore{
+    @observable currentUser = {
+        id : 1,
+        name : "John Walker",
+        organisationId : "CHV",
+        username : "john",
+        password : "john"
+    };
+
     @observable usersList = [{
         id : 1,
         name : "John Walker",
-        organisationId : "CHV"
+        organisationId : "CHV",
+        username : "john",
+        password : "john"
     },{
         id : 2,
         name : "Paul Walker",
-        organisationId : "CHV"
+        organisationId : "CHV",
+        username : "paul",
+        password : "paul"
     },{
         id : 3,
         name : "Syan Smith",
-        organisationId : "IOC"
+        organisationId : "IOC",
+        username : "syan",
+        password : "syan"
     },{
         id : 4,
         name : "Lauren Iyer",
-        organisationId : "IOC"
+        organisationId : "IOC",
+        username : "lauren",
+        password : "lauren"
     }];
     
     //observer product list and master categories
-    @observable organisations = [{
+    @observable organisationsList = [{
         id : "CHV",
         name : "Chevron Products a Division of Chevorn USA"
     },{
@@ -189,206 +206,240 @@ export class AppStore{
     // }
 
     @observable detailData =[{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Trade Type",
         productValue : "SHLTR16TB0342:1",
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Market Type",
         productValue : "Chevron Products Company, a division of Chevron USA Inc.",
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Direction",
         productValue : "SHLTR16TB0342:1"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Price",
         productValue : "SHLTR16TB0342:1"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Price UOM",
         productValue : "SHLTR16TB0342:1"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Quantity",
         productValue : "33"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Quantity UOM",
         productValue : "22AA"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Total Quantity",
         productValue : "331"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Total QuantityUOM",
         productValue : "BBl:1"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Trade Date",
         productValue : "8-March"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Start Date",
         productValue : "6-March"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "End Date",
         productValue : "4-March"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Product Code",
         productValue : "Mars"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Delivery Location",
         productValue : "Abu dhabi"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Paymet Days",
         productValue : "SHLTR16TB0342:1"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Payment Terms",
         productValue : "NA"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "MOT",
         productValue : "Pipeline"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         productKey :  "Deal Status",
         productValue : "ACTIVE"
     }]
 
     @observable formData =[{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
+        fieldKey :  "Trade Number",
+        fieldValue : "SHLTR16TB0342",
+        fieldName : "tradeNumber" ,
+        fieldLabel : "tradeNumberLabel" ,
+        fieldError : "tradeNumberError",
+        fieldType : "input"
+    },{
+        id : uuidV1(), 
+        fieldKey :  "Buyer Name",
+        fieldValue : "XYZ",
+        fieldName : "buyerName" ,
+        fieldLabel : "buyerNameLabel" ,
+        fieldError : "buyerNameError",
+        fieldType : "select" 
+    },{
+        id : uuidV1(), 
+        fieldKey :  "Seller Name",
+        fieldValue : "ABC",
+        fieldName : "sellerName" ,
+        fieldLabel : "sellerNameLabel" ,
+        fieldError : "sellerNameError",
+        fieldType : "readonly" 
+    },{
+        id : uuidV1(), 
         fieldKey :  "Trade Type",
-        fieldValue : "",
+        fieldValue : "Date Pipeline Fixed price",
         fieldName : "tradeType" ,
         fieldLabel : "tradeTypeLabel" ,
-        fieldError : "tradeTypeError" 
+        fieldError : "tradeTypeError" ,
+        fieldType : "select"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Market Type",
-        fieldValue : "",
+        fieldValue : "Physical Crude Oil",
         fieldName : "marketType" ,
         fieldLabel : "marketTypeLabel" ,
-        fieldError : "marketTypeError" 
+        fieldError : "marketTypeError" ,
+        fieldType : "select"
 
     },{
-        id : Date.now() + "_" + Math.random(), 
-        fieldKey :  "Direction",
-        fieldValue : "",
-        fieldName : "direction",
-        fieldLabel : "directionLabel" ,
-        fieldError : "directionError" 
-    },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Price",
-        fieldValue : "",
+        fieldValue : "100",
         fieldName : "price",
         fieldLabel : "priceLabel" ,
-        fieldError : "priceError"  
+        fieldError : "priceError"  ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Price UOM",
-        fieldValue : "",
+        fieldValue : "BBL",
         fieldName : "priceUom" ,
         fieldLabel : "priceUomLabel" ,
-        fieldError : "priceUomError" 
+        fieldError : "priceUomError" ,
+        fieldType : "readonly"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Quantity",
-        fieldValue : "",
+        fieldValue : "100",
         fieldName : "quantity" ,
         fieldLabel : "quantityLabel" ,
-        fieldError : "quantityError" 
+        fieldError : "quantityError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Quantity UOM",
-        fieldValue : "",
+        fieldValue : "BBL",
         fieldName : "quantityUom" ,
         fieldLabel : "quantityUomLabel" ,
-        fieldError : "quantityUomError" 
+        fieldError : "quantityUomError" ,
+        fieldType : "readonly"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Total Quantity",
-        fieldValue : "",
+        fieldValue : "30000",
         fieldName : "totalQuantity" ,
         fieldLabel : "totalQuantityLabel" ,
-        fieldError : "totalQuantityError" 
+        fieldError : "totalQuantityError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Total QuantityUOM",
-        fieldValue : "",
+        fieldValue : "BBL",
         fieldName : "totalQuantityUom",
         fieldLabel : "totalQuantityUomLabel" ,
-        fieldError : "totalQuantityUomError"  
+        fieldError : "totalQuantityUomError" ,
+        fieldType : "readonly" 
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Trade Date",
-        fieldValue : "",
+        fieldValue : "24-04-2017",
         fieldName : "tradeDate" ,
         fieldLabel : "tradeDateLabel" ,
-        fieldError : "tradeDateError" 
+        fieldError : "tradeDateError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Start Date",
-        fieldValue : "",
+        fieldValue : "24-04-2017",
         fieldName : "startDate" ,
         fieldLabel : "startDateLabel" ,
-        fieldError : "startDateError" 
+        fieldError : "startDateError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "End Date",
-        fieldValue : "",
+        fieldValue : "24-04-2017",
         fieldName : "endDate" ,
         fieldLabel : "endDateLabel" ,
-        fieldError : "endDateError" 
+        fieldError : "endDateError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Product Code",
-        fieldValue : "",
+        fieldValue : "MARS",
         fieldName : "productCode" ,
         fieldLabel : "productCodeLabel" ,
-        fieldError : "productCodeError" 
+        fieldError : "productCodeError" ,
+        fieldType : "select"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Delivery Location",
-        fieldValue : "",
+        fieldValue : "Clovelly",
         fieldName : "deliveryLocation",
         fieldLabel : "deliveryLocationLabel" ,
-        fieldError : "deliveryLocationError"  
+        fieldError : "deliveryLocationError" ,
+        fieldType : "select" 
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Paymet Days",
-        fieldValue : "",
+        fieldValue : "20",
         fieldName : "paymentDays" ,
         fieldLabel : "paymentDaysLabel" ,
-        fieldError : "paymentDaysError" 
+        fieldError : "paymentDaysError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "Payment Terms",
-        fieldValue : "",
+        fieldValue : "20FFMD",
         fieldName : "paymentTerms" ,
         fieldLabel : "paymentTermsLabel" ,
-        fieldError : "paymentTermsError" 
+        fieldError : "paymentTermsError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
+        id : uuidV1(), 
         fieldKey :  "MOT",
-        fieldValue : "",
+        fieldValue : "Pipeline",
         fieldName : "mot" ,
         fieldLabel : "motLabel" ,
-        fieldError : "motError" 
+        fieldError : "motError" ,
+        fieldType : "input"
     },{
-        id : Date.now() + "_" + Math.random(), 
-        fieldKey :  "Deal Status",
-        fieldValue : "",
-        fieldName : "dealStatus" ,
-        fieldLabel : "dealStatusLabel" ,
-        fieldError : "dealStatusError" 
+        id : uuidV1(), 
+        fieldKey :  "Owner Name",
+        fieldValue : "XYZ",
+        fieldName : "ownerName" ,
+        fieldLabel : "ownerNameLabel" ,
+        fieldError : "ownerNameError" ,
+        fieldType : "readonly"
     }]
 }
 

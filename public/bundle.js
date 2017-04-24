@@ -87,14 +87,13 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	//AppStore.fetchListingData("A01");
-	//AppStore.fetchMatchingData("A01");
-	
 	// Import routing components
-	_appStore2.default.addTrador();
+	_appStore2.default.fetchListingData("A22");
 	
 	//load trade store
 	
+	_appStore2.default.fetchMatchingData("A01");
+	//AppStore.addTrador("A01");
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRouter.Router,
@@ -28386,8 +28385,31 @@
 	        var _this = _possibleConstructorReturn(this, (addTrade.__proto__ || Object.getPrototypeOf(addTrade)).call(this, props));
 	
 	        _this.state = {
-	            username: '',
-	            password: ''
+	            tradeNumber: '',
+	            buyerName: '',
+	            sellerName: '',
+	            buyerID: '',
+	            sellerID: '',
+	            tradeStatus: '',
+	            tradeType: '',
+	            marketType: '',
+	            price: '',
+	            priceUOM: '',
+	            quantity: '',
+	            quantityUOM: '',
+	            totalQuantity: '',
+	            totalQuantityUOM: '',
+	            tradeDate: '',
+	            startDate: '',
+	            endDate: '',
+	            productCode: '',
+	            deliveryLocation: '',
+	            paymetDays: '',
+	            paymentTerms: '',
+	            mot: '',
+	            owner: '',
+	            ownerName: '',
+	            creatorUser: ''
 	        };
 	
 	        _this.handleChange = _this.handleChange.bind(_this);
@@ -28424,11 +28446,37 @@
 	                console.log('form is valid: submit');
 	
 	                //create object to send 
-	                var form = { 'username': this.state.username, 'password': this.state.password };
+	                var form = {
+	                    tradeNumber: this.state.tradeNumber,
+	                    buyerName: this.state.buyerName,
+	                    sellerName: this.state.sellerName,
+	                    buyerID: this.state.buyerID,
+	                    sellerID: this.state.sellerID,
+	                    tradeStatus: this.state.tradeStatus,
+	                    tradeType: this.state.tradeType,
+	                    marketType: this.state.marketType,
+	                    price: this.state.price,
+	                    priceUOM: this.state.priceUOM,
+	                    quantity: this.state.quantity,
+	                    quantityUOM: this.state.quantityUOM,
+	                    totalQuantity: this.state.totalQuantity,
+	                    totalQuantityUOM: this.state.totalQuantityUOM,
+	                    tradeDate: this.state.tradeDate,
+	                    startDate: this.state.startDate,
+	                    endDate: this.state.endDate,
+	                    productCode: this.state.productCode,
+	                    deliveryLocation: this.state.deliveryLocation,
+	                    paymetDays: this.state.paymetDays,
+	                    paymentTerms: this.state.paymentTerms,
+	                    mot: this.state.not,
+	                    owner: this.state.owner,
+	                    ownerName: this.state.ownerName,
+	                    creatorUser: this.state.createUser
+	                };
 	                console.log(form);
 	
 	                //redirect user to dashbaord page 
-	                fetch('/login', {
+	                fetch('/addTrador', {
 	                    method: 'POST',
 	                    body: JSON.stringify(form),
 	                    headers: { 'Content-Type': 'application/json' }
@@ -28440,7 +28488,7 @@
 	                    if (json.success) {
 	                        _reactRouter.browserHistory.push('/listing');
 	                    } else {
-	                        alert("Invalid credentials. Enter 'admin/admin' to login");
+	                        alert("Server error!!");
 	                    }
 	                });
 	            }
@@ -28554,7 +28602,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-sm-6' },
-	                        _react2.default.createElement('input', { name: input.fieldName, className: 'form-control', id: input.fieldName, placeholder: input.formKey, ref: input.fieldName, onChange: _this3.handleChange, required: true }),
+	                        _react2.default.createElement('input', { name: input.fieldName, className: 'form-control', value: input.fieldValue, id: input.fieldName, ref: input.fieldName, onChange: _this3.handleChange, required: true }),
 	                        _react2.default.createElement('div', { className: 'error', id: input.fieldError })
 	                    )
 	                );
@@ -32902,6 +32950,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 271);
+	
 	var listing = (0, _mobxReact.observer)(_class = function (_React$Component) {
 	    _inherits(listing, _React$Component);
 	
@@ -32919,8 +32969,6 @@
 	            var listingData = this.props.route.data.listingData;
 	
 	
-	            console.log(listingData);
-	
 	            switch (listingData.promiseState) {
 	                case 'pending':
 	                    return _react2.default.createElement(
@@ -32931,153 +32979,158 @@
 	
 	                case 'fulfilled':
 	                    //group item categories
-	                    listingData.data.map(function (item) {
-	                        console.log(item.BuyerID.ValA);
-	                    });
+	                    var getTable = function getTable() {
+	                        var data = [];
 	
-	                    //group item categories
-	                    var listTable = listingData ? listingData.data.map(function (item) {
-	                        _react2.default.createElement(
-	                            'tr',
-	                            { key: Date() },
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
+	                        console.log(listingData.data);
+	
+	                        listingData.data.forEach(function (item) {
+	
+	                            data.push(_react2.default.createElement(
+	                                'tr',
+	                                { key: uuidV1() },
 	                                _react2.default.createElement(
-	                                    _reactRouter.Link,
-	                                    { to: '/detail', activeClassName: 'active' },
-	                                    item.TradeNumber.ValA
+	                                    'td',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/detail', activeClassName: 'active' },
+	                                        item.TradeNumber.ValA
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.BuyerName.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.SellerName.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.BuyerID.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.SellerID.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.TradeType.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.MarketType.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.Price.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.PriceUOM.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.Quantity.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.QuantityUOM.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.TotalQuantity.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.TotalQuantityUOM.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.TradeDate.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.StartDate.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.EndDate.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.ProductCode.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.DeliveryLocation.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.PaymetDays.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.PaymentTerms.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.Mot.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.Owner.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.OwnerName.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.CreatorUser.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.TradeStatus.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    item.CreationTimestamp.ValA
 	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.BuyerName.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.SellerName.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.BuyerID.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.SellerID.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.TradeType.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.MarketType.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.Price.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.PriceUOM.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.Quantity.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.QuantityUOM.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.TotalQuantity.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.TotalQuantityUOM.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.TradeDate.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.StartDate.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.EndDate.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.ProductCode.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.DeliveryLocation.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.PaymetDays.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.PaymentTerms.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.Mot.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.Owner.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.OwnerName.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.CreatorUser.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.TradeStatus.ValA
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                item.CreationTimestamp.ValA
-	                            )
-	                        );
-	                    }) : "";
+	                            ));
+	                        });
 	
+	                        return data;
+	                    };
 	                    //render html
+	
+	
 	                    return _react2.default.createElement(
 	                        'div',
 	                        { className: 'row productTable' },
@@ -33134,12 +33187,32 @@
 	                                    _react2.default.createElement(
 	                                        'th',
 	                                        null,
-	                                        'Market Type'
+	                                        '  Buyer Name'
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'th',
 	                                        null,
-	                                        ' Direction  '
+	                                        '  Seller Name'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        '  Buyer ID'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        '  Seller ID'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        ' Trade Type'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        ' Market Type'
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'th',
@@ -33189,12 +33262,12 @@
 	                                    _react2.default.createElement(
 	                                        'th',
 	                                        null,
-	                                        '  Trade Code   '
+	                                        '  Product Code   '
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'th',
 	                                        null,
-	                                        '  Delivery Location'
+	                                        ' Direction  '
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'th',
@@ -33214,14 +33287,34 @@
 	                                    _react2.default.createElement(
 	                                        'th',
 	                                        null,
-	                                        'Deal Status'
+	                                        '  Owner ID   '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        '  Owner Name   '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        'Creator User'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        'Trade Status'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        'Creation Timestamp'
 	                                    )
 	                                )
 	                            ),
 	                            _react2.default.createElement(
 	                                'tbody',
 	                                null,
-	                                listTable
+	                                getTable()
 	                            )
 	                        )
 	                    );
@@ -33527,6 +33620,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 271);
+	
 	var matching = (0, _mobxReact.observer)(_class = function (_React$Component) {
 	    _inherits(matching, _React$Component);
 	
@@ -33543,8 +33638,6 @@
 	            //get objects from store
 	            var matchingData = this.props.route.data.matchingData;
 	
-	
-	            console.log(matchingData);
 	
 	            switch (matchingData.promiseState) {
 	                case 'pending':
@@ -33565,7 +33658,7 @@
 	                                    status = matchingData.data[key].Match === true ? "Yes" : "No";
 	                                data.push(_react2.default.createElement(
 	                                    'tr',
-	                                    { key: Date.now() + Math.random() },
+	                                    { key: uuidV1() },
 	                                    _react2.default.createElement(
 	                                        'td',
 	                                        null,
@@ -33699,7 +33792,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 251);
 	
@@ -33758,6 +33851,8 @@
 	    throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 	}
 	
+	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 271);
+	
 	var newProduct = (_class =
 	
 	//initialize product
@@ -33793,19 +33888,21 @@
 	    function AppStore() {
 	        _classCallCheck(this, AppStore);
 	
-	        _initDefineProp(this, 'usersList', _descriptor5, this);
+	        _initDefineProp(this, 'currentUser', _descriptor5, this);
 	
-	        _initDefineProp(this, 'organisations', _descriptor6, this);
+	        _initDefineProp(this, 'usersList', _descriptor6, this);
 	
-	        _initDefineProp(this, 'listingData', _descriptor7, this);
+	        _initDefineProp(this, 'organisationsList', _descriptor7, this);
 	
-	        _initDefineProp(this, 'matchingData', _descriptor8, this);
+	        _initDefineProp(this, 'listingData', _descriptor8, this);
 	
-	        _initDefineProp(this, 'tradorStatus', _descriptor9, this);
+	        _initDefineProp(this, 'matchingData', _descriptor9, this);
 	
-	        _initDefineProp(this, 'detailData', _descriptor10, this);
+	        _initDefineProp(this, 'tradorStatus', _descriptor10, this);
 	
-	        _initDefineProp(this, 'formData', _descriptor11, this);
+	        _initDefineProp(this, 'detailData', _descriptor11, this);
+	
+	        _initDefineProp(this, 'formData', _descriptor12, this);
 	    }
 	
 	    //observer product list and master categories
@@ -33951,28 +34048,47 @@
 	    }]);
 	
 	    return AppStore;
-	}(), (_descriptor5 = _applyDecoratedDescriptor(_class3.prototype, 'usersList', [_mobx.observable], {
+	}(), (_descriptor5 = _applyDecoratedDescriptor(_class3.prototype, 'currentUser', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return {
+	            id: 1,
+	            name: "John Walker",
+	            organisationId: "CHV",
+	            username: "john",
+	            password: "john"
+	        };
+	    }
+	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, 'usersList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
 	            id: 1,
 	            name: "John Walker",
-	            organisationId: "CHV"
+	            organisationId: "CHV",
+	            username: "john",
+	            password: "john"
 	        }, {
 	            id: 2,
 	            name: "Paul Walker",
-	            organisationId: "CHV"
+	            organisationId: "CHV",
+	            username: "paul",
+	            password: "paul"
 	        }, {
 	            id: 3,
 	            name: "Syan Smith",
-	            organisationId: "IOC"
+	            organisationId: "IOC",
+	            username: "syan",
+	            password: "syan"
 	        }, {
 	            id: 4,
 	            name: "Lauren Iyer",
-	            organisationId: "IOC"
+	            organisationId: "IOC",
+	            username: "lauren",
+	            password: "lauren"
 	        }];
 	    }
-	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, 'organisations', [_mobx.observable], {
+	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, 'organisationsList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -33989,7 +34105,7 @@
 	            name: "Shell"
 	        }];
 	    }
-	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
+	}), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -33997,7 +34113,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
+	}), _descriptor9 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -34005,7 +34121,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor9 = _applyDecoratedDescriptor(_class3.prototype, 'tradorStatus', [_mobx.observable], {
+	}), _descriptor10 = _applyDecoratedDescriptor(_class3.prototype, 'tradorStatus', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -34013,213 +34129,247 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'addTrador'), _class3.prototype), _descriptor10 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
+	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'addTrador'), _class3.prototype), _descriptor11 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Trade Type",
 	            productValue: "SHLTR16TB0342:1"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Market Type",
 	            productValue: "Chevron Products Company, a division of Chevron USA Inc."
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Direction",
 	            productValue: "SHLTR16TB0342:1"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Price",
 	            productValue: "SHLTR16TB0342:1"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Price UOM",
 	            productValue: "SHLTR16TB0342:1"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Quantity",
 	            productValue: "33"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Quantity UOM",
 	            productValue: "22AA"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Total Quantity",
 	            productValue: "331"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Total QuantityUOM",
 	            productValue: "BBl:1"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Trade Date",
 	            productValue: "8-March"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Start Date",
 	            productValue: "6-March"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "End Date",
 	            productValue: "4-March"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Product Code",
 	            productValue: "Mars"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Delivery Location",
 	            productValue: "Abu dhabi"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Paymet Days",
 	            productValue: "SHLTR16TB0342:1"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Payment Terms",
 	            productValue: "NA"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "MOT",
 	            productValue: "Pipeline"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            productKey: "Deal Status",
 	            productValue: "ACTIVE"
 	        }];
 	    }
-	}), _descriptor11 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
+	}), _descriptor12 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
+	            fieldKey: "Trade Number",
+	            fieldValue: "SHLTR16TB0342",
+	            fieldName: "tradeNumber",
+	            fieldLabel: "tradeNumberLabel",
+	            fieldError: "tradeNumberError",
+	            fieldType: "input"
+	        }, {
+	            id: uuidV1(),
+	            fieldKey: "Buyer Name",
+	            fieldValue: "XYZ",
+	            fieldName: "buyerName",
+	            fieldLabel: "buyerNameLabel",
+	            fieldError: "buyerNameError",
+	            fieldType: "select"
+	        }, {
+	            id: uuidV1(),
+	            fieldKey: "Seller Name",
+	            fieldValue: "ABC",
+	            fieldName: "sellerName",
+	            fieldLabel: "sellerNameLabel",
+	            fieldError: "sellerNameError",
+	            fieldType: "readonly"
+	        }, {
+	            id: uuidV1(),
 	            fieldKey: "Trade Type",
-	            fieldValue: "",
+	            fieldValue: "Date Pipeline Fixed price",
 	            fieldName: "tradeType",
 	            fieldLabel: "tradeTypeLabel",
-	            fieldError: "tradeTypeError"
+	            fieldError: "tradeTypeError",
+	            fieldType: "select"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Market Type",
-	            fieldValue: "",
+	            fieldValue: "Physical Crude Oil",
 	            fieldName: "marketType",
 	            fieldLabel: "marketTypeLabel",
-	            fieldError: "marketTypeError"
+	            fieldError: "marketTypeError",
+	            fieldType: "select"
 	
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            fieldKey: "Direction",
-	            fieldValue: "",
-	            fieldName: "direction",
-	            fieldLabel: "directionLabel",
-	            fieldError: "directionError"
-	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Price",
-	            fieldValue: "",
+	            fieldValue: "100",
 	            fieldName: "price",
 	            fieldLabel: "priceLabel",
-	            fieldError: "priceError"
+	            fieldError: "priceError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Price UOM",
-	            fieldValue: "",
+	            fieldValue: "BBL",
 	            fieldName: "priceUom",
 	            fieldLabel: "priceUomLabel",
-	            fieldError: "priceUomError"
+	            fieldError: "priceUomError",
+	            fieldType: "readonly"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Quantity",
-	            fieldValue: "",
+	            fieldValue: "100",
 	            fieldName: "quantity",
 	            fieldLabel: "quantityLabel",
-	            fieldError: "quantityError"
+	            fieldError: "quantityError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Quantity UOM",
-	            fieldValue: "",
+	            fieldValue: "BBL",
 	            fieldName: "quantityUom",
 	            fieldLabel: "quantityUomLabel",
-	            fieldError: "quantityUomError"
+	            fieldError: "quantityUomError",
+	            fieldType: "readonly"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Total Quantity",
-	            fieldValue: "",
+	            fieldValue: "30000",
 	            fieldName: "totalQuantity",
 	            fieldLabel: "totalQuantityLabel",
-	            fieldError: "totalQuantityError"
+	            fieldError: "totalQuantityError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Total QuantityUOM",
-	            fieldValue: "",
+	            fieldValue: "BBL",
 	            fieldName: "totalQuantityUom",
 	            fieldLabel: "totalQuantityUomLabel",
-	            fieldError: "totalQuantityUomError"
+	            fieldError: "totalQuantityUomError",
+	            fieldType: "readonly"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Trade Date",
-	            fieldValue: "",
+	            fieldValue: "24-04-2017",
 	            fieldName: "tradeDate",
 	            fieldLabel: "tradeDateLabel",
-	            fieldError: "tradeDateError"
+	            fieldError: "tradeDateError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Start Date",
-	            fieldValue: "",
+	            fieldValue: "24-04-2017",
 	            fieldName: "startDate",
 	            fieldLabel: "startDateLabel",
-	            fieldError: "startDateError"
+	            fieldError: "startDateError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "End Date",
-	            fieldValue: "",
+	            fieldValue: "24-04-2017",
 	            fieldName: "endDate",
 	            fieldLabel: "endDateLabel",
-	            fieldError: "endDateError"
+	            fieldError: "endDateError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Product Code",
-	            fieldValue: "",
+	            fieldValue: "MARS",
 	            fieldName: "productCode",
 	            fieldLabel: "productCodeLabel",
-	            fieldError: "productCodeError"
+	            fieldError: "productCodeError",
+	            fieldType: "select"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Delivery Location",
-	            fieldValue: "",
+	            fieldValue: "Clovelly",
 	            fieldName: "deliveryLocation",
 	            fieldLabel: "deliveryLocationLabel",
-	            fieldError: "deliveryLocationError"
+	            fieldError: "deliveryLocationError",
+	            fieldType: "select"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Paymet Days",
-	            fieldValue: "",
+	            fieldValue: "20",
 	            fieldName: "paymentDays",
 	            fieldLabel: "paymentDaysLabel",
-	            fieldError: "paymentDaysError"
+	            fieldError: "paymentDaysError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "Payment Terms",
-	            fieldValue: "",
+	            fieldValue: "20FFMD",
 	            fieldName: "paymentTerms",
 	            fieldLabel: "paymentTermsLabel",
-	            fieldError: "paymentTermsError"
+	            fieldError: "paymentTermsError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
+	            id: uuidV1(),
 	            fieldKey: "MOT",
-	            fieldValue: "",
+	            fieldValue: "Pipeline",
 	            fieldName: "mot",
 	            fieldLabel: "motLabel",
-	            fieldError: "motError"
+	            fieldError: "motError",
+	            fieldType: "input"
 	        }, {
-	            id: Date.now() + "_" + Math.random(),
-	            fieldKey: "Deal Status",
-	            fieldValue: "",
-	            fieldName: "dealStatus",
-	            fieldLabel: "dealStatusLabel",
-	            fieldError: "dealStatusError"
+	            id: uuidV1(),
+	            fieldKey: "Owner Name",
+	            fieldValue: "XYZ",
+	            fieldName: "ownerName",
+	            fieldLabel: "ownerNameLabel",
+	            fieldError: "ownerNameError",
+	            fieldType: "readonly"
 	        }];
 	    }
 	})), _class3);
@@ -35754,6 +35904,193 @@
 	Object.defineProperty(exports, '__esModule', { value: true });
 	
 	})));
+
+
+/***/ }),
+/* 271 */
+/*!**********************!*\
+  !*** ./~/uuid/v1.js ***!
+  \**********************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	// Unique ID creation requires a high quality random # generator.  We feature
+	// detect to determine the best RNG source, normalizing to a function that
+	// returns 128-bits of randomness, since that's what's usually required
+	var rng = __webpack_require__(/*! ./lib/rng */ 272);
+	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 273);
+	
+	// **`v1()` - Generate time-based UUID**
+	//
+	// Inspired by https://github.com/LiosK/UUID.js
+	// and http://docs.python.org/library/uuid.html
+	
+	// random #'s we need to init node and clockseq
+	var _seedBytes = rng();
+	
+	// Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
+	var _nodeId = [
+	  _seedBytes[0] | 0x01,
+	  _seedBytes[1], _seedBytes[2], _seedBytes[3], _seedBytes[4], _seedBytes[5]
+	];
+	
+	// Per 4.2.2, randomize (14 bit) clockseq
+	var _clockseq = (_seedBytes[6] << 8 | _seedBytes[7]) & 0x3fff;
+	
+	// Previous uuid creation time
+	var _lastMSecs = 0, _lastNSecs = 0;
+	
+	// See https://github.com/broofa/node-uuid for API details
+	function v1(options, buf, offset) {
+	  var i = buf && offset || 0;
+	  var b = buf || [];
+	
+	  options = options || {};
+	
+	  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq;
+	
+	  // UUID timestamps are 100 nano-second units since the Gregorian epoch,
+	  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
+	  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
+	  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
+	  var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime();
+	
+	  // Per 4.2.1.2, use count of uuid's generated during the current clock
+	  // cycle to simulate higher resolution clock
+	  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
+	
+	  // Time since last uuid creation (in msecs)
+	  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
+	
+	  // Per 4.2.1.2, Bump clockseq on clock regression
+	  if (dt < 0 && options.clockseq === undefined) {
+	    clockseq = clockseq + 1 & 0x3fff;
+	  }
+	
+	  // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+	  // time interval
+	  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
+	    nsecs = 0;
+	  }
+	
+	  // Per 4.2.1.2 Throw error if too many uuids are requested
+	  if (nsecs >= 10000) {
+	    throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
+	  }
+	
+	  _lastMSecs = msecs;
+	  _lastNSecs = nsecs;
+	  _clockseq = clockseq;
+	
+	  // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
+	  msecs += 12219292800000;
+	
+	  // `time_low`
+	  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
+	  b[i++] = tl >>> 24 & 0xff;
+	  b[i++] = tl >>> 16 & 0xff;
+	  b[i++] = tl >>> 8 & 0xff;
+	  b[i++] = tl & 0xff;
+	
+	  // `time_mid`
+	  var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
+	  b[i++] = tmh >>> 8 & 0xff;
+	  b[i++] = tmh & 0xff;
+	
+	  // `time_high_and_version`
+	  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
+	  b[i++] = tmh >>> 16 & 0xff;
+	
+	  // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
+	  b[i++] = clockseq >>> 8 | 0x80;
+	
+	  // `clock_seq_low`
+	  b[i++] = clockseq & 0xff;
+	
+	  // `node`
+	  var node = options.node || _nodeId;
+	  for (var n = 0; n < 6; ++n) {
+	    b[i + n] = node[n];
+	  }
+	
+	  return buf ? buf : bytesToUuid(b);
+	}
+	
+	module.exports = v1;
+
+
+/***/ }),
+/* 272 */
+/*!***********************************!*\
+  !*** ./~/uuid/lib/rng-browser.js ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
+	// browser this is a little complicated due to unknown quality of Math.random()
+	// and inconsistent support for the `crypto` API.  We do the best we can via
+	// feature-detection
+	var rng;
+	
+	var crypto = global.crypto || global.msCrypto; // for IE 11
+	if (crypto && crypto.getRandomValues) {
+	  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+	  var rnds8 = new Uint8Array(16);
+	  rng = function whatwgRNG() {
+	    crypto.getRandomValues(rnds8);
+	    return rnds8;
+	  };
+	}
+	
+	if (!rng) {
+	  // Math.random()-based (RNG)
+	  //
+	  // If all else fails, use Math.random().  It's fast, but is of unspecified
+	  // quality.
+	  var  rnds = new Array(16);
+	  rng = function() {
+	    for (var i = 0, r; i < 16; i++) {
+	      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+	      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+	    }
+	
+	    return rnds;
+	  };
+	}
+	
+	module.exports = rng;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 273 */
+/*!***********************************!*\
+  !*** ./~/uuid/lib/bytesToUuid.js ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	/**
+	 * Convert array of 16 byte values to UUID string format of the form:
+	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+	 */
+	var byteToHex = [];
+	for (var i = 0; i < 256; ++i) {
+	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+	}
+	
+	function bytesToUuid(buf, offset) {
+	  var i = offset || 0;
+	  var bth = byteToHex;
+	  return  bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]];
+	}
+	
+	module.exports = bytesToUuid;
 
 
 /***/ })

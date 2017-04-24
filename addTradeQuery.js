@@ -27,7 +27,7 @@ var Orderer = require('fabric-client/lib/Orderer.js');
 var EventHub = require('fabric-client/lib/EventHub.js');
 
 var config = require('./config.json');
-var helper = require('./helper.js');
+var helper = require('./addTradeHelper.js');
 
 
 logger.setLevel('DEBUG');
@@ -106,8 +106,7 @@ return hfc.newDefaultKeyValueStore({
 				eventhub.disconnect();
 			});
 		}
-		console.log("############", response.tradeResult);
-		return response.tradeResult;
+		return response;
 	}
 ).catch(
 	function(err) {

@@ -14,9 +14,9 @@ import Matching from './components/matching.js'
 //load trade store
 import AppStore from './store/appStore.js';
 
-//AppStore.fetchListingData("A01");
-//AppStore.fetchMatchingData("A01");
-AppStore.addTrador();
+AppStore.fetchListingData("A22");
+AppStore.fetchMatchingData("A01");
+//AppStore.addTrador("A01");
 
 render(
     <Router history={browserHistory}>

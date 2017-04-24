@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from "mobx-react"; 
-
+const uuidV1 = require('uuid/v1');
 
 @observer
 export default class matching extends React.Component{
@@ -10,8 +10,6 @@ export default class matching extends React.Component{
 
         //get objects from store
         const {matchingData} = this.props.route.data;
-
-        console.log(matchingData);
 
         switch(matchingData.promiseState) {
             case 'pending':
@@ -26,7 +24,7 @@ export default class matching extends React.Component{
                         if(key !== "DealStatus"){
                             var statusClass = (matchingData.data[key].Match === true) ? "btn btn-success" : "btn btn-warning",
                                 status = (matchingData.data[key].Match === true) ? "Yes" : "No"
-                            data.push(<tr key={Date.now() + Math.random()}>
+                            data.push(<tr key={uuidV1()}>
                                 <td>{key}</td>
                                 <td>{matchingData.data[key].ValA}</td>
                                 <td>{matchingData.data[key].ValB}</td>

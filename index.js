@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 if(!CONFIG.isLocalServer){
     const query = require('./query.js');
     const listQuery = require('./ListQuery.js');
-    const trade = require('./invoke.js');
+    const trade = require('./addTradeQuery.js');
     
     //bind local methods with server
     app.post('/listingData', function (request, response){
@@ -25,6 +25,7 @@ if(!CONFIG.isLocalServer){
         const data = listQuery.getContractList(params.contractId);
 
         data.then(function(jsonData){
+            console.log("############# Data from node",jsonData);
             response.setHeader('Content-Type', 'application/json');
             response.send(jsonData);
         });
@@ -46,43 +47,17 @@ if(!CONFIG.isLocalServer){
 
     //add trador data
     app.post('/addTrador', function (request, response){
-        //const params = request.body;
+        const params = request.body;
         
-        const params = {
-            tradeNumber : "SHLTR16TB0342:1",
-            buyerName : "Chevron Products a Division of Chevorn USA",
-            sellerName : "Indian Oil Corporation",
-            buyerID : "CHV",
-            sellerID : "IOC",
-            tradeType : "Date Pipeline Fixed price",
-            marketType : "Physical Crude Oil",
-            price : "1000",
-            priceUOM : "BBL",
-            quantity : "10",
-            quantityUOM : "BBL",
-            totalQuantity : "30000",
-            totalQuantityUOM : "BBL",
-            tradeDate : "24-04-2016",
-            startDate : "24-04-2016",
-            endDate : "28-04-2016",
-            productCode : "MARS",
-            deliveryLocation : "Clovelly",
-            paymetDays : "20",
-            paymentTerms : "20FFMD",
-            mot : "Pipeline",
-            owner : "CHV", //owner id (Buyer id)
-            ownerName : "Chevron Products a Division of Chevorn USA", //owner name (Buyer name)
-            creatorUser : "1", //user id 
-            tradeStatus : "Active"
-        }
-        
+        console.log("###### Form params : ", params);
+
         const form = [
             "add",
             params.tradeNumber,
             params.buyerName,
             params.sellerName,
-            params.buyerID,
-            params.sellerID,
+            params.buyerID, //buyer id 
+            params.sellerID, //seller id
             params.tradeStatus,
             params.tradeType,
             params.marketType,
@@ -100,10 +75,10 @@ if(!CONFIG.isLocalServer){
             params.paymetDays,
             params.paymentTerms,
             params.mot,
-            params.owner,
+            params.owner, //Owner id
             params.ownerName,
-            params.creatorUser,
-            params.tradeStatus,
+            params.creatorUser, //loggedin user id 
+            "Active",//Trade Status
         ];
         
         const data = trade.addTrade(form);
@@ -525,13 +500,12 @@ if(!CONFIG.isLocalServer){
     //add trador data
     app.post('/addTrador', function (request, response){
         //const params = request.body;
-        
         const params = {
             tradeNumber : "SHLTR16TB0342:1",
             buyerName : "Chevron Products a Division of Chevorn USA",
-            sellerName : "Chevron Products Company, a division of Chevron USA Inc.",
-            buyerID : "1",
-            sellerID : "2",
+            sellerName : "Indian Oil Corporation",
+            buyerID : "CHV",
+            sellerID : "IOC",
             tradeType : "Date Pipeline Fixed price",
             marketType : "Physical Crude Oil",
             price : "1000",
@@ -548,47 +522,44 @@ if(!CONFIG.isLocalServer){
             paymetDays : "20",
             paymentTerms : "20FFMD",
             mot : "Pipeline",
-            owner : "1", //owner id (Buyer id)
+            owner : "CHV", //owner id (Buyer id)
             ownerName : "Chevron Products a Division of Chevorn USA", //owner name (Buyer name)
             creatorUser : "1", //user id 
-            tradeStatus : "?",	
-            creationTimestamp : "?", 
-            dealStatus : "Active"
+            tradeStatus : "Active"
         }
         
-        const form = {
-            TradeNumber :       params.tradeNumber,
-            BuyerName   :		params.buyerName,
-            SellerName  :		params.sellerName,
-            BuyerID		:		params.buyerID,
-            SellerID	:		params.sellerID,
-            TradeType	:		params.tradeType,
-            MarketType	:		params.marketType,
-            Price 		:		params.price,
-            PriceUOM 	:		params.priceUOM,
-            Quantity 	:		params.quantity,
-            QuantityUOM :		params.quantityUOM,
-            TotalQuantity: 		params.totalQuantity,
-            TotalQuantityUOM: 	params.totalQuantityUOM,
-            TradeDate 		:	params.tradeDate,
-            StartDate 		:	params.startDate,
-            EndDate 		:	params.endDate,
-            ProductCode 	:	params.productCode,
-            DeliveryLocation :	params.deliveryLocation,
-            PaymetDays 		:	params.paymetDays,
-            PaymentTerms 	:	params.paymentTerms,
-            Mot 			:	params.mot,
-            Owner 			:	params.owner,
-            OwnerName		:	params.ownerName,
-            CreatorUser 	:	params.creatorUser,
-            TradeStatus		:	params.tradeStatus,	
-            CreationTimestamp :	params.creationTimestamp, 
-            DealStatus 	:	    params.dealStatus,			
-        };
-        
+        const form = [
+            "add",
+            params.tradeNumber,
+            params.buyerName,
+            params.sellerName,
+            params.buyerID,
+            params.sellerID,
+            params.tradeStatus,
+            params.tradeType,
+            params.marketType,
+            params.price,
+            params.priceUOM,
+            params.quantity,
+            params.quantityUOM,
+            params.totalQuantity,
+            params.totalQuantityUOM,
+            params.tradeDate,
+            params.startDate,
+            params.endDate,
+            params.productCode,
+            params.deliveryLocation,
+            params.paymetDays,
+            params.paymentTerms,
+            params.mot,
+            params.owner,
+            params.ownerName,
+            params.creatorUser,
+            params.tradeStatus,
+        ];
 
         response.setHeader('Content-Type', 'application/json');
-        response.send(JSON.stringify({id:1}));
+        response.send(JSON.stringify({"Status" : true, "TradeNumber":"A01"}));
     });
 
 }

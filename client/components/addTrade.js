@@ -8,8 +8,31 @@ export default class addTrade extends React.Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: ''
+            tradeNumber: '',
+            buyerName: '',
+            sellerName: '',
+            buyerID: '',
+            sellerID: '',
+            tradeStatus: '',
+            tradeType: '',
+            marketType: '',
+            price: '',
+            priceUOM: '',
+            quantity: '',
+            quantityUOM: '',
+            totalQuantity: '',
+            totalQuantityUOM: '',
+            tradeDate: '',
+            startDate: '',
+            endDate: '',
+            productCode: '',
+            deliveryLocation: '',
+            paymetDays: '',
+            paymentTerms: '',
+            mot: '',
+            owner: '',
+            ownerName: '',
+            creatorUser: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -40,11 +63,37 @@ export default class addTrade extends React.Component {
             console.log('form is valid: submit');
 
             //create object to send 
-            let form = {'username': this.state.username,'password': this.state.password};
+            let form = {
+                tradeNumber: this.state.tradeNumber,
+                buyerName: this.state.buyerName,
+                sellerName: this.state.sellerName,
+                buyerID: this.state.buyerID,
+                sellerID: this.state.sellerID,
+                tradeStatus: this.state.tradeStatus,
+                tradeType: this.state.tradeType,
+                marketType: this.state.marketType,
+                price: this.state.price,
+                priceUOM: this.state.priceUOM,
+                quantity: this.state.quantity,
+                quantityUOM: this.state.quantityUOM,
+                totalQuantity: this.state.totalQuantity,
+                totalQuantityUOM: this.state.totalQuantityUOM,
+                tradeDate: this.state.tradeDate,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate,
+                productCode: this.state.productCode,
+                deliveryLocation: this.state.deliveryLocation,
+                paymetDays: this.state.paymetDays,
+                paymentTerms: this.state.paymentTerms,
+                mot: this.state.not,
+                owner: this.state.owner,
+                ownerName: this.state.ownerName,
+                creatorUser: this.state.createUser
+            };
             console.log(form);
 
             //redirect user to dashbaord page 
-            fetch('/login', { 
+            fetch('/addTrador', { 
                     method: 'POST', 
                     body: JSON.stringify(form),
                     headers: { 'Content-Type': 'application/json' }
@@ -56,7 +105,7 @@ export default class addTrade extends React.Component {
                     if(json.success){
                         browserHistory.push('/listing');
                     }else{
-                        alert("Invalid credentials. Enter 'admin/admin' to login");
+                        alert("Server error!!");
                     }
                 });
 
@@ -150,7 +199,7 @@ export default class addTrade extends React.Component {
             <div className="form-group col-md-6" key={input.id}>
                 <label htmlFor={input.fieldName} id={input.fieldLabel} className="col-sm-6 control-label">{input.fieldKey}</label>
                 <div className="col-sm-6">
-                    <input name={input.fieldName} className="form-control" id={input.fieldName} placeholder={input.formKey} ref={input.fieldName} onChange={ this.handleChange } required/>
+                    <input name={input.fieldName} className="form-control" value={input.fieldValue} id={input.fieldName} ref={input.fieldName} onChange={ this.handleChange } required/>
                     <div className="error" id={input.fieldError} />
                 </div>
             </div> 
