@@ -204,19 +204,26 @@ export default class addTrade extends React.Component {
         const label = document.getElementById(`${refName}Label`).textContent;
         const error = document.getElementById(`${refName}Error`);
 
-        //validate field
-        if (!validity.valid) {
-            if (validity.valueMissing) {
-                error.textContent = `${label} is a required field`; 
-            } else if (validity.patternMismatch) {
-                error.textContent = `${label} price should be in digits`; 
-            } 
-            return false;
-        }
+        if(this.refs[refName].validity){
 
-        //update error message
-        error.textContent = '';
-        return true;
+            //validate field
+            if (!validity.valid) {
+                if (validity.valueMissing) {
+                    error.textContent = `${label} is a required field`; 
+                } else if (validity.patternMismatch) {
+                    error.textContent = `${label} price should be in digits`; 
+                } 
+                return false;
+            }
+
+            //update error message
+            error.textContent = '';
+            return true;
+
+        }else{
+            error.textContent = '';
+            return true;
+        }
     }
   
     
