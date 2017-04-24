@@ -110,11 +110,22 @@ export class AppStore{
         id : 2,
         name : "DSW"
     },{
-        id : 1,
+        id : 3,
         name : "WTS"
     },{
-        id : 2,
+        id : 4,
         name : "POSEIDON"
+    }];
+
+    @observable deliveryLocation = [{
+        id : 1,
+        name : "Clovelly"
+    },{
+        id : 2,
+        name : "Cushing"
+    },{
+        id : 3,
+        name : "Houma"
     }];
 
     @observable listingData = {

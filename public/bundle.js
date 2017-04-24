@@ -28620,8 +28620,74 @@
 	        value: function render() {
 	
 	            //get objects from store
-	            var formData = this.props.route.data.formData;
+	            var _props$route$data = this.props.route.data,
+	                tradeTypeList = _props$route$data.tradeTypeList,
+	                marketTypeList = _props$route$data.marketTypeList,
+	                priceUOMList = _props$route$data.priceUOMList,
+	                UOMList = _props$route$data.UOMList,
+	                productCodeList = _props$route$data.productCodeList,
+	                deliveryLocation = _props$route$data.deliveryLocation;
 	
+	
+	            var tradeOptions = tradeTypeList ? tradeTypeList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var marketOptions = marketTypeList ? marketTypeList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var priceUOMoptions = priceUOMList ? priceUOMList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var UOMOptions = UOMList ? UOMList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var productCodeOptions = productCodeList ? productCodeList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var deliveryOptions = deliveryLocation ? deliveryLocation.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
 	
 	            return _react2.default.createElement(
 	                'div',
@@ -28696,7 +28762,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'tradeType', className: 'form-control', value: '', id: 'tradeType', ref: 'tradeType', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'tradeType', className: 'form-control', id: 'tradeType', ref: 'tradeType', onChange: this.handleChange },
+	                                        tradeOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'tradeTypeError' })
 	                                )
 	                            ),
@@ -28711,7 +28781,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'marketType', className: 'form-control', value: '', id: 'marketType', ref: 'marketType', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'marketType', className: 'form-control', id: 'marketType', ref: 'marketType', onChange: this.handleChange },
+	                                        marketOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'marketTypeError' })
 	                                )
 	                            ),
@@ -28741,7 +28815,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'priceUom', className: 'form-control', value: '', id: 'priceUom', ref: 'priceUom', onChange: this.handleChange, readOnly: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'priceUom', className: 'form-control', id: 'priceUom', ref: 'priceUom', onChange: this.handleChange },
+	                                        priceUOMoptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'priceUomError' })
 	                                )
 	                            ),
@@ -28771,7 +28849,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'quantityUom', className: 'form-control', value: '', id: 'quantityUom', ref: 'quantityUom', onChange: this.handleChange, readOnly: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'quantityUom', className: 'form-control', id: 'quantityUom', ref: 'quantityUom', onChange: this.handleChange },
+	                                        UOMOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'quantityUomError' })
 	                                )
 	                            ),
@@ -28801,7 +28883,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'totalQuantityUom', className: 'form-control', value: '', id: 'totalQuantityUom', ref: 'totalQuantityUom', onChange: this.handleChange, readOnly: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'totalQuantityUom', className: 'form-control', id: 'totalQuantityUom', ref: 'totalQuantityUom', onChange: this.handleChange },
+	                                        UOMOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'totalQuantityUomError' })
 	                                )
 	                            ),
@@ -28861,7 +28947,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'productCode', className: 'form-control', value: '', id: 'productCode', ref: 'productCode', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'productCode', className: 'form-control', id: 'productCode', ref: 'productCode', onChange: this.handleChange },
+	                                        productCodeOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'productCodeError' })
 	                                )
 	                            ),
@@ -28876,7 +28966,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'deliveryLocation', className: 'form-control', value: '', id: 'deliveryLocation', ref: 'deliveryLocation', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'deliveryLocation', className: 'form-control', id: 'deliveryLocation', ref: 'deliveryLocation', onChange: this.handleChange },
+	                                        deliveryOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'deliveryLocationError' })
 	                                )
 	                            ),
@@ -28947,7 +29041,7 @@
 	                            _react2.default.createElement(
 	                                'button',
 	                                { className: 'btn btn-primary center-block', onClick: this.handleSubmit },
-	                                'Add'
+	                                'Add Trade'
 	                            )
 	                        )
 	                    )
@@ -51562,7 +51656,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 373);
 	
@@ -51674,15 +51768,17 @@
 	
 	        _initDefineProp(this, 'productCodeList', _descriptor12, this);
 	
-	        _initDefineProp(this, 'listingData', _descriptor13, this);
+	        _initDefineProp(this, 'deliveryLocation', _descriptor13, this);
 	
-	        _initDefineProp(this, 'matchingData', _descriptor14, this);
+	        _initDefineProp(this, 'listingData', _descriptor14, this);
 	
-	        _initDefineProp(this, 'tradorStatus', _descriptor15, this);
+	        _initDefineProp(this, 'matchingData', _descriptor15, this);
 	
-	        _initDefineProp(this, 'detailData', _descriptor16, this);
+	        _initDefineProp(this, 'tradorStatus', _descriptor16, this);
 	
-	        _initDefineProp(this, 'formData', _descriptor17, this);
+	        _initDefineProp(this, 'detailData', _descriptor17, this);
+	
+	        _initDefineProp(this, 'formData', _descriptor18, this);
 	    }
 	
 	    //observer product list and master categories
@@ -51939,14 +52035,28 @@
 	            id: 2,
 	            name: "DSW"
 	        }, {
-	            id: 1,
+	            id: 3,
 	            name: "WTS"
 	        }, {
-	            id: 2,
+	            id: 4,
 	            name: "POSEIDON"
 	        }];
 	    }
-	}), _descriptor13 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
+	}), _descriptor13 = _applyDecoratedDescriptor(_class3.prototype, 'deliveryLocation', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return [{
+	            id: 1,
+	            name: "Clovelly"
+	        }, {
+	            id: 2,
+	            name: "Cushing"
+	        }, {
+	            id: 3,
+	            name: "Houma"
+	        }];
+	    }
+	}), _descriptor14 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -51954,7 +52064,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor14 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
+	}), _descriptor15 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -51962,7 +52072,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor15 = _applyDecoratedDescriptor(_class3.prototype, 'tradorStatus', [_mobx.observable], {
+	}), _descriptor16 = _applyDecoratedDescriptor(_class3.prototype, 'tradorStatus', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -51970,7 +52080,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'addTrador'), _class3.prototype), _descriptor16 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
+	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'addTrador'), _class3.prototype), _descriptor17 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52047,7 +52157,7 @@
 	            productValue: "ACTIVE"
 	        }];
 	    }
-	}), _descriptor17 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
+	}), _descriptor18 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{

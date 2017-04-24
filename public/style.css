@@ -40,3 +40,7 @@ select.active:invalid {
 .well{
     height: 75px;
 }
+
+.react-datepicker__input-container{
+    display: block;
+}

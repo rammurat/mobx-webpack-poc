@@ -216,7 +216,33 @@ export default class addTrade extends React.Component {
   render() {
 
     //get objects from store
-    const {formData} = this.props.route.data;
+    const {tradeTypeList,marketTypeList,priceUOMList,UOMList,productCodeList,deliveryLocation} = this.props.route.data;
+
+    const tradeOptions = tradeTypeList ? tradeTypeList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    const marketOptions = marketTypeList ? marketTypeList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    const priceUOMoptions = priceUOMList ? priceUOMList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    const UOMOptions = UOMList ? UOMList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    const productCodeOptions = productCodeList ? productCodeList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    const deliveryOptions = deliveryLocation ? deliveryLocation.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    
 
     return (
         <div className="container-fluid">
@@ -252,7 +278,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="tradeType" id="tradeTypeLabel" className="col-sm-6 control-label">Trade Type</label>
     <div className="col-sm-6">
-        <input name="tradeType" className="form-control" value="" id="tradeType" ref="tradeType" onChange={ this.handleChange } required/>
+        <select name="tradeType" className="form-control" id="tradeType" ref="tradeType" onChange={ this.handleChange }>
+            {tradeOptions}
+        </select>
         <div className="error" id="tradeTypeError" />
     </div>
 </div>
@@ -260,7 +288,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="marketType" id="marketTypeLabel" className="col-sm-6 control-label">Market Type</label>
     <div className="col-sm-6">
-        <input name="marketType" className="form-control" value="" id="marketType" ref="marketType" onChange={ this.handleChange } required/>
+        <select name="marketType" className="form-control" id="marketType" ref="marketType" onChange={ this.handleChange }>
+            {marketOptions}
+        </select>
         <div className="error" id="marketTypeError" />
     </div>
 </div>
@@ -276,7 +306,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="priceUom" id="priceUomLabel" className="col-sm-6 control-label">Price UOM</label>
     <div className="col-sm-6">
-        <input name="priceUom" className="form-control" value="" id="priceUom" ref="priceUom" onChange={ this.handleChange } readOnly/>
+        <select name="priceUom" className="form-control" id="priceUom" ref="priceUom" onChange={ this.handleChange }>
+            {priceUOMoptions}
+        </select>
         <div className="error" id="priceUomError" />
     </div>
 </div>
@@ -292,7 +324,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="quantityUom" id="quantityUomLabel" className="col-sm-6 control-label">Quantity Uom</label>
     <div className="col-sm-6">
-        <input name="quantityUom" className="form-control" value="" id="quantityUom" ref="quantityUom" onChange={ this.handleChange } readOnly/>
+        <select name="quantityUom" className="form-control" id="quantityUom" ref="quantityUom" onChange={ this.handleChange }>
+            {UOMOptions}
+        </select>
         <div className="error" id="quantityUomError" />
     </div>
 </div>
@@ -308,7 +342,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="totalQuantityUom" id="totalQuantityUomLabel" className="col-sm-6 control-label">Total Quantity Uom</label>
     <div className="col-sm-6">
-        <input name="totalQuantityUom" className="form-control" value="" id="totalQuantityUom" ref="totalQuantityUom" onChange={ this.handleChange } readOnly/>
+        <select name="totalQuantityUom" className="form-control" id="totalQuantityUom" ref="totalQuantityUom" onChange={ this.handleChange }>
+            {UOMOptions}
+        </select>
         <div className="error" id="totalQuantityUomError" />
     </div>
 </div>
@@ -341,7 +377,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="productCode" id="productCodeLabel" className="col-sm-6 control-label">Product Code</label>
     <div className="col-sm-6">
-        <input name="productCode" className="form-control" value="" id="productCode" ref="productCode" onChange={ this.handleChange } required/>
+        <select name="productCode" className="form-control" id="productCode" ref="productCode" onChange={ this.handleChange }>
+            {productCodeOptions}
+        </select>
         <div className="error" id="productCodeError" />
     </div>
 </div>
@@ -349,7 +387,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="deliveryLocation" id="deliveryLocationLabel" className="col-sm-6 control-label">Delivery Location</label>
     <div className="col-sm-6">
-        <input name="deliveryLocation" className="form-control" value="" id="deliveryLocation" ref="deliveryLocation" onChange={ this.handleChange } required/>
+        <select name="deliveryLocation" className="form-control" id="deliveryLocation" ref="deliveryLocation" onChange={ this.handleChange }>
+            {deliveryOptions}
+        </select>
         <div className="error" id="deliveryLocationError" />
     </div>
 </div>
@@ -389,7 +429,7 @@ export default class addTrade extends React.Component {
                         
                     </div>
                     <div className="row">
-                        <button className="btn btn-primary center-block" onClick={this.handleSubmit}>Add</button>
+                        <button className="btn btn-primary center-block" onClick={this.handleSubmit}>Add Trade</button>
                     </div>
                 </form>
             </div>
