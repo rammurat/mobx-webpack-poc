@@ -8,6 +8,7 @@ const app = express();
 
 // serve static assets normally
 app.use(express.static(__dirname + '/' + CONFIG.webDir));
+app.use(express.static(__dirname + '/' + CONFIG.nodeDir));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -47,9 +48,37 @@ if(!CONFIG.isLocalServer){
 
     //add trador data
     app.post('/addTrador', function (request, response){
-        const params = request.body;
+        //const params = request.body;
         
-        console.log("###### Form params : ", params);
+        //console.log("###### Form params : ", params);
+
+        const params = {
+            tradeNumber : "SHLTR16TB0342:2",
+            buyerName : "Chevron Products a Division of Chevorn USA",
+            sellerName : "Indian Oil Corporation",
+            buyerID : "CHV",
+            sellerID : "IOC",
+            tradeType : "Date Pipeline Fixed price",
+            marketType : "Physical Crude Oil",
+            price : "1000",
+            priceUOM : "BBL",
+            quantity : "10",
+            quantityUOM : "BBL",
+            totalQuantity : "30000",
+            totalQuantityUOM : "BBL",
+            tradeDate : "24-04-2016",
+            startDate : "24-04-2016",
+            endDate : "28-04-2016",
+            productCode : "MARS",
+            deliveryLocation : "Clovelly",
+            paymetDays : "20",
+            paymentTerms : "20FFMD",
+            mot : "Pipeline",
+            owner : "CHV", //owner id (Buyer id)
+            ownerName : "Chevron Products a Division of Chevorn USA", //owner name (Buyer name)
+            creatorUser : "1", //user id 
+            tradeStatus : "Active"
+        }
 
         const form = [
             "add",
@@ -84,6 +113,8 @@ if(!CONFIG.isLocalServer){
         const data = trade.addTrade(form);
 
         data.then(function(jsonData){
+            console.log("####Form added response", jsonData); 
+
             response.setHeader('Content-Type', 'application/json');
             response.send(jsonData);
         });

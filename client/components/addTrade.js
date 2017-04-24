@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { browserHistory } from 'react-router';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 export default class addTrade extends React.Component {
       constructor(props) {
@@ -22,9 +24,9 @@ export default class addTrade extends React.Component {
             quantityUOM: '',
             totalQuantity: '',
             totalQuantityUOM: '',
-            tradeDate: '',
-            startDate: '',
-            endDate: '',
+            tradeDate: moment(),
+            startDate: moment(),
+            endDate: moment(),
             productCode: '',
             deliveryLocation: '',
             paymetDays: '',
@@ -37,6 +39,9 @@ export default class addTrade extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleTradeDate = this.handleTradeDate.bind(this);
+        this.handleStartDate = this.handleStartDate.bind(this);
+        this.handleEndDate = this.handleEndDate.bind(this);
     }
 
     //update current field state on change 
@@ -51,6 +56,25 @@ export default class addTrade extends React.Component {
 
         //validate and show error
         this.showInputError(e.target.name);
+    }
+
+    handleTradeDate(date){
+        
+        this.setState({
+            tradeDate: date
+        });
+    }
+    handleStartDate(date){
+        
+        this.setState({
+            startDate: date
+        });
+    }
+    handleEndDate(date){
+        
+        this.setState({
+            endDate: date
+        });
     }
 
     //handle form submission 
@@ -191,19 +215,8 @@ export default class addTrade extends React.Component {
     
   render() {
 
-       //get objects from store
-        const {formData} = this.props.route.data;
-
-        //group item categories
-        const formFields = formData ? formData.map(input => (
-            <div className="form-group col-md-6" key={input.id}>
-                <label htmlFor={input.fieldName} id={input.fieldLabel} className="col-sm-6 control-label">{input.fieldKey}</label>
-                <div className="col-sm-6">
-                    <input name={input.fieldName} className="form-control" value={input.fieldValue} id={input.fieldName} ref={input.fieldName} onChange={ this.handleChange } required/>
-                    <div className="error" id={input.fieldError} />
-                </div>
-            </div> 
-        )) : "";
+    //get objects from store
+    const {formData} = this.props.route.data;
 
     return (
         <div className="container-fluid">
@@ -211,7 +224,169 @@ export default class addTrade extends React.Component {
             <div className="row">
                 <form className="form-horizontal"  id="addTrade" name="addTrade" method="post" action="/listing" noValidate>
                     <div className="row">
-                        {formFields}
+                        
+<div className="form-group col-md-6" >
+    <label htmlFor="tradeNumber" id="tradeNumberLabel" className="col-sm-6 control-label">Trade Number</label>
+    <div className="col-sm-6">
+        <input name="tradeNumber" className="form-control" value="" id="tradeNumber" ref="tradeNumber" onChange={ this.handleChange } required/>
+        <div className="error" id="tradeNumberError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="buyerName" id="buyerNameLabel" className="col-sm-6 control-label">Buyer Name</label>
+    <div className="col-sm-6">
+        <input name="buyerName" className="form-control" value="" id="buyerName" ref="buyerName" onChange={ this.handleChange } required/>
+        <div className="error" id="buyerNameError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="sellerName" id="sellerNameLabel" className="col-sm-6 control-label">Seller Name</label>
+    <div className="col-sm-6">
+        <input name="sellerName" className="form-control" value="" id="sellerName" ref="sellerName" onChange={ this.handleChange } readOnly/>
+        <div className="error" id="sellerNameError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="tradeType" id="tradeTypeLabel" className="col-sm-6 control-label">Trade Type</label>
+    <div className="col-sm-6">
+        <input name="tradeType" className="form-control" value="" id="tradeType" ref="tradeType" onChange={ this.handleChange } required/>
+        <div className="error" id="tradeTypeError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="marketType" id="marketTypeLabel" className="col-sm-6 control-label">Market Type</label>
+    <div className="col-sm-6">
+        <input name="marketType" className="form-control" value="" id="marketType" ref="marketType" onChange={ this.handleChange } required/>
+        <div className="error" id="marketTypeError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="price" id="priceLabel" className="col-sm-6 control-label">Price</label>
+    <div className="col-sm-6">
+        <input name="price" className="form-control" value="" id="price" ref="price" onChange={ this.handleChange } required/>
+        <div className="error" id="priceError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="priceUom" id="priceUomLabel" className="col-sm-6 control-label">Price UOM</label>
+    <div className="col-sm-6">
+        <input name="priceUom" className="form-control" value="" id="priceUom" ref="priceUom" onChange={ this.handleChange } readOnly/>
+        <div className="error" id="priceUomError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="quantity" id="quantityLabel" className="col-sm-6 control-label">Quantity</label>
+    <div className="col-sm-6">
+        <input name="quantity" className="form-control" value="" id="quantity" ref="quantity" onChange={ this.handleChange } required/>
+        <div className="error" id="quantityError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="quantityUom" id="quantityUomLabel" className="col-sm-6 control-label">Quantity Uom</label>
+    <div className="col-sm-6">
+        <input name="quantityUom" className="form-control" value="" id="quantityUom" ref="quantityUom" onChange={ this.handleChange } readOnly/>
+        <div className="error" id="quantityUomError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="totalQuantity" id="totalQuantityLabel" className="col-sm-6 control-label">Total Quantity</label>
+    <div className="col-sm-6">
+        <input name="totalQuantity" className="form-control" value="" id="totalQuantity" ref="totalQuantity" onChange={ this.handleChange } required/>
+        <div className="error" id="totalQuantityError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="totalQuantityUom" id="totalQuantityUomLabel" className="col-sm-6 control-label">Total Quantity Uom</label>
+    <div className="col-sm-6">
+        <input name="totalQuantityUom" className="form-control" value="" id="totalQuantityUom" ref="totalQuantityUom" onChange={ this.handleChange } readOnly/>
+        <div className="error" id="totalQuantityUomError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="tradeDate" id="tradeDateLabel" className="col-sm-6 control-label">Trade Date</label>
+    <div className="col-sm-6">
+        
+        <DatePicker name="tradeDate" className="form-control"  id="tradeDate" ref="tradeDate" selected={this.state.tradeDate} onChange={this.handleTradeDate} />
+        <div className="error" id="tradeDateError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="startDate" id="startDateLabel" className="col-sm-6 control-label">Start Date</label>
+    <div className="col-sm-6">
+        <DatePicker name="startDate" className="form-control"  id="startDate" ref="startDate" selected={this.state.startDate} onChange={this.handleStartDate} />
+        <div className="error" id="startDateError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="endDate" id="endDateLabel" className="col-sm-6 control-label">End date</label>
+    <div className="col-sm-6">
+        <DatePicker name="endDate" className="form-control"  id="endDate" ref="endDate" selected={this.state.endDate} onChange={this.handleEndDate} />
+        <div className="error" id="endDateError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="productCode" id="productCodeLabel" className="col-sm-6 control-label">Product Code</label>
+    <div className="col-sm-6">
+        <input name="productCode" className="form-control" value="" id="productCode" ref="productCode" onChange={ this.handleChange } required/>
+        <div className="error" id="productCodeError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="deliveryLocation" id="deliveryLocationLabel" className="col-sm-6 control-label">Delivery Location</label>
+    <div className="col-sm-6">
+        <input name="deliveryLocation" className="form-control" value="" id="deliveryLocation" ref="deliveryLocation" onChange={ this.handleChange } required/>
+        <div className="error" id="deliveryLocationError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="paymentDays" id="paymentDaysLabel" className="col-sm-6 control-label">Payment Days</label>
+    <div className="col-sm-6">
+        <input name="paymentDays" className="form-control" value="" id="paymentDays" ref="paymentDays" onChange={ this.handleChange } required/>
+        <div className="error" id="paymentDaysError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="paymentTerms" id="paymentTermsLabel" className="col-sm-6 control-label">Payment Terms</label>
+    <div className="col-sm-6">
+        <input name="paymentTerms" className="form-control" value="" id="paymentTerms" ref="paymentTerms" onChange={ this.handleChange } required/>
+        <div className="error" id="paymentTermsError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="mot" id="motLabel" className="col-sm-6 control-label">MOT</label>
+    <div className="col-sm-6">
+        <input name="mot" className="form-control" value="" id="mot" ref="mot" onChange={ this.handleChange } required/>
+        <div className="error" id="motError" />
+    </div>
+</div>
+
+<div className="form-group col-md-6" >
+    <label htmlFor="ownerName" id="ownerNameLabel" className="col-sm-6 control-label">Owner Name</label>
+    <div className="col-sm-6">
+        <input name="ownerName" className="form-control" value="" id="ownerName" ref="ownerName" onChange={ this.handleChange } readOnly/>
+        <div className="error" id="ownerNameError" />
+    </div>
+</div>
+
+                        
                     </div>
                     <div className="row">
                         <button className="btn btn-primary center-block" onClick={this.handleSubmit}>Add</button>

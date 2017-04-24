@@ -71,6 +71,52 @@ export class AppStore{
         name : "Shell"
     }];
 
+    @observable tradeTypeList = [{
+        id : 1,
+        name : "Date Pipeline Fixed price"
+    },{
+        id : 2,
+        name : "Other"
+    }];
+
+    @observable marketTypeList = [{
+        id : 1,
+        name : "Physical Crude Oil"
+    },{
+        id : 2,
+        name : "Other"
+    }];
+
+    @observable priceUOMList = [{
+        id : 1,
+        name : "USD/BBL"
+    },{
+        id : 2,
+        name : "Other"
+    }];
+
+    @observable UOMList = [{
+        id : 1,
+        name : "BBL"
+    },{
+        id : 2,
+        name : "Other"
+    }];
+
+    @observable productCodeList = [{
+        id : 1,
+        name : "MARS"
+    },{
+        id : 2,
+        name : "DSW"
+    },{
+        id : 1,
+        name : "WTS"
+    },{
+        id : 2,
+        name : "POSEIDON"
+    }];
+
     @observable listingData = {
         data: {},
         promiseState: {}
