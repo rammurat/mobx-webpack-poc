@@ -15,32 +15,45 @@ export default class listing extends React.Component{
 
         switch(listingData.promiseState) {
             case 'pending':
-                return <div> Loading yummy pizzas... </div>
+                return <div> Loading... </div>
 
             case 'fulfilled':
                 //group item categories
-                const listingTable = listingData ? listingData.data.map(item => (
-                    <tr key={item.id}>
-                        <td><Link to="/detail" activeClassName="active">{item.tradeType}</Link></td>
-                        <td>{item.marketType}</td>
-                        <td>{item.direction}</td>
-                        <td>{item.price}</td>
-                        <td>{item.priceUOM}</td>
-                        <td>{item.quantity}</td>
-                        <td>{item.quantityUOM}</td>
-                        <td>{item.totalQuantity}</td>
-                        <td>{item.totalQuantityUOM}</td>
-                        <td>{item.tradedate}</td>
-                        <td>{item.startDate}</td>
-                        <td>{item.endDate}</td>
-                        <td>{item.productCode}</td>
-                        <td>{item.deliveryLocation}</td>
-                        <td>{item.paymetDays}</td>
-                        <td>{item.paymentTerms}</td>
-                        <td>{item.mOT}</td>
-                        <td>{item.dealStatus}</td>
-                    </tr>    
-                )) : "";
+                listingData.data.map(function(item){
+                    console.log(item.BuyerID.ValA);
+                });
+
+                //group item categories
+                const listTable = listingData ? listingData.data.map(function(item){
+                    <tr key={Date()}>
+                        <td><Link to="/detail" activeClassName="active">{item.TradeNumber.ValA}</Link></td>
+                        <td>{item.BuyerName.ValA}</td>
+                        <td>{item.SellerName.ValA}</td>
+                        <td>{item.BuyerID.ValA}</td>
+                        <td>{item.SellerID.ValA}</td>
+                        <td>{item.TradeType.ValA}</td>
+                        <td>{item.MarketType.ValA}</td>
+                        <td>{item.Price.ValA}</td>
+                        <td>{item.PriceUOM.ValA}</td>
+                        <td>{item.Quantity.ValA}</td>
+                        <td>{item.QuantityUOM.ValA}</td>
+                        <td>{item.TotalQuantity.ValA}</td>
+                        <td>{item.TotalQuantityUOM.ValA}</td>
+                        <td>{item.TradeDate.ValA}</td>
+                        <td>{item.StartDate.ValA}</td>
+                        <td>{item.EndDate.ValA}</td>
+                        <td>{item.ProductCode.ValA}</td>
+                        <td>{item.DeliveryLocation.ValA}</td>
+                        <td>{item.PaymetDays.ValA}</td>
+                        <td>{item.PaymentTerms.ValA}</td>
+                        <td>{item.Mot.ValA}</td>
+                        <td>{item.Owner.ValA}</td>
+                        <td>{item.OwnerName.ValA}</td>
+                        <td>{item.CreatorUser.ValA}</td>
+                        <td>{item.TradeStatus.ValA}</td>
+                        <td>{item.CreationTimestamp.ValA}</td>
+                    </tr>
+                }) : "";
 
                 //render html
                 return <div className="row productTable">
@@ -74,7 +87,7 @@ export default class listing extends React.Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {listingTable}
+                            {listTable}
                         </tbody>
                     </table>
                 </div>

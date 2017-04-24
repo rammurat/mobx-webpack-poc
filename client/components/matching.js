@@ -15,7 +15,7 @@ export default class matching extends React.Component{
 
         switch(matchingData.promiseState) {
             case 'pending':
-                return <div> Loading yummy pizzas... </div>
+                return <div> Loading... </div>
 
             case 'fulfilled':
                 //group item categories

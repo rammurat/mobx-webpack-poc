@@ -98,7 +98,12 @@ module.exports.processProposal = function(chain, results, proposalType) {
 			proposal: proposal,
 			header: header
 		};
-		return chain.sendTransaction(request);
+		
+		var response  = {
+			'tradeResult' : results[0][0].response.payload.toString('utf8'),
+			'transactionResult' : chain.sendTransaction(request)
+		};
+		return response;
 	} else {
 		logger.error('Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
 		throw new Error('Problems happened when examining proposal responses');

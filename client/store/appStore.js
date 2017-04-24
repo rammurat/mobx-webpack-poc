@@ -24,38 +24,34 @@ export class AppStore{
     @observable usersList = [{
         id : 1,
         name : "John Walker",
-        organisationId : 1
+        organisationId : "CHV"
     },{
         id : 2,
         name : "Paul Walker",
-        organisationId : 1
+        organisationId : "CHV"
     },{
         id : 3,
         name : "Syan Smith",
-        organisationId : 2
+        organisationId : "IOC"
     },{
         id : 4,
         name : "Lauren Iyer",
-        organisationId : 2
+        organisationId : "IOC"
     }];
     
     //observer product list and master categories
     @observable organisations = [{
-        id : 1,
-        name : "Chevron Products a Division of Chevorn USA",
-        type : "buyer"
+        id : "CHV",
+        name : "Chevron Products a Division of Chevorn USA"
     },{
-        id : 2,
-        name : "Chevron Products Company, a division of Chevron USA Inc.",
-        type : "buyer"
+        id : "IOC",
+        name : "Indian Oil Corporation"
     },{
-        id : 3,
-        name : "BP",
-        type : "seller"
+        id : "BPL",
+        name : "BP"
     },{
-        id : 4,
-        name : "Shell",
-        type : "seller"
+        id : "SHL",
+        name : "Shell"
     }];
 
     @observable listingData = {
