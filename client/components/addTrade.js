@@ -56,7 +56,7 @@ export default class addTrade extends React.Component {
 
         if(e.target.name === "quantity"){
             this.setState({
-                totalQuantity: (e.target.value * 30)
+                totalQuantity: (Number(e.target.value) * 30)
             }); 
         }
 
@@ -119,6 +119,7 @@ export default class addTrade extends React.Component {
                 owner: this.state.owner,
                 ownerName: this.state.ownerName,
                 creatorUser: this.state.createUser
+
             };
             console.log(form);
 
@@ -281,7 +282,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="tradeNumber" id="tradeNumberLabel" className="col-sm-6 control-label">Trade Number</label>
     <div className="col-sm-6">
-        <input type="text" name="tradeNumber" className="form-control" value="" id="tradeNumber" ref="tradeNumber" onChange={ this.handleChange } required/>
+        <input name="tradeNumber" className="form-control" id="tradeNumber" ref="tradeNumber" onChange={ this.handleChange } required/>
         <div className="error" id="tradeNumberError" />
     </div>
 </div>
@@ -289,7 +290,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="buyerName" id="buyerNameLabel" className="col-sm-6 control-label">Buyer Name</label>
     <div className="col-sm-6">
-        <input name="buyerName" className="form-control" value={this.state.buyerName}  id="buyerName" ref="buyerName" onChange={ this.handleChange } readOnly/>
+        <input name="buyerName" className="form-control" id="buyerName" ref="buyerName" value={this.state.buyerName} onChange={ this.handleChange } readOnly/>
         <div className="error" id="buyerNameError" />
     </div>
 </div>
@@ -327,7 +328,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="price" id="priceLabel" className="col-sm-6 control-label">Price</label>
     <div className="col-sm-6">
-        <input type="text" name="price" className="form-control" value="" id="price" ref="price"  required/>
+        <input pattern="[0-9]{1,10}"  name="price" className="form-control" id="price" ref="price" onChange={ this.handleChange } required/>
         <div className="error" id="priceError" />
     </div>
 </div>
@@ -345,7 +346,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="quantity" id="quantityLabel" className="col-sm-6 control-label">Quantity</label>
     <div className="col-sm-6">
-        <input type="text" name="quantity" className="form-control" value="" id="quantity" ref="quantity" onChange={ this.handleChange } required/>
+        <input pattern="[0-9]{1,10}" name="quantity" className="form-control" id="quantity" ref="quantity" onChange={ this.handleChange } required/>
         <div className="error" id="quantityError" />
     </div>
 </div>
@@ -363,7 +364,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="totalQuantity" id="totalQuantityLabel" className="col-sm-6 control-label">Total Quantity</label>
     <div className="col-sm-6">
-        <input name="totalQuantity" className="form-control" value="" id="totalQuantity" ref="totalQuantity" readOnly/>
+        <input value={this.state.totalQuantity} name="totalQuantity" className="form-control" id="totalQuantity" ref="totalQuantity" readOnly/>
         <div className="error" id="totalQuantityError" />
     </div>
 </div>
@@ -426,7 +427,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="paymentDays" id="paymentDaysLabel" className="col-sm-6 control-label">Payment Days</label>
     <div className="col-sm-6">
-        <input type="text" name="paymentDays" className="form-control" value="" id="paymentDays" ref="paymentDays" onChange={ this.handleChange } required/>
+        <input pattern="[0-9]{1,10}"  name="paymentDays" className="form-control" id="paymentDays" ref="paymentDays" onChange={ this.handleChange } required/>
         <div className="error" id="paymentDaysError" />
     </div>
 </div>
@@ -458,8 +459,6 @@ export default class addTrade extends React.Component {
         <div className="error" id="ownerNameError" />
     </div>
 </div>
-
-
                         
                     </div>
                     <div className="row">

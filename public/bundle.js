@@ -28442,7 +28442,7 @@
 	
 	            if (e.target.name === "quantity") {
 	                this.setState({
-	                    totalQuantity: e.target.value * 30
+	                    totalQuantity: Number(e.target.value) * 30
 	                });
 	            }
 	
@@ -28513,6 +28513,7 @@
 	                    owner: this.state.owner,
 	                    ownerName: this.state.ownerName,
 	                    creatorUser: this.state.createUser
+	
 	                };
 	                console.log(form);
 	
@@ -28764,7 +28765,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { type: 'text', name: 'tradeNumber', className: 'form-control', value: '', id: 'tradeNumber', ref: 'tradeNumber', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement('input', { name: 'tradeNumber', className: 'form-control', id: 'tradeNumber', ref: 'tradeNumber', onChange: this.handleChange, required: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'tradeNumberError' })
 	                                )
 	                            ),
@@ -28779,7 +28780,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'buyerName', className: 'form-control', value: this.state.buyerName, id: 'buyerName', ref: 'buyerName', onChange: this.handleChange, readOnly: true }),
+	                                    _react2.default.createElement('input', { name: 'buyerName', className: 'form-control', id: 'buyerName', ref: 'buyerName', value: this.state.buyerName, onChange: this.handleChange, readOnly: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'buyerNameError' })
 	                                )
 	                            ),
@@ -28851,7 +28852,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { type: 'text', name: 'price', className: 'form-control', value: '', id: 'price', ref: 'price', required: true }),
+	                                    _react2.default.createElement('input', { pattern: '[0-9]{1,10}', name: 'price', className: 'form-control', id: 'price', ref: 'price', onChange: this.handleChange, required: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'priceError' })
 	                                )
 	                            ),
@@ -28885,7 +28886,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { type: 'text', name: 'quantity', className: 'form-control', value: '', id: 'quantity', ref: 'quantity', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement('input', { pattern: '[0-9]{1,10}', name: 'quantity', className: 'form-control', id: 'quantity', ref: 'quantity', onChange: this.handleChange, required: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'quantityError' })
 	                                )
 	                            ),
@@ -28919,7 +28920,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'totalQuantity', className: 'form-control', value: '', id: 'totalQuantity', ref: 'totalQuantity', readOnly: true }),
+	                                    _react2.default.createElement('input', { value: this.state.totalQuantity, name: 'totalQuantity', className: 'form-control', id: 'totalQuantity', ref: 'totalQuantity', readOnly: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'totalQuantityError' })
 	                                )
 	                            ),
@@ -29036,7 +29037,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { type: 'text', name: 'paymentDays', className: 'form-control', value: '', id: 'paymentDays', ref: 'paymentDays', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement('input', { pattern: '[0-9]{1,10}', name: 'paymentDays', className: 'form-control', id: 'paymentDays', ref: 'paymentDays', onChange: this.handleChange, required: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'paymentDaysError' })
 	                                )
 	                            ),
