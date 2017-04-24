@@ -54,6 +54,12 @@ export default class addTrade extends React.Component {
             [e.target.name]: e.target.value
         });
 
+        if(e.target.name === "quantity"){
+            this.setState({
+                totalQuantity: (e.target.value * 30)
+            }); 
+        }
+
         //validate and show error
         this.showInputError(e.target.name);
     }
@@ -222,9 +228,11 @@ export default class addTrade extends React.Component {
             motList,organisationsList,getOrganisation,currentUser
           } = this.props.route.data;
 
+    let org = getOrganisation(organisationsList,currentUser.organisationId);
+
     //set state 
-    this.state.buyerName = getOrganisation(currentUser.organisationId);
-    this.state.ownerName = getOrganisation(currentUser.organisationId);
+    this.state.buyerName = org.name;
+    this.state.ownerName = org.name;
 
     const tradeOptions = tradeTypeList ? tradeTypeList.map(item => (
         <option key={item.id} value={item.name}> {item.name} </option>
@@ -273,7 +281,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="tradeNumber" id="tradeNumberLabel" className="col-sm-6 control-label">Trade Number</label>
     <div className="col-sm-6">
-        <input name="tradeNumber" className="form-control" value="" id="tradeNumber" ref="tradeNumber" onChange={ this.handleChange } required/>
+        <input type="text" name="tradeNumber" className="form-control" value="" id="tradeNumber" ref="tradeNumber" onChange={ this.handleChange } required/>
         <div className="error" id="tradeNumberError" />
     </div>
 </div>
@@ -319,7 +327,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="price" id="priceLabel" className="col-sm-6 control-label">Price</label>
     <div className="col-sm-6">
-        <input name="price" className="form-control" value="" id="price" ref="price" onChange={ this.handleChange } required/>
+        <input type="text" name="price" className="form-control" value="" id="price" ref="price" onChange={ this.handleChange } required/>
         <div className="error" id="priceError" />
     </div>
 </div>
@@ -337,7 +345,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="quantity" id="quantityLabel" className="col-sm-6 control-label">Quantity</label>
     <div className="col-sm-6">
-        <input name="quantity" className="form-control" value="" id="quantity" ref="quantity" onChange={ this.handleChange } required/>
+        <input type="text" name="quantity" className="form-control" value="" id="quantity" ref="quantity" onChange={ this.handleChange } required/>
         <div className="error" id="quantityError" />
     </div>
 </div>
@@ -355,7 +363,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="totalQuantity" id="totalQuantityLabel" className="col-sm-6 control-label">Total Quantity</label>
     <div className="col-sm-6">
-        <input name="totalQuantity" className="form-control" value="" id="totalQuantity" ref="totalQuantity" onChange={ this.handleChange } required/>
+        <input name="totalQuantity" className="form-control" value="" id="totalQuantity" ref="totalQuantity" readOnly/>
         <div className="error" id="totalQuantityError" />
     </div>
 </div>
@@ -418,7 +426,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="paymentDays" id="paymentDaysLabel" className="col-sm-6 control-label">Payment Days</label>
     <div className="col-sm-6">
-        <input name="paymentDays" className="form-control" value="" id="paymentDays" ref="paymentDays" onChange={ this.handleChange } required/>
+        <input type="text" name="paymentDays" className="form-control" value="" id="paymentDays" ref="paymentDays" onChange={ this.handleChange } required/>
         <div className="error" id="paymentDaysError" />
     </div>
 </div>
