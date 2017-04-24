@@ -78,6 +78,79 @@ if(!CONFIG.isLocalServer){
         });
     });
 
+    //add trador data
+    app.post('/addTrador', function (request, response){
+        //const params = request.body;
+        
+        const params = {
+            tradeNumber : "SHLTR16TB0342:1",
+            buyerName : "Chevron Products a Division of Chevorn USA",
+            sellerName : "Chevron Products Company, a division of Chevron USA Inc.",
+            buyerID : "1",
+            sellerID : "2",
+            tradeType : "Date Pipeline Fixed price",
+            marketType : "Physical Crude Oil",
+            price : "1000",
+            priceUOM : "BBL",
+            quantity : "10",
+            quantityUOM : "BBL",
+            totalQuantity : "30000",
+            totalQuantityUOM : "BBL",
+            tradeDate : "24-04-2016",
+            startDate : "24-04-2016",
+            endDate : "28-04-2016",
+            productCode : "MARS",
+            deliveryLocation : "Clovelly",
+            paymetDays : "20",
+            paymentTerms : "20FFMD",
+            mot : "Pipeline",
+            owner : "1", //owner id (Buyer id)
+            ownerName : "Chevron Products a Division of Chevorn USA", //owner name (Buyer name)
+            creatorUser : "1", //user id 
+            tradeStatus : "?",	
+            creationTimestamp : "?", 
+            dealStatus : "Active"
+        }
+        
+        const form = {
+            TradeNumber :       params.tradeNumber,
+            BuyerName   :		params.buyerName,
+            SellerName  :		params.sellerName,
+            BuyerID		:		params.buyerID,
+            SellerID	:		params.sellerID,
+            TradeType	:		params.tradeType,
+            MarketType	:		params.marketType,
+            Price 		:		params.price,
+            PriceUOM 	:		params.priceUOM,
+            Quantity 	:		params.quantity,
+            QuantityUOM :		params.quantityUOM,
+            TotalQuantity: 		params.totalQuantity,
+            TotalQuantityUOM: 	params.totalQuantityUOM,
+            TradeDate 		:	params.tradeDate,
+            StartDate 		:	params.startDate,
+            EndDate 		:	params.endDate,
+            ProductCode 	:	params.productCode,
+            DeliveryLocation :	params.deliveryLocation,
+            PaymetDays 		:	params.paymetDays,
+            PaymentTerms 	:	params.paymentTerms,
+            Mot 			:	params.mot,
+            Owner 			:	params.owner,
+            OwnerName		:	params.ownerName,
+            CreatorUser 	:	params.creatorUser,
+            TradeStatus		:	params.tradeStatus,	
+            CreationTimestamp :	params.creationTimestamp, 
+            DealStatus 	:	    params.dealStatus,			
+        };
+        
+        const data = query.addTrador(form);
+
+        data.then(function(jsonData){
+            response.setHeader('Content-Type', 'application/json');
+            response.send(jsonData);
+        });
+    });
+
+
 }else{
     //bind local methods with server
     app.post('/listingData', function (request, response){

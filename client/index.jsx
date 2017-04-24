@@ -16,6 +16,7 @@ import AppStore from './store/appStore.js';
 
 AppStore.fetchListingData("A01");
 AppStore.fetchMatchingData("A01");
+AppStore.addTrador();
 
 render(
     <Router history={browserHistory}>

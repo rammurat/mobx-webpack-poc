@@ -93,6 +93,7 @@
 	//load trade store
 	
 	_appStore2.default.fetchMatchingData("A01");
+	_appStore2.default.addTrador();
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRouter.Router,
@@ -33652,7 +33653,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 251);
 	
@@ -33746,16 +33747,23 @@
 	    function AppStore() {
 	        _classCallCheck(this, AppStore);
 	
-	        _initDefineProp(this, 'productList', _descriptor5, this);
+	        _initDefineProp(this, 'usersList', _descriptor5, this);
 	
-	        _initDefineProp(this, 'listingData', _descriptor6, this);
+	        _initDefineProp(this, 'organisations', _descriptor6, this);
 	
-	        _initDefineProp(this, 'matchingData', _descriptor7, this);
+	        _initDefineProp(this, 'listingData', _descriptor7, this);
 	
-	        _initDefineProp(this, 'detailData', _descriptor8, this);
+	        _initDefineProp(this, 'matchingData', _descriptor8, this);
 	
-	        _initDefineProp(this, 'formData', _descriptor9, this);
+	        _initDefineProp(this, 'tradorStatus', _descriptor9, this);
+	
+	        _initDefineProp(this, 'detailData', _descriptor10, this);
+	
+	        _initDefineProp(this, 'formData', _descriptor11, this);
 	    }
+	
+	    //observer product list and master categories
+	
 	
 	    _createClass(AppStore, [{
 	        key: 'fetchListingData',
@@ -33795,6 +33803,25 @@
 	
 	            (0, _mobxPromise.bindPromise)(matchingDataPromise).to(this.matchingData).then(function (result) {
 	                return console.log(_this2.matchingData);
+	            }).catch(function (err) {
+	                return alert(err);
+	            });
+	        }
+	    }, {
+	        key: 'addTrador',
+	        value: function addTrador() {
+	            var _this3 = this;
+	
+	            var tradorStatusPromise = (0, _isomorphicFetch2.default)('/addTrador', {
+	                method: 'POST',
+	                body: JSON.stringify(form),
+	                headers: { 'Content-Type': 'application/json' }
+	            }).then(function (res) {
+	                return res.json();
+	            });
+	
+	            (0, _mobxPromise.bindPromise)(tradorStatusPromise).to(this.tradorStatus).then(function (result) {
+	                return console.log(_this3.tradorStatus);
 	            }).catch(function (err) {
 	                return alert(err);
 	            });
@@ -33876,12 +33903,49 @@
 	    }]);
 	
 	    return AppStore;
-	}(), (_descriptor5 = _applyDecoratedDescriptor(_class3.prototype, 'productList', [_mobx.observable], {
+	}(), (_descriptor5 = _applyDecoratedDescriptor(_class3.prototype, 'usersList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
-	        return [];
+	        return [{
+	            id: 1,
+	            name: "John Walker",
+	            organisationId: 1
+	        }, {
+	            id: 2,
+	            name: "Paul Walker",
+	            organisationId: 1
+	        }, {
+	            id: 3,
+	            name: "Syan Smith",
+	            organisationId: 2
+	        }, {
+	            id: 4,
+	            name: "Lauren Iyer",
+	            organisationId: 2
+	        }];
 	    }
-	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
+	}), _descriptor6 = _applyDecoratedDescriptor(_class3.prototype, 'organisations', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return [{
+	            id: 1,
+	            name: "Chevron Products a Division of Chevorn USA",
+	            type: "buyer"
+	        }, {
+	            id: 2,
+	            name: "Chevron Products Company, a division of Chevron USA Inc.",
+	            type: "buyer"
+	        }, {
+	            id: 3,
+	            name: "BP",
+	            type: "seller"
+	        }, {
+	            id: 4,
+	            name: "Shell",
+	            type: "seller"
+	        }];
+	    }
+	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -33889,7 +33953,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor7 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
+	}), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -33897,7 +33961,15 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
+	}), _descriptor9 = _applyDecoratedDescriptor(_class3.prototype, 'tradorStatus', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return {
+	            data: {},
+	            promiseState: {}
+	        };
+	    }
+	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'addTrador'), _class3.prototype), _descriptor10 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -33974,7 +34046,7 @@
 	            productValue: "ACTIVE"
 	        }];
 	    }
-	}), _descriptor9 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
+	}), _descriptor11 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{

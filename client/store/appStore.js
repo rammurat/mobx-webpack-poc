@@ -21,8 +21,42 @@ class newProduct{
 }
 
 export class AppStore{
+    @observable usersList = [{
+        id : 1,
+        name : "John Walker",
+        organisationId : 1
+    },{
+        id : 2,
+        name : "Paul Walker",
+        organisationId : 1
+    },{
+        id : 3,
+        name : "Syan Smith",
+        organisationId : 2
+    },{
+        id : 4,
+        name : "Lauren Iyer",
+        organisationId : 2
+    }];
+    
     //observer product list and master categories
-    @observable productList = [];
+    @observable organisations = [{
+        id : 1,
+        name : "Chevron Products a Division of Chevorn USA",
+        type : "buyer"
+    },{
+        id : 2,
+        name : "Chevron Products Company, a division of Chevron USA Inc.",
+        type : "buyer"
+    },{
+        id : 3,
+        name : "BP",
+        type : "seller"
+    },{
+        id : 4,
+        name : "Shell",
+        type : "seller"
+    }];
 
     @observable listingData = {
         data: {},
@@ -30,6 +64,11 @@ export class AppStore{
     };
 
      @observable matchingData = {
+        data: {},
+        promiseState: {}
+    };
+
+     @observable tradorStatus = {
         data: {},
         promiseState: {}
     };
@@ -64,6 +103,22 @@ export class AppStore{
         bindPromise(matchingDataPromise)
             .to(this.matchingData)
             .then((result) => console.log(this.matchingData))
+            .catch((err) => alert(err))
+    }
+
+    @action addTrador() {
+        
+        
+        const tradorStatusPromise = fetch('/addTrador', { 
+            method: 'POST', 
+            body: JSON.stringify(form),
+            headers: { 'Content-Type': 'application/json' }
+        })      
+        .then((res) => res.json())
+
+        bindPromise(tradorStatusPromise)
+            .to(this.tradorStatus)
+            .then((result) => console.log(this.tradorStatus))
             .catch((err) => alert(err))
     }
 
