@@ -216,7 +216,15 @@ export default class addTrade extends React.Component {
   render() {
 
     //get objects from store
-    const {tradeTypeList,marketTypeList,priceUOMList,UOMList,productCodeList,deliveryLocation} = this.props.route.data;
+    const {
+            tradeTypeList,marketTypeList,priceUOMList,UOMList,
+            productCodeList,deliveryLocation,paymentTermList,
+            motList,organisationsList,getOrganisation,currentUser
+          } = this.props.route.data;
+
+    //set state 
+    this.state.buyerName = getOrganisation(currentUser.organisationId);
+    this.state.ownerName = getOrganisation(currentUser.organisationId);
 
     const tradeOptions = tradeTypeList ? tradeTypeList.map(item => (
         <option key={item.id} value={item.name}> {item.name} </option>
@@ -242,7 +250,18 @@ export default class addTrade extends React.Component {
         <option key={item.id} value={item.name}> {item.name} </option>
     )) : "";
 
-    
+    const paymentTermOptions = paymentTermList ? paymentTermList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    const motOptions = motList ? motList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+
+    const organisationOptions = organisationsList ? organisationsList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+  
 
     return (
         <div className="container-fluid">
@@ -262,7 +281,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="buyerName" id="buyerNameLabel" className="col-sm-6 control-label">Buyer Name</label>
     <div className="col-sm-6">
-        <input name="buyerName" className="form-control" value="" id="buyerName" ref="buyerName" onChange={ this.handleChange } required/>
+        <input name="buyerName" className="form-control" value={this.state.buyerName}  id="buyerName" ref="buyerName" onChange={ this.handleChange } readOnly/>
         <div className="error" id="buyerNameError" />
     </div>
 </div>
@@ -270,7 +289,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="sellerName" id="sellerNameLabel" className="col-sm-6 control-label">Seller Name</label>
     <div className="col-sm-6">
-        <input name="sellerName" className="form-control" value="" id="sellerName" ref="sellerName" onChange={ this.handleChange } readOnly/>
+        <select name="sellerName" className="form-control" id="sellerName" ref="sellerName" onChange={ this.handleChange }>
+            {organisationOptions}
+        </select>
         <div className="error" id="sellerNameError" />
     </div>
 </div>
@@ -405,7 +426,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="paymentTerms" id="paymentTermsLabel" className="col-sm-6 control-label">Payment Terms</label>
     <div className="col-sm-6">
-        <input name="paymentTerms" className="form-control" value="" id="paymentTerms" ref="paymentTerms" onChange={ this.handleChange } required/>
+         <select name="paymentTerms" className="form-control" id="paymentTerms" ref="paymentTerms" onChange={ this.handleChange }>
+            {paymentTermOptions}
+        </select>
         <div className="error" id="paymentTermsError" />
     </div>
 </div>
@@ -413,7 +436,9 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="mot" id="motLabel" className="col-sm-6 control-label">MOT</label>
     <div className="col-sm-6">
-        <input name="mot" className="form-control" value="" id="mot" ref="mot" onChange={ this.handleChange } required/>
+        <select name="mot" className="form-control" id="mot" ref="mot" onChange={ this.handleChange }>
+            {motOptions}
+        </select>
         <div className="error" id="motError" />
     </div>
 </div>
@@ -421,7 +446,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="ownerName" id="ownerNameLabel" className="col-sm-6 control-label">Owner Name</label>
     <div className="col-sm-6">
-        <input name="ownerName" className="form-control" value="" id="ownerName" ref="ownerName" onChange={ this.handleChange } readOnly/>
+        <input name="ownerName" className="form-control" value={this.state.ownerName} id="ownerName" ref="ownerName" onChange={ this.handleChange } readOnly/>
         <div className="error" id="ownerNameError" />
     </div>
 </div>

@@ -28626,8 +28626,17 @@
 	                priceUOMList = _props$route$data.priceUOMList,
 	                UOMList = _props$route$data.UOMList,
 	                productCodeList = _props$route$data.productCodeList,
-	                deliveryLocation = _props$route$data.deliveryLocation;
+	                deliveryLocation = _props$route$data.deliveryLocation,
+	                paymentTermList = _props$route$data.paymentTermList,
+	                motList = _props$route$data.motList,
+	                organisationsList = _props$route$data.organisationsList,
+	                getOrganisation = _props$route$data.getOrganisation,
+	                currentUser = _props$route$data.currentUser;
 	
+	            //set state 
+	
+	            this.state.buyerName = getOrganisation(currentUser.organisationId);
+	            this.state.ownerName = getOrganisation(currentUser.organisationId);
 	
 	            var tradeOptions = tradeTypeList ? tradeTypeList.map(function (item) {
 	                return _react2.default.createElement(
@@ -28689,6 +28698,36 @@
 	                );
 	            }) : "";
 	
+	            var paymentTermOptions = paymentTermList ? paymentTermList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var motOptions = motList ? motList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var organisationOptions = organisationsList ? organisationsList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'container-fluid' },
@@ -28732,7 +28771,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'buyerName', className: 'form-control', value: '', id: 'buyerName', ref: 'buyerName', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement('input', { name: 'buyerName', className: 'form-control', value: this.state.buyerName, id: 'buyerName', ref: 'buyerName', onChange: this.handleChange, readOnly: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'buyerNameError' })
 	                                )
 	                            ),
@@ -28747,7 +28786,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'sellerName', className: 'form-control', value: '', id: 'sellerName', ref: 'sellerName', onChange: this.handleChange, readOnly: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'sellerName', className: 'form-control', id: 'sellerName', ref: 'sellerName', onChange: this.handleChange },
+	                                        organisationOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'sellerNameError' })
 	                                )
 	                            ),
@@ -29000,7 +29043,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'paymentTerms', className: 'form-control', value: '', id: 'paymentTerms', ref: 'paymentTerms', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'paymentTerms', className: 'form-control', id: 'paymentTerms', ref: 'paymentTerms', onChange: this.handleChange },
+	                                        paymentTermOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'paymentTermsError' })
 	                                )
 	                            ),
@@ -29015,7 +29062,11 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'mot', className: 'form-control', value: '', id: 'mot', ref: 'mot', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement(
+	                                        'select',
+	                                        { name: 'mot', className: 'form-control', id: 'mot', ref: 'mot', onChange: this.handleChange },
+	                                        motOptions
+	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'motError' })
 	                                )
 	                            ),
@@ -29030,7 +29081,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { name: 'ownerName', className: 'form-control', value: '', id: 'ownerName', ref: 'ownerName', onChange: this.handleChange, readOnly: true }),
+	                                    _react2.default.createElement('input', { name: 'ownerName', className: 'form-control', value: this.state.ownerName, id: 'ownerName', ref: 'ownerName', onChange: this.handleChange, readOnly: true }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'ownerNameError' })
 	                                )
 	                            )
@@ -51656,7 +51707,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _desc2, _value2, _class3, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 373);
 	
@@ -51667,6 +51718,8 @@
 	var _mobxUtils = __webpack_require__(/*! mobx-utils */ 383);
 	
 	var _mobxPromise = __webpack_require__(/*! mobx-promise */ 395);
+	
+	var _underscore = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"underscore\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -51770,21 +51823,30 @@
 	
 	        _initDefineProp(this, 'deliveryLocation', _descriptor13, this);
 	
-	        _initDefineProp(this, 'listingData', _descriptor14, this);
+	        _initDefineProp(this, 'paymentTermList', _descriptor14, this);
 	
-	        _initDefineProp(this, 'matchingData', _descriptor15, this);
+	        _initDefineProp(this, 'motList', _descriptor15, this);
 	
-	        _initDefineProp(this, 'tradorStatus', _descriptor16, this);
+	        _initDefineProp(this, 'listingData', _descriptor16, this);
 	
-	        _initDefineProp(this, 'detailData', _descriptor17, this);
+	        _initDefineProp(this, 'matchingData', _descriptor17, this);
 	
-	        _initDefineProp(this, 'formData', _descriptor18, this);
+	        _initDefineProp(this, 'tradorStatus', _descriptor18, this);
+	
+	        _initDefineProp(this, 'detailData', _descriptor19, this);
+	
+	        _initDefineProp(this, 'formData', _descriptor20, this);
 	    }
 	
 	    //observer product list and master categories
 	
 	
 	    _createClass(AppStore, [{
+	        key: 'getOrganisation',
+	        value: function getOrganisation(orgId) {
+	            return _underscore._.findWhere(this.organisationsList, { id: ordId });
+	        }
+	    }, {
 	        key: 'fetchListingData',
 	        value: function fetchListingData(contractId) {
 	            var _this = this;
@@ -51981,7 +52043,7 @@
 	            name: "Shell"
 	        }];
 	    }
-	}), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'tradeTypeList', [_mobx.observable], {
+	}), _applyDecoratedDescriptor(_class3.prototype, 'getOrganisation', [_mobx.computed], Object.getOwnPropertyDescriptor(_class3.prototype, 'getOrganisation'), _class3.prototype), _descriptor8 = _applyDecoratedDescriptor(_class3.prototype, 'tradeTypeList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52056,7 +52118,29 @@
 	            name: "Houma"
 	        }];
 	    }
-	}), _descriptor14 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
+	}), _descriptor14 = _applyDecoratedDescriptor(_class3.prototype, 'paymentTermList', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return [{
+	            id: 1,
+	            name: "20FFMD"
+	        }, {
+	            id: 2,
+	            name: "Other"
+	        }];
+	    }
+	}), _descriptor15 = _applyDecoratedDescriptor(_class3.prototype, 'motList', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return [{
+	            id: 1,
+	            name: "Pipeline"
+	        }, {
+	            id: 2,
+	            name: "In-line Transfer"
+	        }];
+	    }
+	}), _descriptor16 = _applyDecoratedDescriptor(_class3.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -52064,7 +52148,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor15 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
+	}), _descriptor17 = _applyDecoratedDescriptor(_class3.prototype, 'matchingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -52072,7 +52156,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor16 = _applyDecoratedDescriptor(_class3.prototype, 'tradorStatus', [_mobx.observable], {
+	}), _descriptor18 = _applyDecoratedDescriptor(_class3.prototype, 'tradorStatus', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -52080,7 +52164,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'addTrador'), _class3.prototype), _descriptor17 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
+	}), _applyDecoratedDescriptor(_class3.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchListingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'fetchMatchingData'), _class3.prototype), _applyDecoratedDescriptor(_class3.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class3.prototype, 'addTrador'), _class3.prototype), _descriptor19 = _applyDecoratedDescriptor(_class3.prototype, 'detailData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52157,7 +52241,7 @@
 	            productValue: "ACTIVE"
 	        }];
 	    }
-	}), _descriptor18 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
+	}), _descriptor20 = _applyDecoratedDescriptor(_class3.prototype, 'formData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{

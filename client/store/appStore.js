@@ -1,7 +1,9 @@
 import {observable,computed,reaction,action} from 'mobx';
 import fetch from 'isomorphic-fetch';
 import {fromPromise} from 'mobx-utils';
-import { bindPromise } from 'mobx-promise'
+import { bindPromise } from 'mobx-promise';
+import { _ } from 'underscore';
+
 const uuidV1 = require('uuid/v1');
 
 class newProduct{
@@ -71,6 +73,10 @@ export class AppStore{
         name : "Shell"
     }];
 
+    @computed getOrganisation(orgId) {
+        return _.findWhere(this.organisationsList,{id : ordId});
+    }
+
     @observable tradeTypeList = [{
         id : 1,
         name : "Date Pipeline Fixed price"
@@ -126,6 +132,22 @@ export class AppStore{
     },{
         id : 3,
         name : "Houma"
+    }];
+
+    @observable paymentTermList = [{
+        id : 1,
+        name : "20FFMD"
+    },{
+        id : 2,
+        name : "Other"
+    }];
+
+    @observable motList = [{
+        id : 1,
+        name : "Pipeline"
+    },{
+        id : 2,
+        name : "In-line Transfer"
     }];
 
     @observable listingData = {
