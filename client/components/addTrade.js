@@ -15,23 +15,23 @@ export default class addTrade extends React.Component {
             sellerName: '',
             buyerID: '',
             sellerID: '',
-            tradeStatus: '',
-            tradeType: '',
-            marketType: '',
+            tradeStatus: 'Active',
+            tradeType: 'Date Pipeline Fixed price',
+            marketType: 'Physical Crude Oil',
             price: '',
-            priceUOM: '',
+            priceUOM: 'USD/BBL',
             quantity: '',
-            quantityUOM: '',
+            quantityUOM: 'BBL',
             totalQuantity: '',
-            totalQuantityUOM: '',
+            totalQuantityUOM: 'BBL',
             tradeDate: moment(),
             startDate: moment(),
             endDate: moment(),
-            productCode: '',
-            deliveryLocation: '',
-            paymetDays: '',
-            paymentTerms: '',
-            mot: '',
+            productCode: 'MARS',
+            deliveryLocation: 'Clovelly',
+            paymentDays: '',
+            paymentTerms: '20FFMD',
+            mot: 'Pipeline',
             owner: '',
             ownerName: '',
             creatorUser: ''
@@ -58,6 +58,18 @@ export default class addTrade extends React.Component {
             this.setState({
                 totalQuantity: (Number(e.target.value) * 30)
             }); 
+        }
+
+        if(e.target.name === "sellerName"){
+            const { organisationsList,getOrganisation } = this.props.route.data;
+
+            this.setState({
+                sellerName: e.target.value
+            }); 
+
+            // this.setState({
+            //     sellerID: getOrganisation(organisationsList,{name : e.target.value});
+            // }); 
         }
 
         //validate and show error
@@ -108,17 +120,17 @@ export default class addTrade extends React.Component {
                 quantityUOM: this.state.quantityUOM,
                 totalQuantity: this.state.totalQuantity,
                 totalQuantityUOM: this.state.totalQuantityUOM,
-                tradeDate: this.state.tradeDate,
-                startDate: this.state.startDate,
-                endDate: this.state.endDate,
+                tradeDate: this.state.tradeDate._d,
+                startDate: this.state.startDate._d,
+                endDate: this.state.endDate._d,
                 productCode: this.state.productCode,
                 deliveryLocation: this.state.deliveryLocation,
-                paymetDays: this.state.paymetDays,
+                paymentDays: this.state.paymentDays,
                 paymentTerms: this.state.paymentTerms,
-                mot: this.state.not,
+                mot: this.state.mot,
                 owner: this.state.owner,
                 ownerName: this.state.ownerName,
-                creatorUser: this.state.createUser
+                creatorUser: this.state.creatorUser
 
             };
             console.log(form);
@@ -236,11 +248,14 @@ export default class addTrade extends React.Component {
             motList,organisationsList,getOrganisation,currentUser
           } = this.props.route.data;
 
-    let org = getOrganisation(organisationsList,currentUser.organisationId);
+    let org = getOrganisation(organisationsList,{id : currentUser.organisationId});
 
     //set state 
     this.state.buyerName = org.name;
+    this.state.buyerID = org.id;
     this.state.ownerName = org.name;
+    this.state.owner = org.id;
+    this.state.creatorUser = currentUser.id;
 
     const tradeOptions = tradeTypeList ? tradeTypeList.map(item => (
         <option key={item.id} value={item.name}> {item.name} </option>
@@ -305,7 +320,8 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="sellerName" id="sellerNameLabel" className="col-sm-6 control-label">Seller Name</label>
     <div className="col-sm-6">
-        <select name="sellerName" className="form-control" id="sellerName" ref="sellerName" onChange={ this.handleChange }>
+        <select name="sellerName" className="form-control" id="sellerName" ref="sellerName" onChange={ this.handleChange } required>
+            <option value=""> Select </option>
             {organisationOptions}
         </select>
         <div className="error" id="sellerNameError" />
@@ -315,7 +331,7 @@ export default class addTrade extends React.Component {
 <div className="form-group col-md-6" >
     <label htmlFor="tradeType" id="tradeTypeLabel" className="col-sm-6 control-label">Trade Type</label>
     <div className="col-sm-6">
-        <select name="tradeType" className="form-control" id="tradeType" ref="tradeType" onChange={ this.handleChange }>
+        <select name="tradeType" className="form-control" id="tradeType" ref="tradeType" onChange={ this.handleChange } value={this.state.tradeType}>
             {tradeOptions}
         </select>
         <div className="error" id="tradeTypeError" />

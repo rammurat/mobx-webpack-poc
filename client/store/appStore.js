@@ -73,8 +73,6 @@ export class AppStore{
         name : "Shell"
     }];
 
-    
-
     @observable tradeTypeList = [{
         id : 1,
         name : "Date Pipeline Fixed price"
@@ -217,10 +215,11 @@ export class AppStore{
         this.productList.push( new newProduct(product));
     }
 
-    getOrganisation(orgList,orgId) {
+    getOrganisation(orgList,query) {
         
-        return _.findWhere(orgList,{id : orgId});
+        return _.findWhere(orgList,query);
     }
+
 
     // fetchListingData2(contractId){
     //     const form = {contractId : contractId };

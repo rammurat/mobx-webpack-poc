@@ -28398,23 +28398,23 @@
 	            sellerName: '',
 	            buyerID: '',
 	            sellerID: '',
-	            tradeStatus: '',
-	            tradeType: '',
-	            marketType: '',
+	            tradeStatus: 'Active',
+	            tradeType: 'Date Pipeline Fixed price',
+	            marketType: 'Physical Crude Oil',
 	            price: '',
-	            priceUOM: '',
+	            priceUOM: 'USD/BBL',
 	            quantity: '',
-	            quantityUOM: '',
+	            quantityUOM: 'BBL',
 	            totalQuantity: '',
-	            totalQuantityUOM: '',
+	            totalQuantityUOM: 'BBL',
 	            tradeDate: (0, _moment2.default)(),
 	            startDate: (0, _moment2.default)(),
 	            endDate: (0, _moment2.default)(),
-	            productCode: '',
-	            deliveryLocation: '',
-	            paymetDays: '',
-	            paymentTerms: '',
-	            mot: '',
+	            productCode: 'MARS',
+	            deliveryLocation: 'Clovelly',
+	            paymentDays: '',
+	            paymentTerms: '20FFMD',
+	            mot: 'Pipeline',
 	            owner: '',
 	            ownerName: '',
 	            creatorUser: ''
@@ -28444,6 +28444,21 @@
 	                this.setState({
 	                    totalQuantity: Number(e.target.value) * 30
 	                });
+	            }
+	
+	            if (e.target.name === "sellerName") {
+	                var _props$route$data = this.props.route.data,
+	                    organisationsList = _props$route$data.organisationsList,
+	                    getOrganisation = _props$route$data.getOrganisation;
+	
+	
+	                this.setState({
+	                    sellerName: e.target.value
+	                });
+	
+	                // this.setState({
+	                //     sellerID: getOrganisation(organisationsList,{name : e.target.value});
+	                // }); 
 	            }
 	
 	            //validate and show error
@@ -28502,17 +28517,17 @@
 	                    quantityUOM: this.state.quantityUOM,
 	                    totalQuantity: this.state.totalQuantity,
 	                    totalQuantityUOM: this.state.totalQuantityUOM,
-	                    tradeDate: this.state.tradeDate,
-	                    startDate: this.state.startDate,
-	                    endDate: this.state.endDate,
+	                    tradeDate: this.state.tradeDate._d,
+	                    startDate: this.state.startDate._d,
+	                    endDate: this.state.endDate._d,
 	                    productCode: this.state.productCode,
 	                    deliveryLocation: this.state.deliveryLocation,
-	                    paymetDays: this.state.paymetDays,
+	                    paymentDays: this.state.paymentDays,
 	                    paymentTerms: this.state.paymentTerms,
-	                    mot: this.state.not,
+	                    mot: this.state.mot,
 	                    owner: this.state.owner,
 	                    ownerName: this.state.ownerName,
-	                    creatorUser: this.state.createUser
+	                    creatorUser: this.state.creatorUser
 	
 	                };
 	                console.log(form);
@@ -28633,25 +28648,28 @@
 	        value: function render() {
 	
 	            //get objects from store
-	            var _props$route$data = this.props.route.data,
-	                tradeTypeList = _props$route$data.tradeTypeList,
-	                marketTypeList = _props$route$data.marketTypeList,
-	                priceUOMList = _props$route$data.priceUOMList,
-	                UOMList = _props$route$data.UOMList,
-	                productCodeList = _props$route$data.productCodeList,
-	                deliveryLocation = _props$route$data.deliveryLocation,
-	                paymentTermList = _props$route$data.paymentTermList,
-	                motList = _props$route$data.motList,
-	                organisationsList = _props$route$data.organisationsList,
-	                getOrganisation = _props$route$data.getOrganisation,
-	                currentUser = _props$route$data.currentUser;
+	            var _props$route$data2 = this.props.route.data,
+	                tradeTypeList = _props$route$data2.tradeTypeList,
+	                marketTypeList = _props$route$data2.marketTypeList,
+	                priceUOMList = _props$route$data2.priceUOMList,
+	                UOMList = _props$route$data2.UOMList,
+	                productCodeList = _props$route$data2.productCodeList,
+	                deliveryLocation = _props$route$data2.deliveryLocation,
+	                paymentTermList = _props$route$data2.paymentTermList,
+	                motList = _props$route$data2.motList,
+	                organisationsList = _props$route$data2.organisationsList,
+	                getOrganisation = _props$route$data2.getOrganisation,
+	                currentUser = _props$route$data2.currentUser;
 	
 	
-	            var org = getOrganisation(organisationsList, currentUser.organisationId);
+	            var org = getOrganisation(organisationsList, { id: currentUser.organisationId });
 	
 	            //set state 
 	            this.state.buyerName = org.name;
+	            this.state.buyerID = org.id;
 	            this.state.ownerName = org.name;
+	            this.state.owner = org.id;
+	            this.state.creatorUser = currentUser.id;
 	
 	            var tradeOptions = tradeTypeList ? tradeTypeList.map(function (item) {
 	                return _react2.default.createElement(
@@ -28803,7 +28821,12 @@
 	                                    { className: 'col-sm-6' },
 	                                    _react2.default.createElement(
 	                                        'select',
-	                                        { name: 'sellerName', className: 'form-control', id: 'sellerName', ref: 'sellerName', onChange: this.handleChange },
+	                                        { name: 'sellerName', className: 'form-control', id: 'sellerName', ref: 'sellerName', onChange: this.handleChange, required: true },
+	                                        _react2.default.createElement(
+	                                            'option',
+	                                            { value: '' },
+	                                            ' Select '
+	                                        ),
 	                                        organisationOptions
 	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'sellerNameError' })
@@ -28822,7 +28845,7 @@
 	                                    { className: 'col-sm-6' },
 	                                    _react2.default.createElement(
 	                                        'select',
-	                                        { name: 'tradeType', className: 'form-control', id: 'tradeType', ref: 'tradeType', onChange: this.handleChange },
+	                                        { name: 'tradeType', className: 'form-control', id: 'tradeType', ref: 'tradeType', onChange: this.handleChange, value: this.state.tradeType },
 	                                        tradeOptions
 	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'tradeTypeError' })
@@ -51929,9 +51952,9 @@
 	        }
 	    }, {
 	        key: 'getOrganisation',
-	        value: function getOrganisation(orgList, orgId) {
+	        value: function getOrganisation(orgList, query) {
 	
-	            return _underscore._.findWhere(orgList, { id: orgId });
+	            return _underscore._.findWhere(orgList, query);
 	        }
 	
 	        // fetchListingData2(contractId){
