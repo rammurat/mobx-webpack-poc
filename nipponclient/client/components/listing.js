@@ -49,7 +49,7 @@ export default class listing extends React.Component{
                                 <td>{item.ProductCode.ValA}</td>
                                 <td>{item.DeliveryLocation.ValA}</td>
                                
-                                <td>{item.PaymentDays.ValA}</td>
+                                <td>{item.PaymetDays.ValA}</td>
                                 <td>{item.PaymentTerms.ValA}</td>
                                 <td>{item.Mot.ValA}</td>
                                 <td>{item.Owner.ValA}</td>

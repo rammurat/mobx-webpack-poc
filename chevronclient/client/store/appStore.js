@@ -334,9 +334,9 @@ export class AppStore{
         id : uuidV1(), 
         fieldKey :  "Payment Days",
         fieldValue : "20",
-        fieldName : "paymentDays" ,
-        fieldLabel : "paymentDaysLabel" ,
-        fieldError : "paymentDaysError" ,
+        fieldName : "paymetDays" ,
+        fieldLabel : "paymetDaysLabel" ,
+        fieldError : "paymetDaysError" ,
         fieldType : "input"
     },{
         id : uuidV1(), 

@@ -28314,7 +28314,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-md-3' },
-	                        _react2.default.createElement('img', { className: 'logo', src: 'logos/chevron.png' })
+	                        _react2.default.createElement('img', { className: 'logo', src: 'logos/nippon.png' })
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -28401,7 +28401,7 @@
 	            endDate: (0, _moment2.default)(),
 	            productCode: 'MARS',
 	            deliveryLocation: 'Clovelly',
-	            paymentDays: '',
+	            paymetDays: '',
 	            paymentTerms: '20FFMD',
 	            mot: 'Pipeline',
 	            owner: '',
@@ -28528,7 +28528,7 @@
 	                    endDate: this.state.endDate._d,
 	                    productCode: this.state.productCode,
 	                    deliveryLocation: this.state.deliveryLocation,
-	                    paymentDays: this.state.paymentDays,
+	                    paymetDays: this.state.paymetDays,
 	                    paymentTerms: this.state.paymentTerms,
 	                    mot: this.state.mot,
 	                    owner: this.state.owner,
@@ -29088,14 +29088,14 @@
 	                                { className: 'form-group col-md-6' },
 	                                _react2.default.createElement(
 	                                    'label',
-	                                    { htmlFor: 'paymentDays', id: 'paymentDaysLabel', className: 'col-sm-6 control-label' },
+	                                    { htmlFor: 'paymetDays', id: 'paymetDaysLabel', className: 'col-sm-6 control-label' },
 	                                    'Payment Days'
 	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement('input', { pattern: '[0-9]{1,10}', name: 'paymentDays', className: 'form-control', id: 'paymentDays', ref: 'paymentDays', onChange: this.handleChange, required: true }),
-	                                    _react2.default.createElement('div', { className: 'error', id: 'paymentDaysError' })
+	                                    _react2.default.createElement('input', { pattern: '[0-9]{1,10}', name: 'paymetDays', className: 'form-control', id: 'paymetDays', ref: 'paymetDays', onChange: this.handleChange, required: true }),
+	                                    _react2.default.createElement('div', { className: 'error', id: 'paymetDaysError' })
 	                                )
 	                            ),
 	                            _react2.default.createElement(
@@ -48162,7 +48162,7 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    item.PaymentDays.ValA
+	                                    item.PaymetDays.ValA
 	                                ),
 	                                _react2.default.createElement(
 	                                    'td',
@@ -53453,11 +53453,11 @@
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
-	            id: "1",
-	            name: "John Walker",
-	            organisationId: "CHV",
-	            username: "john",
-	            password: "john"
+	            id: "2",
+	            name: "Paul Walker",
+	            organisationId: "NPN",
+	            username: "paul",
+	            password: "paul"
 	        };
 	    }
 	}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'usersList', [_mobx.observable], {
@@ -53766,9 +53766,9 @@
 	            id: uuidV1(),
 	            fieldKey: "Payment Days",
 	            fieldValue: "20",
-	            fieldName: "paymentDays",
-	            fieldLabel: "paymentDaysLabel",
-	            fieldError: "paymentDaysError",
+	            fieldName: "paymetDays",
+	            fieldLabel: "paymetDaysLabel",
+	            fieldError: "paymetDaysError",
 	            fieldType: "input"
 	        }, {
 	            id: uuidV1(),

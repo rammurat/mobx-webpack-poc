@@ -13,20 +13,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //bind backend APIs with server
-if(!CONFIG.isLocalServer){
+if (!CONFIG.isLocalServer) {
     const query = require('../query.js');
     const listQuery = require('../ListQuery.js');
     const trade = require('../addTradeQuery.js');
-    
+
     //bind local methods with server
-    app.post('/listingData', function (request, response){
+    app.post('/listingData', function (request, response) {
         const params = request.body;
         console.log(params);
 
         const data = listQuery.getContractList(params.contractId);
 
-        data.then(function(jsonData){
-            console.log("############# Data from node",jsonData);
+        data.then(function (jsonData) {
+            console.log("############# Data from node", jsonData);
             response.setHeader('Content-Type', 'application/json');
             response.send(jsonData);
         });
@@ -34,20 +34,20 @@ if(!CONFIG.isLocalServer){
     });
 
     //load matched data
-    app.post('/matchingData', function (request, response){
+    app.post('/matchingData', function (request, response) {
         const params = request.body;
         const data = query.getContractData(params.contractId);
 
         console.log(params);
 
-        data.then(function(jsonData){
+        data.then(function (jsonData) {
             response.setHeader('Content-Type', 'application/json');
             response.send(jsonData);
         });
     });
 
     //add trador data
-    app.post('/addTrador', function (request, response){
+    app.post('/addTrador', function (request, response) {
         const params = request.body;
         console.log("###### Form params : ", params);
 
@@ -71,7 +71,7 @@ if(!CONFIG.isLocalServer){
             params.endDate,
             params.productCode,
             params.deliveryLocation,
-            params.paymentDays,
+            params.paymetDays,
             params.paymentTerms,
             params.mot,
             params.owner, //Owner id
@@ -79,11 +79,11 @@ if(!CONFIG.isLocalServer){
             params.creatorUser, //loggedin user id 
             params.tradeStatus,
         ];
-        
+
         const data = trade.addTrade(form);
 
-        data.then(function(jsonData){
-            console.log("####Form added response", jsonData); 
+        data.then(function (jsonData) {
+            console.log("####Form added response", jsonData);
 
             response.setHeader('Content-Type', 'application/json');
             response.send(jsonData);
@@ -92,9 +92,9 @@ if(!CONFIG.isLocalServer){
     });
 
 
-}else{
+} else {
     //bind local methods with server
-    app.post('/listingData', function (request, response){
+    app.post('/listingData', function (request, response) {
         const params = request.body;
 
         console.log(params);
@@ -190,7 +190,7 @@ if(!CONFIG.isLocalServer){
                 "ValB": "A18",
                 "Match": true
             },
-            "PaymentDays": {
+            "PaymetDays": {
                 "ValA": "A19",
                 "ValB": "A19",
                 "Match": false
@@ -322,7 +322,7 @@ if(!CONFIG.isLocalServer){
                 "ValB": "A18",
                 "Match": true
             },
-            "PaymentDays": {
+            "PaymetDays": {
                 "ValA": "A19",
                 "ValB": "A19",
                 "Match": false
@@ -367,168 +367,168 @@ if(!CONFIG.isLocalServer){
     });
 
     //load matched data
-    app.post('/matchingData', function (request, response){
+    app.post('/matchingData', function (request, response) {
         const params = request.body;
 
-        console.log(params);
         response.setHeader('Content-Type', 'application/json');
+
         response.send(JSON.stringify({
-            "TradeNumber":{
-                "ValA":"A01",
-                "ValB":"A01",
-                "Match":false
+            "TradeNumber": {
+                "ValA": "A01",
+                "ValB": "A01",
+                "Match": false
             },
-            "BuyerName":{
-                "ValA":"A02",
-                "ValB":"A02",
-                "Match":false
+            "BuyerName": {
+                "ValA": "A02",
+                "ValB": "A02",
+                "Match": false
             },
-            "SellerName":{
-                "ValA":"A03",
-                "ValB":"A03",
-                "Match":false
+            "SellerName": {
+                "ValA": "A03",
+                "ValB": "A03",
+                "Match": false
             },
-            "BuyerID":{
-                "ValA":"A04",
-                "ValB":"A04",
-                "Match":true
+            "BuyerID": {
+                "ValA": "A04",
+                "ValB": "A04",
+                "Match": true
             },
-            "SellerID":{
-                "ValA":"A05",
-                "ValB":"A05",
-                "Match":true
+            "SellerID": {
+                "ValA": "A05",
+                "ValB": "A05",
+                "Match": true
             },
-            "TradeType":{
-                "ValA":"A06",
-                "ValB":"A06",
-                "Match":false
+            "TradeType": {
+                "ValA": "A06",
+                "ValB": "A06",
+                "Match": false
             },
-            "MarketType":{
-                "ValA":"A07",
-                "ValB":"A07",
-                "Match":false
+            "MarketType": {
+                "ValA": "A07",
+                "ValB": "A07",
+                "Match": false
             },
-            "Price":{
-                "ValA":"A08",
-                "ValB":"A08",
-                "Match":true
+            "Price": {
+                "ValA": "A08",
+                "ValB": "A08",
+                "Match": true
             },
-            "PriceUOM":{
-                "ValA":"A09",
-                "ValB":"A09",
-                "Match":false
+            "PriceUOM": {
+                "ValA": "A09",
+                "ValB": "A09",
+                "Match": false
             },
-            "Quantity":{
-                "ValA":"A10",
-                "ValB":"A10",
-                "Match":false
+            "Quantity": {
+                "ValA": "A10",
+                "ValB": "A10",
+                "Match": false
             },
-            "QuantityUOM":{
-                "ValA":"A11",
-                "ValB":"A11",
-                "Match":false
+            "QuantityUOM": {
+                "ValA": "A11",
+                "ValB": "A11",
+                "Match": false
             },
-            "TotalQuantity":{
-                "ValA":"A12",
-                "ValB":"A12",
-                "Match":true
+            "TotalQuantity": {
+                "ValA": "A12",
+                "ValB": "A12",
+                "Match": true
             },
-            "TotalQuantityUOM":{
-                "ValA":"A13",
-                "ValB":"A13",
-                "Match":true
+            "TotalQuantityUOM": {
+                "ValA": "A13",
+                "ValB": "A13",
+                "Match": true
             },
-            "TradeDate":{
-                "ValA":"A14",
-                "ValB":"A14",
-                "Match":true
+            "TradeDate": {
+                "ValA": "A14",
+                "ValB": "A14",
+                "Match": true
             },
-            "StartDate":{
-                "ValA":"A15",
-                "ValB":"A15",
-                "Match":false
+            "StartDate": {
+                "ValA": "A15",
+                "ValB": "A15",
+                "Match": false
             },
-            "EndDate":{
-                "ValA":"A16",
-                "ValB":"A16",
-                "Match":true
+            "EndDate": {
+                "ValA": "A16",
+                "ValB": "A16",
+                "Match": true
             },
-            "ProductCode":{
-                "ValA":"A17",
-                "ValB":"A17",
-                "Match":true
+            "ProductCode": {
+                "ValA": "A17",
+                "ValB": "A17",
+                "Match": true
             },
-            "DeliveryLocation":{
-                "ValA":"A18",
-                "ValB":"A18",
-                "Match":true
+            "DeliveryLocation": {
+                "ValA": "A18",
+                "ValB": "A18",
+                "Match": true
             },
-            "PaymentDays":{
-                "ValA":"A19",
-                "ValB":"A19",
-                "Match":false
+            "PaymetDays": {
+                "ValA": "A19",
+                "ValB": "A19",
+                "Match": false
             },
-            "PaymentTerms":{
-                "ValA":"A20",
-                "ValB":"A20",
-                "Match":true
+            "PaymentTerms": {
+                "ValA": "A20",
+                "ValB": "A20",
+                "Match": true
             },
-            "Mot":{
-                "ValA":"A21",
-                "ValB":"A21",
-                "Match":true
+            "Mot": {
+                "ValA": "A21",
+                "ValB": "A21",
+                "Match": true
             },
-            "Owner":{
-                "ValA":"A22",
-                "ValB":"A22",
-                "Match":false
+            "Owner": {
+                "ValA": "A22",
+                "ValB": "A22",
+                "Match": false
             },
-            "CreatorUser":{
-                "ValA":"A23",
-                "ValB":"A23",
-                "Match":false
+            "CreatorUser": {
+                "ValA": "A23",
+                "ValB": "A23",
+                "Match": false
             },
-            "CreationTimestamp":{
-                "ValA":"2017-04-18 09:40:38.380852684 +0000 UTC",
-                "ValB":"2017-04-18 09:42:30.822722935 +0000 UTC",
-                "Match":false
+            "CreationTimestamp": {
+                "ValA": "2017-04-18 09:40:38.380852684 +0000 UTC",
+                "ValB": "2017-04-18 09:42:30.822722935 +0000 UTC",
+                "Match": false
             },
-            "DealStatus":"Matched"
+            "DealStatus": "Matched"
         }
-        ))
+        ));
     });
 
     //add trador data
-    app.post('/addTrador', function (request, response){
+    app.post('/addTrador', function (request, response) {
         //const params = request.body;
         const params = {
-            tradeNumber : "SHLTR16TB0342:1",
-            buyerName : "Chevron Products a Division of Chevorn USA",
-            sellerName : "Indian Oil Corporation",
-            buyerID : "CHV",
-            sellerID : "IOC",
-            tradeType : "Date Pipeline Fixed price",
-            marketType : "Physical Crude Oil",
-            price : "1000",
-            priceUOM : "BBL",
-            quantity : "10",
-            quantityUOM : "BBL",
-            totalQuantity : "30000",
-            totalQuantityUOM : "BBL",
-            tradeDate : "24-04-2016",
-            startDate : "24-04-2016",
-            endDate : "28-04-2016",
-            productCode : "MARS",
-            deliveryLocation : "Clovelly",
-            paymentDays : "20",
-            paymentTerms : "20FFMD",
-            mot : "Pipeline",
-            owner : "CHV", //owner id (Buyer id)
-            ownerName : "Chevron Products a Division of Chevorn USA", //owner name (Buyer name)
-            creatorUser : "1", //user id 
-            tradeStatus : "Active"
+            tradeNumber: "SHLTR16TB0342:1",
+            buyerName: "Chevron Products a Division of Chevorn USA",
+            sellerName: "Indian Oil Corporation",
+            buyerID: "CHV",
+            sellerID: "IOC",
+            tradeType: "Date Pipeline Fixed price",
+            marketType: "Physical Crude Oil",
+            price: "1000",
+            priceUOM: "BBL",
+            quantity: "10",
+            quantityUOM: "BBL",
+            totalQuantity: "30000",
+            totalQuantityUOM: "BBL",
+            tradeDate: "24-04-2016",
+            startDate: "24-04-2016",
+            endDate: "28-04-2016",
+            productCode: "MARS",
+            deliveryLocation: "Clovelly",
+            paymetDays: "20",
+            paymentTerms: "20FFMD",
+            mot: "Pipeline",
+            owner: "CHV", //owner id (Buyer id)
+            ownerName: "Chevron Products a Division of Chevorn USA", //owner name (Buyer name)
+            creatorUser: "1", //user id 
+            tradeStatus: "Active"
         }
-        
+
         const form = [
             "add",
             params.tradeNumber,
@@ -549,7 +549,7 @@ if(!CONFIG.isLocalServer){
             params.endDate,
             params.productCode,
             params.deliveryLocation,
-            params.paymentDays,
+            params.paymetDays,
             params.paymentTerms,
             params.mot,
             params.owner,
@@ -559,28 +559,28 @@ if(!CONFIG.isLocalServer){
         ];
 
         response.setHeader('Content-Type', 'application/json');
-        response.send(JSON.stringify({"Status" : true, "TradeNumber":"A01"}));
+        response.send(JSON.stringify({ "Status": true, "TradeNumber": "A01" }));
     });
 
 }
 
 // Handles all routes so you do not get a not found error
-app.get('*', function (request, response){
+app.get('*', function (request, response) {
     response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 });
 
 //Validate user login credentials 
-app.post('/login', function(req, res) {
-	let data = req.body;
-    
-	console.log(data);
-	
+app.post('/login', function (req, res) {
+    let data = req.body;
+
+    console.log(data);
+
     //validate user credentials
     if (data && data.username === "admin" && data.password === "admin") {
-		res.status(201).send(JSON.stringify({ success: true }));
-	} else {
-		res.status(200).send(JSON.stringify({ success: false, error: "User not valid" }));
-	}
+        res.status(201).send(JSON.stringify({ success: true }));
+    } else {
+        res.status(200).send(JSON.stringify({ success: false, error: "User not valid" }));
+    }
 });
 
 

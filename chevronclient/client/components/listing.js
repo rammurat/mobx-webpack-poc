@@ -4,9 +4,12 @@ import { observer } from "mobx-react";
 import { Link } from 'react-router';
 const uuidV1 = require('uuid/v1');
 
+import AppStore from '../store/appStore.js';
+AppStore.fetchListingData("NPN");
+
 @observer
 export default class listing extends React.Component{
-
+    
     render(){
 
         //get objects from store
@@ -20,13 +23,13 @@ export default class listing extends React.Component{
                 //group item categories
                  function getTable(){
                     var data = [];
-
-                    console.log(listingData.data);
                     
                     listingData.data.forEach(function(item){
-                    
-                        data.push(<tr key={uuidV1()}>
-                                <td><Link to="/matching" activeClassName="active">{item.TradeNumber.ValA}</Link></td>
+                        let link = '/matching/' + item.TradeNumber.ValA;
+
+                        
+                            data.push(<tr key={uuidV1()}>
+                                <td><Link to={link} activeClassName="active">{item.TradeNumber.ValA}</Link></td>
                                 <td>{item.BuyerName.ValA}</td>
                                 <td>{item.SellerName.ValA}</td>
                                 <td>{item.BuyerID.ValA}</td>
@@ -36,6 +39,7 @@ export default class listing extends React.Component{
                                 <td>{item.Price.ValA}</td>
                                 <td>{item.PriceUOM.ValA}</td>
                                 <td>{item.Quantity.ValA}</td>
+                                
                                 <td>{item.QuantityUOM.ValA}</td>
                                 <td>{item.TotalQuantity.ValA}</td>
                                 <td>{item.TotalQuantityUOM.ValA}</td>
@@ -45,7 +49,7 @@ export default class listing extends React.Component{
                                 <td>{item.ProductCode.ValA}</td>
                                 <td>{item.DeliveryLocation.ValA}</td>
                                
-                                <td>{item.PaymentDays.ValA}</td>
+                                <td>{item.PaymetDays.ValA}</td>
                                 <td>{item.PaymentTerms.ValA}</td>
                                 <td>{item.Mot.ValA}</td>
                                 <td>{item.Owner.ValA}</td>
@@ -54,6 +58,7 @@ export default class listing extends React.Component{
                                 <td>{item.TradeStatus.ValA}</td>
                                 <td>{item.CreationTimestamp.ValA}</td>
                             </tr>)
+                        
                     });
 
                     return data;

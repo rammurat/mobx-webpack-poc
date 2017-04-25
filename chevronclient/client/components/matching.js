@@ -3,8 +3,18 @@ import PropTypes from 'prop-types';
 import { observer } from "mobx-react"; 
 const uuidV1 = require('uuid/v1');
 
+import AppStore from '../store/appStore.js';
+
 @observer
 export default class matching extends React.Component{
+    constructor(props) {
+        super(props);
+        AppStore.fetchMatchingData(this.props.params.trade);
+        this.state = {
+            status : 'Pending',
+            statusClass : 'btn btn-default'
+        }
+    }
 
     render(){
 
@@ -16,22 +26,65 @@ export default class matching extends React.Component{
                 return <div> Loading... </div>
 
             case 'fulfilled':
+
+                //set deal status
+                if(matchingData.data.DealStatus === "Matched"){
+                    this.state = {
+                        status : 'Matched',
+                        statusClass : 'btn btn-success'
+                    }
+                }else if(matchingData.data.DealStatus === "Unmatched"){
+                    this.state = {
+                        status : 'Unmatched',
+                        statusClass : 'btn btn-warning'
+                    }
+                }
+
+                function getTableHead(){
+                    if(matchingData.data.TradeNumber.ValB !== ""){
+                        return(<tr>
+                            <th>Type</th>  
+                            <th>Trador 1</th>
+                            <th>Trador 2</th>
+                        </tr>)
+                    }else{
+                        return(<tr>
+                            <th>Type</th>  
+                            <th>Trador 1</th>
+                        </tr>)
+                    }
+                }
+
                 //group item categories
-                function getTable(){
+                function getTableBody(){
                     var data = [];
-                    const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
-                        
-                        if(key !== "DealStatus"){
-                            var statusClass = (matchingData.data[key].Match === true) ? "btn btn-success" : "btn btn-warning",
-                                status = (matchingData.data[key].Match === true) ? "Yes" : "No"
-                            data.push(<tr key={uuidV1()}>
-                                <td>{key}</td>
-                                <td>{matchingData.data[key].ValA}</td>
-                                <td>{matchingData.data[key].ValB}</td>
-                                <td>{matchingData.data[key].Match}<button type="button" className={statusClass}>{status}</button></td>
-                            </tr>) 
-                        }
-                    });
+
+                    //no status is not pending
+                    if(matchingData.data.TradeNumber.ValB === ""){
+                        const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
+                            
+                            if(key !== "DealStatus"){
+                                data.push(<tr key={uuidV1()}>
+                                    <td>{key}</td>
+                                    <td>{matchingData.data[key].ValA}</td>
+                                </tr>) 
+                            }
+                        });
+                    }else{
+                        const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
+                            
+                            if(key !== "DealStatus"){
+                                var statusClass = (matchingData.data[key].Match === true) ? "btn btn-success" : "btn btn-warning",
+                                    status = (matchingData.data[key].Match === true) ? "Yes" : "No"
+                                data.push(<tr key={uuidV1()}>
+                                    <td>{key}</td>
+                                    <td>{matchingData.data[key].ValA}</td>
+                                    <td>{matchingData.data[key].ValB}</td>
+                                    <td>{matchingData.data[key].Match}<button type="button" className={statusClass}>{status}</button></td>
+                                </tr>) 
+                            }
+                        });
+                    }
 
                     return data;
                 }
@@ -41,18 +94,14 @@ export default class matching extends React.Component{
                     <h2>Deal Matching</h2>
                     <div className="well">
                         <span className="pull-left"> <strong>Deal Status</strong> </span> 
-                        <span className="pull-right"> <button type="button" className="btn btn-success">Matched</button> </span>
+                        <span className="pull-right"> <button type="button" className={this.state.statusClass}>{this.state.status}</button> </span>
                     </div>
                     <table className="table table-striped table-responsive">
                         <thead>
-                            <tr>
-                                <th>Type</th>  
-                                <th>Seller</th>
-                                <th>Buyer</th>
-                            </tr>
+                            {getTableHead()}
                         </thead>
                         <tbody>
-                            {getTable()}
+                            {getTableBody()}
                         </tbody>
                     </table>
                 </div>

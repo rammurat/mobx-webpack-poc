@@ -24,7 +24,7 @@ class Main extends Component {
                         </nav>
                     </div>
                     <div className="col-md-3">
-                        <img className="logo" src="logos/chevron.png"/>
+                        <img className="logo" src="logos/nippon.png"/>
                     </div>
                 </div>
                 

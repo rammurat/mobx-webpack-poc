@@ -8,11 +8,11 @@ const uuidV1 = require('uuid/v1');
 
 export class AppStore{
     @observable currentUser = {
-        id : "1",
-        name : "John Walker",
-        organisationId : "CHV",
-        username : "john",
-        password : "john"
+        id : "2",
+        name : "Paul Walker",
+        organisationId : "NPN",
+        username : "paul",
+        password : "paul"
     };
 
     @observable usersList = [{
@@ -334,9 +334,9 @@ export class AppStore{
         id : uuidV1(), 
         fieldKey :  "Payment Days",
         fieldValue : "20",
-        fieldName : "paymentDays" ,
-        fieldLabel : "paymentDaysLabel" ,
-        fieldError : "paymentDaysError" ,
+        fieldName : "paymetDays" ,
+        fieldLabel : "paymetDaysLabel" ,
+        fieldError : "paymetDaysError" ,
         fieldType : "input"
     },{
         id : uuidV1(), 

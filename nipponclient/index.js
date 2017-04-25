@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //bind backend APIs with server
 if (!CONFIG.isLocalServer) {
-    const query = require('./query.js');
-    const listQuery = require('./ListQuery.js');
-    const trade = require('./addTradeQuery.js');
+    const query = require('../query.js');
+    const listQuery = require('../ListQuery.js');
+    const trade = require('../addTradeQuery.js');
 
     //bind local methods with server
     app.post('/listingData', function (request, response) {
@@ -71,7 +71,7 @@ if (!CONFIG.isLocalServer) {
             params.endDate,
             params.productCode,
             params.deliveryLocation,
-            params.paymentDays,
+            params.paymetDays,
             params.paymentTerms,
             params.mot,
             params.owner, //Owner id
@@ -190,7 +190,7 @@ if (!CONFIG.isLocalServer) {
                 "ValB": "A18",
                 "Match": true
             },
-            "PaymentDays": {
+            "PaymetDays": {
                 "ValA": "A19",
                 "ValB": "A19",
                 "Match": false
@@ -322,7 +322,7 @@ if (!CONFIG.isLocalServer) {
                 "ValB": "A18",
                 "Match": true
             },
-            "PaymentDays": {
+            "PaymetDays": {
                 "ValA": "A19",
                 "ValB": "A19",
                 "Match": false
@@ -463,7 +463,7 @@ if (!CONFIG.isLocalServer) {
                 "ValB": "A18",
                 "Match": true
             },
-            "PaymentDays": {
+            "PaymetDays": {
                 "ValA": "A19",
                 "ValB": "A19",
                 "Match": false
@@ -520,7 +520,7 @@ if (!CONFIG.isLocalServer) {
             endDate: "28-04-2016",
             productCode: "MARS",
             deliveryLocation: "Clovelly",
-            paymentDays: "20",
+            paymetDays: "20",
             paymentTerms: "20FFMD",
             mot: "Pipeline",
             owner: "CHV", //owner id (Buyer id)
@@ -549,7 +549,7 @@ if (!CONFIG.isLocalServer) {
             params.endDate,
             params.productCode,
             params.deliveryLocation,
-            params.paymentDays,
+            params.paymetDays,
             params.paymentTerms,
             params.mot,
             params.owner,

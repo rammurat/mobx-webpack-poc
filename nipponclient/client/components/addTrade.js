@@ -30,7 +30,7 @@ export default class addTrade extends React.Component {
             endDate: moment(),
             productCode: 'MARS',
             deliveryLocation: 'Clovelly',
-            paymentDays: '',
+            paymetDays: '',
             paymentTerms: '20FFMD',
             mot: 'Pipeline',
             owner: '',
@@ -142,7 +142,7 @@ export default class addTrade extends React.Component {
                 endDate: this.state.endDate._d,
                 productCode: this.state.productCode,
                 deliveryLocation: this.state.deliveryLocation,
-                paymentDays: this.state.paymentDays,
+                paymetDays: this.state.paymetDays,
                 paymentTerms: this.state.paymentTerms,
                 mot: this.state.mot,
                 owner: this.state.owner,
@@ -473,10 +473,10 @@ export default class addTrade extends React.Component {
                         </div>
 
                         <div className="form-group col-md-6" >
-                            <label htmlFor="paymentDays" id="paymentDaysLabel" className="col-sm-6 control-label">Payment Days</label>
+                            <label htmlFor="paymetDays" id="paymetDaysLabel" className="col-sm-6 control-label">Payment Days</label>
                             <div className="col-sm-6">
-                                <input pattern="[0-9]{1,10}"  name="paymentDays" className="form-control" id="paymentDays" ref="paymentDays" onChange={ this.handleChange } required/>
-                                <div className="error" id="paymentDaysError" />
+                                <input pattern="[0-9]{1,10}"  name="paymetDays" className="form-control" id="paymetDays" ref="paymetDays" onChange={ this.handleChange } required/>
+                                <div className="error" id="paymetDaysError" />
                             </div>
                         </div>
 
