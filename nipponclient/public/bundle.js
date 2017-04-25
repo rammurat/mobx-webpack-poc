@@ -53071,26 +53071,57 @@
 	                    );
 	
 	                case 'fulfilled':
+	
+	                    //set deal status
+	                    if (matchingData.data.DealStatus === "Matched") {
+	                        this.state = {
+	                            status: 'Matched',
+	                            statusClass: 'btn btn-success'
+	                        };
+	                    } else if (matchingData.data.DealStatus === "Unmatched") {
+	                        this.state = {
+	                            status: 'Unmatched',
+	                            statusClass: 'btn btn-warning'
+	                        };
+	                    }
+	
 	                    var getTableHead = function getTableHead() {
-	                        return _react2.default.createElement(
-	                            'tr',
-	                            null,
-	                            _react2.default.createElement(
-	                                'th',
+	                        if (matchingData.data.TradeNumber.ValB !== "") {
+	                            return _react2.default.createElement(
+	                                'tr',
 	                                null,
-	                                'Type'
-	                            ),
-	                            _react2.default.createElement(
-	                                'th',
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Type'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Trador 1'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Trador 2'
+	                                )
+	                            );
+	                        } else {
+	                            return _react2.default.createElement(
+	                                'tr',
 	                                null,
-	                                'Seller'
-	                            ),
-	                            _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                'Buyer'
-	                            )
-	                        );
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Type'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Trador 1'
+	                                )
+	                            );
+	                        }
 	                    };
 	
 	                    //group item categories
@@ -53104,8 +53135,6 @@
 	                            var matchingTable = Object.keys(matchingData.data).forEach(function (key) {
 	
 	                                if (key !== "DealStatus") {
-	                                    var statusClass = matchingData.data[key].Match === true ? "btn btn-success" : "btn btn-warning",
-	                                        status = matchingData.data[key].Match === true ? "Yes" : "No";
 	                                    data.push(_react2.default.createElement(
 	                                        'tr',
 	                                        { key: uuidV1() },

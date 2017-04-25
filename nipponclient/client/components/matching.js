@@ -26,12 +26,33 @@ export default class matching extends React.Component{
                 return <div> Loading... </div>
 
             case 'fulfilled':
+
+                //set deal status
+                if(matchingData.data.DealStatus === "Matched"){
+                    this.state = {
+                        status : 'Matched',
+                        statusClass : 'btn btn-success'
+                    }
+                }else if(matchingData.data.DealStatus === "Unmatched"){
+                    this.state = {
+                        status : 'Unmatched',
+                        statusClass : 'btn btn-warning'
+                    }
+                }
+
                 function getTableHead(){
-                    return(<tr>
-                        <th>Type</th>  
-                        <th>Seller</th>
-                        <th>Buyer</th>
-                    </tr>)
+                    if(matchingData.data.TradeNumber.ValB !== ""){
+                        return(<tr>
+                            <th>Type</th>  
+                            <th>Trador 1</th>
+                            <th>Trador 2</th>
+                        </tr>)
+                    }else{
+                        return(<tr>
+                            <th>Type</th>  
+                            <th>Trador 1</th>
+                        </tr>)
+                    }
                 }
 
                 //group item categories
@@ -43,8 +64,6 @@ export default class matching extends React.Component{
                         const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
                             
                             if(key !== "DealStatus"){
-                                var statusClass = (matchingData.data[key].Match === true) ? "btn btn-success" : "btn btn-warning",
-                                    status = (matchingData.data[key].Match === true) ? "Yes" : "No"
                                 data.push(<tr key={uuidV1()}>
                                     <td>{key}</td>
                                     <td>{matchingData.data[key].ValA}</td>
