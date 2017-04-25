@@ -1,0 +1,54 @@
+a.active{
+    color: #000000 !important;
+    text-decoration: underline !important;
+}
+
+/** FORM CSS **/
+input.active:valid {
+    box-shadow: 0 0 5px 1px green;
+}
+
+input.active:invalid {
+    box-shadow: 0 0 5px 1px red;
+}
+
+select.active:valid {
+    box-shadow: 0 0 5px 1px green;
+}
+
+select.active:invalid {
+    box-shadow: 0 0 5px 1px red;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.productTable{
+    overflow-x: scroll;
+}
+.navbar{
+    top:5px;
+}
+
+#login{
+    max-width : 400px;
+}
+
+.well{
+    height: 75px;
+}
+
+.react-datepicker__input-container{
+    display: block;
+}
+
+.react-datepicker{
+    font-size: 1em;
+}
+
+.logo{
+    width:50%;
+}
