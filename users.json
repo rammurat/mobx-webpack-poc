@@ -1,0 +1,44 @@
+{
+  "organisations": [{
+        "id" : "CHV",
+        "name" : "Chevron Products a Division of Chevorn USA"
+    },{
+        "id" : "NPN",
+        "name" : "Nippon"
+    },{
+        "id" : "IOC",
+        "name" : "Indian Oil Corporation"
+    },{
+        "id" : "BPL",
+        "name" : "BP"
+    },{
+        "id" : "SHL",
+        "name" : "Shell"
+    }],
+    "users": [{
+        "id" : "1",
+        "name" : "John Walker",
+        "organisationId" : "CHV",
+        "username" : "john",
+        "password" : "john"
+    },{
+        "id" : "2",
+        "name" : "Paul Walker",
+        "organisationId" : "NPN",
+        "username" : "paul",
+        "password" : "paul"
+    },{
+        "id" : "3",
+        "name" : "Syan Smith",
+        "organisationId" : "CHV",
+        "username" : "syan",
+        "password" : "syan"
+    },{
+        "id" : "4",
+        "name" : "Lauren Iyer",
+        "organisationId" : "NPN",
+        "username" : "lauren",
+        "password" : "lauren"
+    }
+  ]
+}

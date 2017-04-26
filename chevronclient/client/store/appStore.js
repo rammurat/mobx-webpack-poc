@@ -7,57 +7,12 @@ import  { _ } from 'underscore';
 const uuidV1 = require('uuid/v1');
 
 export class AppStore{
-    @observable currentUser = {
-        id : "1",
-        name : "John Walker",
-        organisationId : "CHV",
-        username : "john",
-        password : "john"
-    };
+    @observable currentUser = {};
 
-    @observable usersList = [{
-        id : "1",
-        name : "John Walker",
-        organisationId : "CHV",
-        username : "john",
-        password : "john"
-    },{
-        id : "2",
-        name : "Paul Walker",
-        organisationId : "NPN",
-        username : "paul",
-        password : "paul"
-    },{
-        id : "3",
-        name : "Syan Smith",
-        organisationId : "CHV",
-        username : "syan",
-        password : "syan"
-    },{
-        id : "4",
-        name : "Lauren Iyer",
-        organisationId : "NPN",
-        username : "lauren",
-        password : "lauren"
-    }];
+    @observable usersList = [];
     
     //observer product list and master categories
-    @observable organisationsList = [{
-        id : "CHV",
-        name : "Chevron Products a Division of Chevorn USA"
-    },{
-        id : "NPN",
-        name : "Nippon"
-    },{
-        id : "IOC",
-        name : "Indian Oil Corporation"
-    },{
-        id : "BPL",
-        name : "BP"
-    },{
-        id : "SHL",
-        name : "Shell"
-    }];
+    @observable organisationsList = [];
 
     @observable tradeTypeList = [{
         id : 1,
@@ -196,6 +151,14 @@ export class AppStore{
             .catch((err) => alert(err))
     }
 
+    //Set user and organisations once matched 
+    @action setUser(userData) {
+        
+        this.organisationsList = userData.organisations;
+        this.currentUser = userData.currentUser;
+    }
+
+    //load organisations
     getOrganisation(orgList,query) {
         
         return _.findWhere(orgList,query);

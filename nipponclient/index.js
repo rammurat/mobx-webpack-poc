@@ -2,15 +2,47 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const CONFIG = require('./config');
+const {_} = require("underscore");
 
+var fs = require("fs");
 const port = CONFIG.port || 3000;
 const app = express();
+var usersData = {};
+
+function getUsers(filepath){
+
+    var file = fs.readFileSync(filepath, 'utf8');
+    return JSON.parse(file);
+}
 
 // serve static assets normally
 app.use(express.static(__dirname + '/' + CONFIG.webDir));
 app.use(express.static(__dirname + '/' + CONFIG.nodeDir));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//load users 
+usersData = getUsers('../users.json');
+
+//Validate user login credentials 
+app.post('/login', function (req, res) {
+    let params = req.body,
+        response = {},
+        user = _.findWhere(usersData.users,{ username : params.username,password : params.password });
+
+    //validate user credentials
+    if(user !== undefined){
+        response = { 
+            success: true,
+            organisations : usersData.organisations, //load all organisations
+            currentUser : user //load matched user
+        }
+    } else {
+        response = { success: false, error: "User not valid" };
+    }
+
+    res.status(200).send(JSON.stringify(response));
+});
 
 //bind backend APIs with server
 if (!CONFIG.isLocalServer) {
@@ -568,21 +600,6 @@ if (!CONFIG.isLocalServer) {
 app.get('*', function (request, response) {
     response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 });
-
-//Validate user login credentials 
-app.post('/login', function (req, res) {
-    let data = req.body;
-
-    console.log(data);
-
-    //validate user credentials
-    if (data && data.username === "admin" && data.password === "admin") {
-        res.status(201).send(JSON.stringify({ success: true }));
-    } else {
-        res.status(200).send(JSON.stringify({ success: false, error: "User not valid" }));
-    }
-});
-
 
 app.listen(port)
 console.log("server started on port " + port)

@@ -3,6 +3,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
+import AppStore from '../store/appStore.js';
+
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -51,12 +53,14 @@ export default class Login extends React.Component {
                 })
                 .then(res => res.json())
                 .then(function(json){
-                    
+
                     console.log(json);
+                    AppStore.setUser(json); //set user to appstore
+
                     if(json.success){
                         browserHistory.push('/listing');
                     }else{
-                        alert("Invalid credentials. Enter 'admin/admin' to login");
+                        alert("Invalid credentials. Try again!!");
                     }
                 });
 
