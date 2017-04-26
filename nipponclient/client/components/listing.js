@@ -5,7 +5,10 @@ import { Link } from 'react-router';
 const uuidV1 = require('uuid/v1');
 
 import AppStore from '../store/appStore.js';
-AppStore.fetchListingData("CHV");
+import Header from '../components/header.js';
+
+const user = AppStore.getUser();
+AppStore.fetchListingData(user.orgId);
 
 @observer
 export default class listing extends React.Component{
@@ -64,7 +67,8 @@ export default class listing extends React.Component{
                     return data;
                 }
                 //render html
-                return <div className="row productTable">
+                return <div className="productTable ">
+                    <Header/>
                     <h2>Trade Listing</h2>
                     <ul className="nav nav-tabs">
                         <li role="presentation" className="active"><a href="#">Pending</a></li>

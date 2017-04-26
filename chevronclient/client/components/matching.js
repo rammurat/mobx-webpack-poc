@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 const uuidV1 = require('uuid/v1');
 
 import AppStore from '../store/appStore.js';
+import Header from '../components/header.js';
 
 @observer
 export default class matching extends React.Component{
@@ -91,6 +92,7 @@ export default class matching extends React.Component{
                 
                 //render html
                 return <div>
+                    <Header/>
                     <h2>Deal Matching</h2>
                     <div className="well">
                         <span className="pull-left"> <strong>Deal Status</strong> </span> 

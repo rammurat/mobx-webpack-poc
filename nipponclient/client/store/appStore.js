@@ -8,6 +8,7 @@ const uuidV1 = require('uuid/v1');
 
 export class AppStore{
     @observable currentUser = {};
+    @observable isLoggedIn = false;
 
     @observable usersList = [];
     
@@ -158,10 +159,25 @@ export class AppStore{
         this.currentUser = userData.currentUser;
     }
 
+    @action getUser() {
+        
+        return this.currentUser;
+    }
+
+    //Set user session state 
+    @action updateUserSession(state) {
+        
+        this.isLoggedIn = state;
+    }
+
     //load organisations
     getOrganisation(orgList,query) {
         
         return _.findWhere(orgList,query);
+    }
+
+    getUserSession(){
+        return this.isLoggedIn;
     }
 
     @observable formData =[{

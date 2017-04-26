@@ -6,6 +6,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import {_} from 'underscore';
 
+import Header from '../components/header.js';
+
 export default class addTrade extends React.Component {
       constructor(props) {
         super(props);
@@ -265,7 +267,7 @@ export default class addTrade extends React.Component {
             motList,organisationsList,getOrganisation,currentUser
           } = this.props.route.data;
 
-    let org = getOrganisation(organisationsList,{id : currentUser.organisationId});
+    let org = getOrganisation(organisationsList,{id : currentUser.orgId});
 
     //set state 
     this.state.ownerName = org.name;
@@ -309,7 +311,8 @@ export default class addTrade extends React.Component {
     )) : "";
 
     return (
-        <div className="container-fluid">
+        <div>
+            <Header/>
             <h4 className="form-signin-heading">Add Trade</h4>
             <div className="row">
                 <form className="form-horizontal"  id="addTrade" name="addTrade" method="post" action="/listing" noValidate>

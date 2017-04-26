@@ -35,7 +35,12 @@ app.post('/login', function (req, res) {
         response = { 
             success: true,
             organisations : usersData.organisations, //load all organisations
-            currentUser : user //load matched user
+            currentUser : {
+                id : user.id,
+                username : user.username,
+                name : user.name,
+                orgId : user.organisationId
+            } //load matched user
         }
     } else {
         response = { success: false, error: "User not valid" };

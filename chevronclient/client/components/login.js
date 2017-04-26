@@ -8,6 +8,9 @@ import AppStore from '../store/appStore.js';
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
+        
+        //signout user if exist
+        AppStore.updateUserSession(false);
 
         this.state = {
             username: '',
@@ -56,6 +59,7 @@ export default class Login extends React.Component {
 
                     console.log(json);
                     AppStore.setUser(json); //set user to appstore
+                    AppStore.updateUserSession(true);
 
                     if(json.success){
                         browserHistory.push('/listing');
@@ -145,7 +149,7 @@ export default class Login extends React.Component {
     
   render() {
     return (
-        <div className="container-fluid">
+        <div>
             <div className="row">
                 <div className="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                     <form  id="login" name="login" method="post" action="/listing" noValidate>

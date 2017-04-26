@@ -69,11 +69,11 @@
 	
 	var _listing2 = _interopRequireDefault(_listing);
 	
-	var _login = __webpack_require__(/*! ./components/login.js */ 379);
+	var _login = __webpack_require__(/*! ./components/login.js */ 394);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _matching = __webpack_require__(/*! ./components/matching.js */ 380);
+	var _matching = __webpack_require__(/*! ./components/matching.js */ 395);
 	
 	var _matching2 = _interopRequireDefault(_matching);
 	
@@ -28233,6 +28233,10 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 182);
 	
+	var _appStore = __webpack_require__(/*! ../store/appStore.js */ 375);
+	
+	var _appStore2 = _interopRequireDefault(_appStore);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28253,70 +28257,10 @@
 	    _createClass(Main, [{
 	        key: 'render',
 	        value: function render() {
+	
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-9' },
-	                        _react2.default.createElement(
-	                            'nav',
-	                            { className: 'navbar navbar-default' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'container-fluid' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'navbar-header' },
-	                                    _react2.default.createElement('a', { className: 'navbar-brand', href: '#' })
-	                                ),
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-	                                    _react2.default.createElement(
-	                                        'ul',
-	                                        { className: 'nav navbar-nav' },
-	                                        _react2.default.createElement(
-	                                            'li',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                _reactRouter.Link,
-	                                                { to: '/listing', activeClassName: 'active' },
-	                                                'Listing'
-	                                            )
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'li',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                _reactRouter.Link,
-	                                                { to: '/addTrade', activeClassName: 'active' },
-	                                                'Add Trade'
-	                                            )
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'li',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                _reactRouter.Link,
-	                                                { to: '/', activeClassName: 'active' },
-	                                                'Signout'
-	                                            )
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-3' },
-	                        _react2.default.createElement('img', { className: 'logo', src: 'logos/nippon.png' })
-	                    )
-	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'container' },
@@ -28362,6 +28306,10 @@
 	var _moment2 = _interopRequireDefault(_moment);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 369);
+	
+	var _header = __webpack_require__(/*! ../components/header.js */ 396);
+	
+	var _header2 = _interopRequireDefault(_header);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28668,7 +28616,7 @@
 	                currentUser = _props$route$data3.currentUser;
 	
 	
-	            var org = getOrganisation(organisationsList, { id: currentUser.organisationId });
+	            var org = getOrganisation(organisationsList, { id: currentUser.orgId });
 	
 	            //set state 
 	            this.state.ownerName = org.name;
@@ -28767,7 +28715,8 @@
 	
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'container-fluid' },
+	                null,
+	                _react2.default.createElement(_header2.default, null),
 	                _react2.default.createElement(
 	                    'h4',
 	                    { className: 'form-signin-heading' },
@@ -48017,6 +47966,10 @@
 	
 	var _appStore2 = _interopRequireDefault(_appStore);
 	
+	var _header = __webpack_require__(/*! ../components/header.js */ 396);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48025,9 +47978,10 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 376);
+	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 391);
 	
-	_appStore2.default.fetchListingData("CHV");
+	var user = _appStore2.default.getUser();
+	_appStore2.default.fetchListingData(user.orgId);
 	
 	var listing = (0, _mobxReact.observer)(_class = function (_React$Component) {
 	    _inherits(listing, _React$Component);
@@ -48209,7 +48163,8 @@
 	
 	                    return _react2.default.createElement(
 	                        'div',
-	                        { className: 'row productTable' },
+	                        { className: 'productTable ' },
+	                        _react2.default.createElement(_header2.default, null),
 	                        _react2.default.createElement(
 	                            'h2',
 	                            null,
@@ -52575,17 +52530,17 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 374);
 	
-	var _isomorphicFetch = __webpack_require__(/*! isomorphic-fetch */ 381);
+	var _isomorphicFetch = __webpack_require__(/*! isomorphic-fetch */ 376);
 	
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 	
-	var _mobxUtils = __webpack_require__(/*! mobx-utils */ 383);
+	var _mobxUtils = __webpack_require__(/*! mobx-utils */ 378);
 	
-	var _mobxPromise = __webpack_require__(/*! mobx-promise */ 395);
+	var _mobxPromise = __webpack_require__(/*! mobx-promise */ 390);
 	
 	var _underscore = __webpack_require__(/*! underscore */ 369);
 	
@@ -52636,7 +52591,7 @@
 	    throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 	}
 	
-	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 376);
+	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 391);
 	
 	var AppStore = exports.AppStore = (_class = function () {
 	    function AppStore() {
@@ -52644,33 +52599,35 @@
 	
 	        _initDefineProp(this, 'currentUser', _descriptor, this);
 	
-	        _initDefineProp(this, 'usersList', _descriptor2, this);
+	        _initDefineProp(this, 'isLoggedIn', _descriptor2, this);
 	
-	        _initDefineProp(this, 'organisationsList', _descriptor3, this);
+	        _initDefineProp(this, 'usersList', _descriptor3, this);
 	
-	        _initDefineProp(this, 'tradeTypeList', _descriptor4, this);
+	        _initDefineProp(this, 'organisationsList', _descriptor4, this);
 	
-	        _initDefineProp(this, 'marketTypeList', _descriptor5, this);
+	        _initDefineProp(this, 'tradeTypeList', _descriptor5, this);
 	
-	        _initDefineProp(this, 'priceUOMList', _descriptor6, this);
+	        _initDefineProp(this, 'marketTypeList', _descriptor6, this);
 	
-	        _initDefineProp(this, 'UOMList', _descriptor7, this);
+	        _initDefineProp(this, 'priceUOMList', _descriptor7, this);
 	
-	        _initDefineProp(this, 'productCodeList', _descriptor8, this);
+	        _initDefineProp(this, 'UOMList', _descriptor8, this);
 	
-	        _initDefineProp(this, 'deliveryLocation', _descriptor9, this);
+	        _initDefineProp(this, 'productCodeList', _descriptor9, this);
 	
-	        _initDefineProp(this, 'paymentTermList', _descriptor10, this);
+	        _initDefineProp(this, 'deliveryLocation', _descriptor10, this);
 	
-	        _initDefineProp(this, 'motList', _descriptor11, this);
+	        _initDefineProp(this, 'paymentTermList', _descriptor11, this);
 	
-	        _initDefineProp(this, 'listingData', _descriptor12, this);
+	        _initDefineProp(this, 'motList', _descriptor12, this);
 	
-	        _initDefineProp(this, 'matchingData', _descriptor13, this);
+	        _initDefineProp(this, 'listingData', _descriptor13, this);
 	
-	        _initDefineProp(this, 'tradorStatus', _descriptor14, this);
+	        _initDefineProp(this, 'matchingData', _descriptor14, this);
 	
-	        _initDefineProp(this, 'formData', _descriptor15, this);
+	        _initDefineProp(this, 'tradorStatus', _descriptor15, this);
+	
+	        _initDefineProp(this, 'formData', _descriptor16, this);
 	    }
 	
 	    //observer product list and master categories
@@ -52749,6 +52706,21 @@
 	            this.organisationsList = userData.organisations;
 	            this.currentUser = userData.currentUser;
 	        }
+	    }, {
+	        key: 'getUser',
+	        value: function getUser() {
+	
+	            return this.currentUser;
+	        }
+	
+	        //Set user session state 
+	
+	    }, {
+	        key: 'updateUserSession',
+	        value: function updateUserSession(state) {
+	
+	            this.isLoggedIn = state;
+	        }
 	
 	        //load organisations
 	
@@ -52758,6 +52730,11 @@
 	
 	            return _underscore._.findWhere(orgList, query);
 	        }
+	    }, {
+	        key: 'getUserSession',
+	        value: function getUserSession() {
+	            return this.isLoggedIn;
+	        }
 	    }]);
 	
 	    return AppStore;
@@ -52766,17 +52743,22 @@
 	    initializer: function initializer() {
 	        return {};
 	    }
-	}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'usersList', [_mobx.observable], {
+	}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'isLoggedIn', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return false;
+	    }
+	}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'usersList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [];
 	    }
-	}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'organisationsList', [_mobx.observable], {
+	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'organisationsList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [];
 	    }
-	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'tradeTypeList', [_mobx.observable], {
+	}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'tradeTypeList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52787,7 +52769,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'marketTypeList', [_mobx.observable], {
+	}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'marketTypeList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52798,7 +52780,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'priceUOMList', [_mobx.observable], {
+	}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'priceUOMList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52809,7 +52791,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'UOMList', [_mobx.observable], {
+	}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'UOMList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52820,7 +52802,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'productCodeList', [_mobx.observable], {
+	}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'productCodeList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52837,7 +52819,7 @@
 	            name: "POSEIDON"
 	        }];
 	    }
-	}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'deliveryLocation', [_mobx.observable], {
+	}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'deliveryLocation', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52851,7 +52833,7 @@
 	            name: "Houma"
 	        }];
 	    }
-	}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'paymentTermList', [_mobx.observable], {
+	}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'paymentTermList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52862,7 +52844,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'motList', [_mobx.observable], {
+	}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'motList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -52873,7 +52855,7 @@
 	            name: "In-line Transfer"
 	        }];
 	    }
-	}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'listingData', [_mobx.observable], {
+	}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -52881,7 +52863,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'matchingData', [_mobx.observable], {
+	}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, 'matchingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -52889,7 +52871,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, 'tradorStatus', [_mobx.observable], {
+	}), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, 'tradorStatus', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -52897,7 +52879,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchListingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchMatchingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addTrador'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setUser'), _class.prototype), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, 'formData', [_mobx.observable], {
+	}), _applyDecoratedDescriptor(_class.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchListingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchMatchingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addTrador'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'updateUserSession', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'updateUserSession'), _class.prototype), _descriptor16 = _applyDecoratedDescriptor(_class.prototype, 'formData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -53068,713 +53050,6 @@
 
 /***/ }),
 /* 376 */
-/*!**********************!*\
-  !*** ./~/uuid/v1.js ***!
-  \**********************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	// Unique ID creation requires a high quality random # generator.  We feature
-	// detect to determine the best RNG source, normalizing to a function that
-	// returns 128-bits of randomness, since that's what's usually required
-	var rng = __webpack_require__(/*! ./lib/rng */ 377);
-	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 378);
-	
-	// **`v1()` - Generate time-based UUID**
-	//
-	// Inspired by https://github.com/LiosK/UUID.js
-	// and http://docs.python.org/library/uuid.html
-	
-	// random #'s we need to init node and clockseq
-	var _seedBytes = rng();
-	
-	// Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-	var _nodeId = [
-	  _seedBytes[0] | 0x01,
-	  _seedBytes[1], _seedBytes[2], _seedBytes[3], _seedBytes[4], _seedBytes[5]
-	];
-	
-	// Per 4.2.2, randomize (14 bit) clockseq
-	var _clockseq = (_seedBytes[6] << 8 | _seedBytes[7]) & 0x3fff;
-	
-	// Previous uuid creation time
-	var _lastMSecs = 0, _lastNSecs = 0;
-	
-	// See https://github.com/broofa/node-uuid for API details
-	function v1(options, buf, offset) {
-	  var i = buf && offset || 0;
-	  var b = buf || [];
-	
-	  options = options || {};
-	
-	  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq;
-	
-	  // UUID timestamps are 100 nano-second units since the Gregorian epoch,
-	  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
-	  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
-	  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
-	  var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime();
-	
-	  // Per 4.2.1.2, use count of uuid's generated during the current clock
-	  // cycle to simulate higher resolution clock
-	  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
-	
-	  // Time since last uuid creation (in msecs)
-	  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
-	
-	  // Per 4.2.1.2, Bump clockseq on clock regression
-	  if (dt < 0 && options.clockseq === undefined) {
-	    clockseq = clockseq + 1 & 0x3fff;
-	  }
-	
-	  // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
-	  // time interval
-	  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
-	    nsecs = 0;
-	  }
-	
-	  // Per 4.2.1.2 Throw error if too many uuids are requested
-	  if (nsecs >= 10000) {
-	    throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
-	  }
-	
-	  _lastMSecs = msecs;
-	  _lastNSecs = nsecs;
-	  _clockseq = clockseq;
-	
-	  // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-	  msecs += 12219292800000;
-	
-	  // `time_low`
-	  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-	  b[i++] = tl >>> 24 & 0xff;
-	  b[i++] = tl >>> 16 & 0xff;
-	  b[i++] = tl >>> 8 & 0xff;
-	  b[i++] = tl & 0xff;
-	
-	  // `time_mid`
-	  var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
-	  b[i++] = tmh >>> 8 & 0xff;
-	  b[i++] = tmh & 0xff;
-	
-	  // `time_high_and_version`
-	  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-	  b[i++] = tmh >>> 16 & 0xff;
-	
-	  // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-	  b[i++] = clockseq >>> 8 | 0x80;
-	
-	  // `clock_seq_low`
-	  b[i++] = clockseq & 0xff;
-	
-	  // `node`
-	  var node = options.node || _nodeId;
-	  for (var n = 0; n < 6; ++n) {
-	    b[i + n] = node[n];
-	  }
-	
-	  return buf ? buf : bytesToUuid(b);
-	}
-	
-	module.exports = v1;
-
-
-/***/ }),
-/* 377 */
-/*!***********************************!*\
-  !*** ./~/uuid/lib/rng-browser.js ***!
-  \***********************************/
-/***/ (function(module, exports) {
-
-	/* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
-	// browser this is a little complicated due to unknown quality of Math.random()
-	// and inconsistent support for the `crypto` API.  We do the best we can via
-	// feature-detection
-	var rng;
-	
-	var crypto = global.crypto || global.msCrypto; // for IE 11
-	if (crypto && crypto.getRandomValues) {
-	  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-	  var rnds8 = new Uint8Array(16);
-	  rng = function whatwgRNG() {
-	    crypto.getRandomValues(rnds8);
-	    return rnds8;
-	  };
-	}
-	
-	if (!rng) {
-	  // Math.random()-based (RNG)
-	  //
-	  // If all else fails, use Math.random().  It's fast, but is of unspecified
-	  // quality.
-	  var  rnds = new Array(16);
-	  rng = function() {
-	    for (var i = 0, r; i < 16; i++) {
-	      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-	      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-	    }
-	
-	    return rnds;
-	  };
-	}
-	
-	module.exports = rng;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ }),
-/* 378 */
-/*!***********************************!*\
-  !*** ./~/uuid/lib/bytesToUuid.js ***!
-  \***********************************/
-/***/ (function(module, exports) {
-
-	/**
-	 * Convert array of 16 byte values to UUID string format of the form:
-	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-	 */
-	var byteToHex = [];
-	for (var i = 0; i < 256; ++i) {
-	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-	}
-	
-	function bytesToUuid(buf, offset) {
-	  var i = offset || 0;
-	  var bth = byteToHex;
-	  return  bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]];
-	}
-	
-	module.exports = bytesToUuid;
-
-
-/***/ }),
-/* 379 */
-/*!************************************!*\
-  !*** ./client/components/login.js ***!
-  \************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 182);
-	
-	var _appStore = __webpack_require__(/*! ../store/appStore.js */ 375);
-	
-	var _appStore2 = _interopRequireDefault(_appStore);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Login = function (_React$Component) {
-	    _inherits(Login, _React$Component);
-	
-	    function Login(props) {
-	        _classCallCheck(this, Login);
-	
-	        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
-	
-	        _this.state = {
-	            username: '',
-	            password: ''
-	        };
-	
-	        _this.handleChange = _this.handleChange.bind(_this);
-	        _this.handleSubmit = _this.handleSubmit.bind(_this);
-	        return _this;
-	    }
-	
-	    //update current field state on change 
-	
-	
-	    _createClass(Login, [{
-	        key: 'handleChange',
-	        value: function handleChange(e) {
-	            //add active class
-	            e.target.classList.add('active');
-	
-	            //set state
-	            this.setState(_defineProperty({}, e.target.name, e.target.value));
-	
-	            //validate and show error
-	            this.showInputError(e.target.name);
-	        }
-	
-	        //handle form submission 
-	
-	    }, {
-	        key: 'handleSubmit',
-	        value: function handleSubmit(e) {
-	            e.preventDefault();
-	
-	            if (!this.showFormErrors()) {
-	                console.log('form is invalid: do not submit');
-	            } else {
-	                console.log('form is valid: submit');
-	
-	                //create object to send 
-	                var form = { 'username': this.state.username, 'password': this.state.password };
-	                console.log(form);
-	
-	                //redirect user to dashbaord page 
-	                fetch('/login', {
-	                    method: 'POST',
-	                    body: JSON.stringify(form),
-	                    headers: { 'Content-Type': 'application/json' }
-	                }).then(function (res) {
-	                    return res.json();
-	                }).then(function (json) {
-	
-	                    console.log(json);
-	                    _appStore2.default.setUser(json); //set user to appstore
-	
-	                    if (json.success) {
-	                        _reactRouter.browserHistory.push('/listing');
-	                    } else {
-	                        alert("Invalid credentials. Try again!!");
-	                    }
-	                });
-	            }
-	        }
-	
-	        //reset form
-	
-	    }, {
-	        key: 'resetForm',
-	        value: function resetForm() {
-	            //get all input and select menus of form, if new form fields will introduce it will handle automatically 
-	            var inputs = document.querySelectorAll('input');
-	            var selects = document.querySelectorAll('select');
-	
-	            //traverse input fields
-	            inputs.forEach(function (input) {
-	                input.classList.remove('active');
-	                input.value = "";
-	            });
-	
-	            //traverse select fields 
-	            selects.forEach(function (select) {
-	                select.classList.remove('active');
-	                select.value = "";
-	            });
-	        }
-	
-	        //show errors
-	
-	    }, {
-	        key: 'showFormErrors',
-	        value: function showFormErrors() {
-	            var _this2 = this;
-	
-	            //get form fields 
-	            var inputs = document.querySelectorAll('input');
-	            var selects = document.querySelectorAll('select');
-	
-	            var isFormValid = true;
-	
-	            //traverse input fields 
-	            inputs.forEach(function (input) {
-	                //add error
-	                input.classList.add('active');
-	
-	                var isInputValid = _this2.showInputError(input.name);
-	
-	                if (!isInputValid) {
-	                    isFormValid = false;
-	                }
-	            });
-	
-	            //traverse select menu fields
-	            selects.forEach(function (select) {
-	                //add error
-	                select.classList.add('active');
-	
-	                var isSelectValid = _this2.showInputError(select.name);
-	
-	                if (!isSelectValid) {
-	                    isFormValid = false;
-	                }
-	            });
-	
-	            return isFormValid;
-	        }
-	
-	        //validate input fields 
-	
-	    }, {
-	        key: 'showInputError',
-	        value: function showInputError(refName) {
-	            //fetch field
-	            var validity = this.refs[refName].validity;
-	            var label = document.getElementById(refName + 'Label').textContent;
-	            var error = document.getElementById(refName + 'Error');
-	
-	            //validate field
-	            if (!validity.valid) {
-	                if (validity.valueMissing) {
-	                    error.textContent = label + ' is a required field';
-	                } else if (validity.patternMismatch) {
-	                    error.textContent = label + ' price should be in digits';
-	                }
-	                return false;
-	            }
-	
-	            //update error message
-	            error.textContent = '';
-	            return true;
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'container-fluid' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3' },
-	                        _react2.default.createElement(
-	                            'form',
-	                            { id: 'login', name: 'login', method: 'post', action: '/listing', noValidate: true },
-	                            _react2.default.createElement(
-	                                'h2',
-	                                { className: 'form-signin-heading' },
-	                                'Login'
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'form-group' },
-	                                _react2.default.createElement(
-	                                    'label',
-	                                    { className: 'sr-only', htmlFor: 'username', id: 'usernameLabel' },
-	                                    'Username'
-	                                ),
-	                                _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'username', placeholder: 'Username', ref: 'username', onChange: this.handleChange, required: true }),
-	                                _react2.default.createElement('div', { className: 'error', id: 'usernameError' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'form-group' },
-	                                _react2.default.createElement(
-	                                    'label',
-	                                    { className: 'sr-only', htmlFor: 'password', id: 'passwordLabel' },
-	                                    'Password'
-	                                ),
-	                                _react2.default.createElement('input', { name: 'password', className: 'form-control', id: 'password', placeholder: 'Password', ref: 'password', onChange: this.handleChange, required: true }),
-	                                _react2.default.createElement('div', { className: 'error', id: 'passwordError' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'form-group' },
-	                                _react2.default.createElement(
-	                                    'button',
-	                                    { className: 'btn btn-primary', onClick: this.handleSubmit },
-	                                    'Login'
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Login;
-	}(_react2.default.Component);
-	
-	exports.default = Login;
-
-/***/ }),
-/* 380 */
-/*!***************************************!*\
-  !*** ./client/components/matching.js ***!
-  \***************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _class;
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _propTypes = __webpack_require__(/*! prop-types */ 371);
-	
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-	
-	var _mobxReact = __webpack_require__(/*! mobx-react */ 373);
-	
-	var _appStore = __webpack_require__(/*! ../store/appStore.js */ 375);
-	
-	var _appStore2 = _interopRequireDefault(_appStore);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 376);
-	
-	var matching = (0, _mobxReact.observer)(_class = function (_React$Component) {
-	    _inherits(matching, _React$Component);
-	
-	    function matching(props) {
-	        _classCallCheck(this, matching);
-	
-	        var _this = _possibleConstructorReturn(this, (matching.__proto__ || Object.getPrototypeOf(matching)).call(this, props));
-	
-	        _appStore2.default.fetchMatchingData(_this.props.params.trade);
-	        _this.state = {
-	            status: 'Pending',
-	            statusClass: 'btn btn-default'
-	        };
-	        return _this;
-	    }
-	
-	    _createClass(matching, [{
-	        key: 'render',
-	        value: function render() {
-	
-	            //get objects from store
-	            var matchingData = this.props.route.data.matchingData;
-	
-	
-	            switch (matchingData.promiseState) {
-	                case 'pending':
-	                    return _react2.default.createElement(
-	                        'div',
-	                        null,
-	                        ' Loading... '
-	                    );
-	
-	                case 'fulfilled':
-	
-	                    //set deal status
-	                    if (matchingData.data.DealStatus === "Matched") {
-	                        this.state = {
-	                            status: 'Matched',
-	                            statusClass: 'btn btn-success'
-	                        };
-	                    } else if (matchingData.data.DealStatus === "Unmatched") {
-	                        this.state = {
-	                            status: 'Unmatched',
-	                            statusClass: 'btn btn-warning'
-	                        };
-	                    }
-	
-	                    var getTableHead = function getTableHead() {
-	                        if (matchingData.data.TradeNumber.ValB !== "") {
-	                            return _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    'Type'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    'Trador 1'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    'Trador 2'
-	                                )
-	                            );
-	                        } else {
-	                            return _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    'Type'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    'Trador 1'
-	                                )
-	                            );
-	                        }
-	                    };
-	
-	                    //group item categories
-	
-	
-	                    var getTableBody = function getTableBody() {
-	                        var data = [];
-	
-	                        //no status is not pending
-	                        if (matchingData.data.TradeNumber.ValB === "") {
-	                            var matchingTable = Object.keys(matchingData.data).forEach(function (key) {
-	
-	                                if (key !== "DealStatus") {
-	                                    data.push(_react2.default.createElement(
-	                                        'tr',
-	                                        { key: uuidV1() },
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            key
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            matchingData.data[key].ValA
-	                                        )
-	                                    ));
-	                                }
-	                            });
-	                        } else {
-	                            var _matchingTable = Object.keys(matchingData.data).forEach(function (key) {
-	
-	                                if (key !== "DealStatus") {
-	                                    var statusClass = matchingData.data[key].Match === true ? "btn btn-success" : "btn btn-warning",
-	                                        status = matchingData.data[key].Match === true ? "Yes" : "No";
-	                                    data.push(_react2.default.createElement(
-	                                        'tr',
-	                                        { key: uuidV1() },
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            key
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            matchingData.data[key].ValA
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            matchingData.data[key].ValB
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            matchingData.data[key].Match,
-	                                            _react2.default.createElement(
-	                                                'button',
-	                                                { type: 'button', className: statusClass },
-	                                                status
-	                                            )
-	                                        )
-	                                    ));
-	                                }
-	                            });
-	                        }
-	
-	                        return data;
-	                    };
-	
-	                    //render html
-	
-	
-	                    return _react2.default.createElement(
-	                        'div',
-	                        null,
-	                        _react2.default.createElement(
-	                            'h2',
-	                            null,
-	                            'Deal Matching'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'well' },
-	                            _react2.default.createElement(
-	                                'span',
-	                                { className: 'pull-left' },
-	                                ' ',
-	                                _react2.default.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Deal Status'
-	                                ),
-	                                ' '
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                { className: 'pull-right' },
-	                                ' ',
-	                                _react2.default.createElement(
-	                                    'button',
-	                                    { type: 'button', className: this.state.statusClass },
-	                                    this.state.status
-	                                ),
-	                                ' '
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'table',
-	                            { className: 'table table-striped table-responsive' },
-	                            _react2.default.createElement(
-	                                'thead',
-	                                null,
-	                                getTableHead()
-	                            ),
-	                            _react2.default.createElement(
-	                                'tbody',
-	                                null,
-	                                getTableBody()
-	                            )
-	                        )
-	                    );
-	                case 'rejected':
-	                    return _react2.default.createElement(
-	                        'div',
-	                        null,
-	                        ' No trades available. '
-	                    );
-	            }
-	        }
-	    }]);
-	
-	    return matching;
-	}(_react2.default.Component)) || _class;
-	
-	exports.default = matching;
-
-/***/ }),
-/* 381 */
 /*!****************************************************!*\
   !*** ./~/isomorphic-fetch/fetch-npm-browserify.js ***!
   \****************************************************/
@@ -53784,12 +53059,12 @@
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(/*! whatwg-fetch */ 382);
+	__webpack_require__(/*! whatwg-fetch */ 377);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ }),
-/* 382 */
+/* 377 */
 /*!*********************************!*\
   !*** ./~/whatwg-fetch/fetch.js ***!
   \*********************************/
@@ -54259,7 +53534,7 @@
 
 
 /***/ }),
-/* 383 */
+/* 378 */
 /*!****************************************!*\
   !*** ./~/mobx-utils/lib/mobx-utils.js ***!
   \****************************************/
@@ -54269,21 +53544,21 @@
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(/*! ./from-promise */ 384));
-	__export(__webpack_require__(/*! ./lazy-observable */ 386));
-	__export(__webpack_require__(/*! ./from-resource */ 387));
-	__export(__webpack_require__(/*! ./observable-stream */ 388));
-	__export(__webpack_require__(/*! ./create-view-model */ 389));
-	__export(__webpack_require__(/*! ./guarded-when */ 390));
-	__export(__webpack_require__(/*! ./keep-alive */ 391));
-	__export(__webpack_require__(/*! ./queue-processor */ 392));
-	__export(__webpack_require__(/*! ./chunk-processor */ 393));
-	__export(__webpack_require__(/*! ./now */ 394));
-	__export(__webpack_require__(/*! ./utils */ 385));
+	__export(__webpack_require__(/*! ./from-promise */ 379));
+	__export(__webpack_require__(/*! ./lazy-observable */ 381));
+	__export(__webpack_require__(/*! ./from-resource */ 382));
+	__export(__webpack_require__(/*! ./observable-stream */ 383));
+	__export(__webpack_require__(/*! ./create-view-model */ 384));
+	__export(__webpack_require__(/*! ./guarded-when */ 385));
+	__export(__webpack_require__(/*! ./keep-alive */ 386));
+	__export(__webpack_require__(/*! ./queue-processor */ 387));
+	__export(__webpack_require__(/*! ./chunk-processor */ 388));
+	__export(__webpack_require__(/*! ./now */ 389));
+	__export(__webpack_require__(/*! ./utils */ 380));
 
 
 /***/ }),
-/* 384 */
+/* 379 */
 /*!******************************************!*\
   !*** ./~/mobx-utils/lib/from-promise.js ***!
   \******************************************/
@@ -54291,7 +53566,7 @@
 
 	"use strict";
 	var mobx_1 = __webpack_require__(/*! mobx */ 374);
-	var utils_1 = __webpack_require__(/*! ./utils */ 385);
+	var utils_1 = __webpack_require__(/*! ./utils */ 380);
 	exports.PENDING = "pending";
 	exports.FULFILLED = "fulfilled";
 	exports.REJECTED = "rejected";
@@ -54396,7 +53671,7 @@
 
 
 /***/ }),
-/* 385 */
+/* 380 */
 /*!***********************************!*\
   !*** ./~/mobx-utils/lib/utils.js ***!
   \***********************************/
@@ -54422,14 +53697,14 @@
 
 
 /***/ }),
-/* 386 */
+/* 381 */
 /*!*********************************************!*\
   !*** ./~/mobx-utils/lib/lazy-observable.js ***!
   \*********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var utils_1 = __webpack_require__(/*! ./utils */ 385);
+	var utils_1 = __webpack_require__(/*! ./utils */ 380);
 	var mobx_1 = __webpack_require__(/*! mobx */ 374);
 	/**
 	 * `lazyObservable` creates an observable around a `fetch` method that will not be invoked
@@ -54504,7 +53779,7 @@
 
 
 /***/ }),
-/* 387 */
+/* 382 */
 /*!*******************************************!*\
   !*** ./~/mobx-utils/lib/from-resource.js ***!
   \*******************************************/
@@ -54512,7 +53787,7 @@
 
 	"use strict";
 	var mobx_1 = __webpack_require__(/*! mobx */ 374);
-	var utils_1 = __webpack_require__(/*! ./utils */ 385);
+	var utils_1 = __webpack_require__(/*! ./utils */ 380);
 	/**
 	 * `fromResource` creates an observable which current state can be inspected using `.current()`,
 	 * and which can be kept in sync with some external datasource that can be subscribed to.
@@ -54618,7 +53893,7 @@
 
 
 /***/ }),
-/* 388 */
+/* 383 */
 /*!***********************************************!*\
   !*** ./~/mobx-utils/lib/observable-stream.js ***!
   \***********************************************/
@@ -54752,7 +54027,7 @@
 
 
 /***/ }),
-/* 389 */
+/* 384 */
 /*!***********************************************!*\
   !*** ./~/mobx-utils/lib/create-view-model.js ***!
   \***********************************************/
@@ -54766,7 +54041,7 @@
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	var mobx_1 = __webpack_require__(/*! mobx */ 374);
-	var utils_1 = __webpack_require__(/*! ./utils */ 385);
+	var utils_1 = __webpack_require__(/*! ./utils */ 380);
 	var RESERVED_NAMES = ["model", "reset", "submit", "isDirty", "isPropertyDirty"];
 	var ViewModel = (function () {
 	    function ViewModel(model) {
@@ -54891,7 +54166,7 @@
 
 
 /***/ }),
-/* 390 */
+/* 385 */
 /*!******************************************!*\
   !*** ./~/mobx-utils/lib/guarded-when.js ***!
   \******************************************/
@@ -54952,7 +54227,7 @@
 
 
 /***/ }),
-/* 391 */
+/* 386 */
 /*!****************************************!*\
   !*** ./~/mobx-utils/lib/keep-alive.js ***!
   \****************************************/
@@ -54998,7 +54273,7 @@
 
 
 /***/ }),
-/* 392 */
+/* 387 */
 /*!*********************************************!*\
   !*** ./~/mobx-utils/lib/queue-processor.js ***!
   \*********************************************/
@@ -55048,7 +54323,7 @@
 
 
 /***/ }),
-/* 393 */
+/* 388 */
 /*!*********************************************!*\
   !*** ./~/mobx-utils/lib/chunk-processor.js ***!
   \*********************************************/
@@ -55110,14 +54385,14 @@
 
 
 /***/ }),
-/* 394 */
+/* 389 */
 /*!*********************************!*\
   !*** ./~/mobx-utils/lib/now.js ***!
   \*********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var from_resource_1 = __webpack_require__(/*! ./from-resource */ 387);
+	var from_resource_1 = __webpack_require__(/*! ./from-resource */ 382);
 	var tickers = ({});
 	/**
 	 * Returns the current date time as epoch number.
@@ -55181,7 +54456,7 @@
 
 
 /***/ }),
-/* 395 */
+/* 390 */
 /*!*************************************!*\
   !*** ./~/mobx-promise/lib/index.js ***!
   \*************************************/
@@ -55303,6 +54578,861 @@
 	
 	})));
 
+
+/***/ }),
+/* 391 */
+/*!**********************!*\
+  !*** ./~/uuid/v1.js ***!
+  \**********************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	// Unique ID creation requires a high quality random # generator.  We feature
+	// detect to determine the best RNG source, normalizing to a function that
+	// returns 128-bits of randomness, since that's what's usually required
+	var rng = __webpack_require__(/*! ./lib/rng */ 392);
+	var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ 393);
+	
+	// **`v1()` - Generate time-based UUID**
+	//
+	// Inspired by https://github.com/LiosK/UUID.js
+	// and http://docs.python.org/library/uuid.html
+	
+	// random #'s we need to init node and clockseq
+	var _seedBytes = rng();
+	
+	// Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
+	var _nodeId = [
+	  _seedBytes[0] | 0x01,
+	  _seedBytes[1], _seedBytes[2], _seedBytes[3], _seedBytes[4], _seedBytes[5]
+	];
+	
+	// Per 4.2.2, randomize (14 bit) clockseq
+	var _clockseq = (_seedBytes[6] << 8 | _seedBytes[7]) & 0x3fff;
+	
+	// Previous uuid creation time
+	var _lastMSecs = 0, _lastNSecs = 0;
+	
+	// See https://github.com/broofa/node-uuid for API details
+	function v1(options, buf, offset) {
+	  var i = buf && offset || 0;
+	  var b = buf || [];
+	
+	  options = options || {};
+	
+	  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq;
+	
+	  // UUID timestamps are 100 nano-second units since the Gregorian epoch,
+	  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
+	  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
+	  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
+	  var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime();
+	
+	  // Per 4.2.1.2, use count of uuid's generated during the current clock
+	  // cycle to simulate higher resolution clock
+	  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
+	
+	  // Time since last uuid creation (in msecs)
+	  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
+	
+	  // Per 4.2.1.2, Bump clockseq on clock regression
+	  if (dt < 0 && options.clockseq === undefined) {
+	    clockseq = clockseq + 1 & 0x3fff;
+	  }
+	
+	  // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+	  // time interval
+	  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
+	    nsecs = 0;
+	  }
+	
+	  // Per 4.2.1.2 Throw error if too many uuids are requested
+	  if (nsecs >= 10000) {
+	    throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
+	  }
+	
+	  _lastMSecs = msecs;
+	  _lastNSecs = nsecs;
+	  _clockseq = clockseq;
+	
+	  // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
+	  msecs += 12219292800000;
+	
+	  // `time_low`
+	  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
+	  b[i++] = tl >>> 24 & 0xff;
+	  b[i++] = tl >>> 16 & 0xff;
+	  b[i++] = tl >>> 8 & 0xff;
+	  b[i++] = tl & 0xff;
+	
+	  // `time_mid`
+	  var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
+	  b[i++] = tmh >>> 8 & 0xff;
+	  b[i++] = tmh & 0xff;
+	
+	  // `time_high_and_version`
+	  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
+	  b[i++] = tmh >>> 16 & 0xff;
+	
+	  // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
+	  b[i++] = clockseq >>> 8 | 0x80;
+	
+	  // `clock_seq_low`
+	  b[i++] = clockseq & 0xff;
+	
+	  // `node`
+	  var node = options.node || _nodeId;
+	  for (var n = 0; n < 6; ++n) {
+	    b[i + n] = node[n];
+	  }
+	
+	  return buf ? buf : bytesToUuid(b);
+	}
+	
+	module.exports = v1;
+
+
+/***/ }),
+/* 392 */
+/*!***********************************!*\
+  !*** ./~/uuid/lib/rng-browser.js ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
+	// browser this is a little complicated due to unknown quality of Math.random()
+	// and inconsistent support for the `crypto` API.  We do the best we can via
+	// feature-detection
+	var rng;
+	
+	var crypto = global.crypto || global.msCrypto; // for IE 11
+	if (crypto && crypto.getRandomValues) {
+	  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+	  var rnds8 = new Uint8Array(16);
+	  rng = function whatwgRNG() {
+	    crypto.getRandomValues(rnds8);
+	    return rnds8;
+	  };
+	}
+	
+	if (!rng) {
+	  // Math.random()-based (RNG)
+	  //
+	  // If all else fails, use Math.random().  It's fast, but is of unspecified
+	  // quality.
+	  var  rnds = new Array(16);
+	  rng = function() {
+	    for (var i = 0, r; i < 16; i++) {
+	      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+	      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+	    }
+	
+	    return rnds;
+	  };
+	}
+	
+	module.exports = rng;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 393 */
+/*!***********************************!*\
+  !*** ./~/uuid/lib/bytesToUuid.js ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	/**
+	 * Convert array of 16 byte values to UUID string format of the form:
+	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+	 */
+	var byteToHex = [];
+	for (var i = 0; i < 256; ++i) {
+	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+	}
+	
+	function bytesToUuid(buf, offset) {
+	  var i = offset || 0;
+	  var bth = byteToHex;
+	  return  bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]];
+	}
+	
+	module.exports = bytesToUuid;
+
+
+/***/ }),
+/* 394 */
+/*!************************************!*\
+  !*** ./client/components/login.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 182);
+	
+	var _appStore = __webpack_require__(/*! ../store/appStore.js */ 375);
+	
+	var _appStore2 = _interopRequireDefault(_appStore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Login = function (_React$Component) {
+	    _inherits(Login, _React$Component);
+	
+	    function Login(props) {
+	        _classCallCheck(this, Login);
+	
+	        //signout user if exist
+	        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+	
+	        _appStore2.default.updateUserSession(false);
+	
+	        _this.state = {
+	            username: '',
+	            password: ''
+	        };
+	
+	        _this.handleChange = _this.handleChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        return _this;
+	    }
+	
+	    //update current field state on change 
+	
+	
+	    _createClass(Login, [{
+	        key: 'handleChange',
+	        value: function handleChange(e) {
+	            //add active class
+	            e.target.classList.add('active');
+	
+	            //set state
+	            this.setState(_defineProperty({}, e.target.name, e.target.value));
+	
+	            //validate and show error
+	            this.showInputError(e.target.name);
+	        }
+	
+	        //handle form submission 
+	
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(e) {
+	            e.preventDefault();
+	
+	            if (!this.showFormErrors()) {
+	                console.log('form is invalid: do not submit');
+	            } else {
+	                console.log('form is valid: submit');
+	
+	                //create object to send 
+	                var form = { 'username': this.state.username, 'password': this.state.password };
+	                console.log(form);
+	
+	                //redirect user to dashbaord page 
+	                fetch('/login', {
+	                    method: 'POST',
+	                    body: JSON.stringify(form),
+	                    headers: { 'Content-Type': 'application/json' }
+	                }).then(function (res) {
+	                    return res.json();
+	                }).then(function (json) {
+	
+	                    console.log(json);
+	                    _appStore2.default.setUser(json); //set user to appstore
+	                    _appStore2.default.updateUserSession(true);
+	
+	                    if (json.success) {
+	                        _reactRouter.browserHistory.push('/listing');
+	                    } else {
+	                        alert("Invalid credentials. Try again!!");
+	                    }
+	                });
+	            }
+	        }
+	
+	        //reset form
+	
+	    }, {
+	        key: 'resetForm',
+	        value: function resetForm() {
+	            //get all input and select menus of form, if new form fields will introduce it will handle automatically 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            //traverse input fields
+	            inputs.forEach(function (input) {
+	                input.classList.remove('active');
+	                input.value = "";
+	            });
+	
+	            //traverse select fields 
+	            selects.forEach(function (select) {
+	                select.classList.remove('active');
+	                select.value = "";
+	            });
+	        }
+	
+	        //show errors
+	
+	    }, {
+	        key: 'showFormErrors',
+	        value: function showFormErrors() {
+	            var _this2 = this;
+	
+	            //get form fields 
+	            var inputs = document.querySelectorAll('input');
+	            var selects = document.querySelectorAll('select');
+	
+	            var isFormValid = true;
+	
+	            //traverse input fields 
+	            inputs.forEach(function (input) {
+	                //add error
+	                input.classList.add('active');
+	
+	                var isInputValid = _this2.showInputError(input.name);
+	
+	                if (!isInputValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            //traverse select menu fields
+	            selects.forEach(function (select) {
+	                //add error
+	                select.classList.add('active');
+	
+	                var isSelectValid = _this2.showInputError(select.name);
+	
+	                if (!isSelectValid) {
+	                    isFormValid = false;
+	                }
+	            });
+	
+	            return isFormValid;
+	        }
+	
+	        //validate input fields 
+	
+	    }, {
+	        key: 'showInputError',
+	        value: function showInputError(refName) {
+	            //fetch field
+	            var validity = this.refs[refName].validity;
+	            var label = document.getElementById(refName + 'Label').textContent;
+	            var error = document.getElementById(refName + 'Error');
+	
+	            //validate field
+	            if (!validity.valid) {
+	                if (validity.valueMissing) {
+	                    error.textContent = label + ' is a required field';
+	                } else if (validity.patternMismatch) {
+	                    error.textContent = label + ' price should be in digits';
+	                }
+	                return false;
+	            }
+	
+	            //update error message
+	            error.textContent = '';
+	            return true;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3' },
+	                        _react2.default.createElement(
+	                            'form',
+	                            { id: 'login', name: 'login', method: 'post', action: '/listing', noValidate: true },
+	                            _react2.default.createElement(
+	                                'h2',
+	                                { className: 'form-signin-heading' },
+	                                'Login'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'form-group' },
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    { className: 'sr-only', htmlFor: 'username', id: 'usernameLabel' },
+	                                    'Username'
+	                                ),
+	                                _react2.default.createElement('input', { name: 'username', className: 'form-control', id: 'username', placeholder: 'Username', ref: 'username', onChange: this.handleChange, required: true }),
+	                                _react2.default.createElement('div', { className: 'error', id: 'usernameError' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'form-group' },
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    { className: 'sr-only', htmlFor: 'password', id: 'passwordLabel' },
+	                                    'Password'
+	                                ),
+	                                _react2.default.createElement('input', { name: 'password', className: 'form-control', id: 'password', placeholder: 'Password', ref: 'password', onChange: this.handleChange, required: true }),
+	                                _react2.default.createElement('div', { className: 'error', id: 'passwordError' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'form-group' },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-primary', onClick: this.handleSubmit },
+	                                    'Login'
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Login;
+	}(_react2.default.Component);
+	
+	exports.default = Login;
+
+/***/ }),
+/* 395 */
+/*!***************************************!*\
+  !*** ./client/components/matching.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _class;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 371);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _mobxReact = __webpack_require__(/*! mobx-react */ 373);
+	
+	var _appStore = __webpack_require__(/*! ../store/appStore.js */ 375);
+	
+	var _appStore2 = _interopRequireDefault(_appStore);
+	
+	var _header = __webpack_require__(/*! ../components/header.js */ 396);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var uuidV1 = __webpack_require__(/*! uuid/v1 */ 391);
+	
+	var matching = (0, _mobxReact.observer)(_class = function (_React$Component) {
+	    _inherits(matching, _React$Component);
+	
+	    function matching(props) {
+	        _classCallCheck(this, matching);
+	
+	        var _this = _possibleConstructorReturn(this, (matching.__proto__ || Object.getPrototypeOf(matching)).call(this, props));
+	
+	        _appStore2.default.fetchMatchingData(_this.props.params.trade);
+	        _this.state = {
+	            status: 'Pending',
+	            statusClass: 'btn btn-default'
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(matching, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            //get objects from store
+	            var matchingData = this.props.route.data.matchingData;
+	
+	
+	            switch (matchingData.promiseState) {
+	                case 'pending':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        ' Loading... '
+	                    );
+	
+	                case 'fulfilled':
+	
+	                    //set deal status
+	                    if (matchingData.data.DealStatus === "Matched") {
+	                        this.state = {
+	                            status: 'Matched',
+	                            statusClass: 'btn btn-success'
+	                        };
+	                    } else if (matchingData.data.DealStatus === "Unmatched") {
+	                        this.state = {
+	                            status: 'Unmatched',
+	                            statusClass: 'btn btn-warning'
+	                        };
+	                    }
+	
+	                    var getTableHead = function getTableHead() {
+	                        if (matchingData.data.TradeNumber.ValB !== "") {
+	                            return _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Type'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Trador 1'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Trador 2'
+	                                )
+	                            );
+	                        } else {
+	                            return _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Type'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Trador 1'
+	                                )
+	                            );
+	                        }
+	                    };
+	
+	                    //group item categories
+	
+	
+	                    var getTableBody = function getTableBody() {
+	                        var data = [];
+	
+	                        //no status is not pending
+	                        if (matchingData.data.TradeNumber.ValB === "") {
+	                            var matchingTable = Object.keys(matchingData.data).forEach(function (key) {
+	
+	                                if (key !== "DealStatus") {
+	                                    data.push(_react2.default.createElement(
+	                                        'tr',
+	                                        { key: uuidV1() },
+	                                        _react2.default.createElement(
+	                                            'td',
+	                                            null,
+	                                            key
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'td',
+	                                            null,
+	                                            matchingData.data[key].ValA
+	                                        )
+	                                    ));
+	                                }
+	                            });
+	                        } else {
+	                            var _matchingTable = Object.keys(matchingData.data).forEach(function (key) {
+	
+	                                if (key !== "DealStatus") {
+	                                    var statusClass = matchingData.data[key].Match === true ? "btn btn-success" : "btn btn-warning",
+	                                        status = matchingData.data[key].Match === true ? "Yes" : "No";
+	                                    data.push(_react2.default.createElement(
+	                                        'tr',
+	                                        { key: uuidV1() },
+	                                        _react2.default.createElement(
+	                                            'td',
+	                                            null,
+	                                            key
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'td',
+	                                            null,
+	                                            matchingData.data[key].ValA
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'td',
+	                                            null,
+	                                            matchingData.data[key].ValB
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'td',
+	                                            null,
+	                                            matchingData.data[key].Match,
+	                                            _react2.default.createElement(
+	                                                'button',
+	                                                { type: 'button', className: statusClass },
+	                                                status
+	                                            )
+	                                        )
+	                                    ));
+	                                }
+	                            });
+	                        }
+	
+	                        return data;
+	                    };
+	
+	                    //render html
+	
+	
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(_header2.default, null),
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            'Deal Matching'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'well' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'pull-left' },
+	                                ' ',
+	                                _react2.default.createElement(
+	                                    'strong',
+	                                    null,
+	                                    'Deal Status'
+	                                ),
+	                                ' '
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'pull-right' },
+	                                ' ',
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { type: 'button', className: this.state.statusClass },
+	                                    this.state.status
+	                                ),
+	                                ' '
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'table',
+	                            { className: 'table table-striped table-responsive' },
+	                            _react2.default.createElement(
+	                                'thead',
+	                                null,
+	                                getTableHead()
+	                            ),
+	                            _react2.default.createElement(
+	                                'tbody',
+	                                null,
+	                                getTableBody()
+	                            )
+	                        )
+	                    );
+	                case 'rejected':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        ' No trades available. '
+	                    );
+	            }
+	        }
+	    }]);
+	
+	    return matching;
+	}(_react2.default.Component)) || _class;
+	
+	exports.default = matching;
+
+/***/ }),
+/* 396 */
+/*!*************************************!*\
+  !*** ./client/components/header.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _class;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 371);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _mobxReact = __webpack_require__(/*! mobx-react */ 373);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 182);
+	
+	var _appStore = __webpack_require__(/*! ../store/appStore.js */ 375);
+	
+	var _appStore2 = _interopRequireDefault(_appStore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var header = (0, _mobxReact.observer)(_class = function (_React$Component) {
+	    _inherits(header, _React$Component);
+	
+	    function header() {
+	        _classCallCheck(this, header);
+	
+	        return _possibleConstructorReturn(this, (header.__proto__ || Object.getPrototypeOf(header)).apply(this, arguments));
+	    }
+	
+	    _createClass(header, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            function loadMenu() {
+	
+	                var isLoggedIn = _appStore2.default.getUserSession();
+	
+	                return isLoggedIn === true ? _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-9' },
+	                        _react2.default.createElement(
+	                            'nav',
+	                            { className: 'navbar navbar-default' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'container-fluid' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'navbar-header' },
+	                                    _react2.default.createElement('a', { className: 'navbar-brand', href: '#' })
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	                                    _react2.default.createElement(
+	                                        'ul',
+	                                        { className: 'nav navbar-nav' },
+	                                        _react2.default.createElement(
+	                                            'li',
+	                                            null,
+	                                            _react2.default.createElement(
+	                                                _reactRouter.Link,
+	                                                { to: '/listing', activeClassName: 'active' },
+	                                                'Listing'
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'li',
+	                                            null,
+	                                            _react2.default.createElement(
+	                                                _reactRouter.Link,
+	                                                { to: '/addTrade', activeClassName: 'active' },
+	                                                'Add Trade'
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'li',
+	                                            null,
+	                                            _react2.default.createElement(
+	                                                _reactRouter.Link,
+	                                                { to: '/', activeClassName: 'active' },
+	                                                'Signout'
+	                                            )
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-3' },
+	                        _react2.default.createElement('img', { className: 'logo', src: '../../logos/nippon.png' })
+	                    )
+	                ) : _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    ' '
+	                );
+	            }
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                loadMenu()
+	            );
+	        }
+	    }]);
+	
+	    return header;
+	}(_react2.default.Component)) || _class;
+	
+	exports.default = header;
 
 /***/ })
 /******/ ]);

@@ -48,3 +48,7 @@ select.active:invalid {
 .react-datepicker{
     font-size: 1em;
 }
+
+.logo{
+    width:50%;
+}
