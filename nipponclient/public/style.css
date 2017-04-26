@@ -24,6 +24,7 @@ select.active:invalid {
     color: red;
     font-size: 12px;
     margin-top: 5px;
+    text-align: left;
 }
 
 .productTable{
@@ -37,10 +38,6 @@ select.active:invalid {
     max-width : 400px;
 }
 
-.well{
-    height: 75px;
-}
-
 .react-datepicker__input-container{
     display: block;
 }
@@ -51,4 +48,17 @@ select.active:invalid {
 
 .logo{
     width:50%;
+}
+
+.login-form{
+    margin: 0px auto;
+    margin-top: 1em;
+}
+
+.login-logo{
+    width: 100px;
+}
+
+.well{
+    min-height : 75px;
 }

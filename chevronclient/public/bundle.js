@@ -28716,7 +28716,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_header2.default, null),
+	                _react2.default.createElement(_header2.default, { data: this.props.route.data }),
 	                _react2.default.createElement(
 	                    'h4',
 	                    { className: 'form-signin-heading' },
@@ -48164,7 +48164,7 @@
 	                    return _react2.default.createElement(
 	                        'div',
 	                        { className: 'productTable ' },
-	                        _react2.default.createElement(_header2.default, null),
+	                        _react2.default.createElement(_header2.default, { data: this.props.route.data }),
 	                        _react2.default.createElement(
 	                            'h2',
 	                            null,
@@ -55233,7 +55233,7 @@
 	                    return _react2.default.createElement(
 	                        'div',
 	                        null,
-	                        _react2.default.createElement(_header2.default, null),
+	                        _react2.default.createElement(_header2.default, { data: this.props.route.data }),
 	                        _react2.default.createElement(
 	                            'h2',
 	                            null,
@@ -55340,17 +55340,32 @@
 	var header = (0, _mobxReact.observer)(_class = function (_React$Component) {
 	    _inherits(header, _React$Component);
 	
-	    function header() {
+	    function header(props) {
 	        _classCallCheck(this, header);
 	
-	        return _possibleConstructorReturn(this, (header.__proto__ || Object.getPrototypeOf(header)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (header.__proto__ || Object.getPrototypeOf(header)).call(this, props));
+	
+	        _this.state = {
+	            orgLogo: "../../logos/logo.png"
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(header, [{
 	        key: 'render',
 	        value: function render() {
+	            var _props$data = this.props.data,
+	                organisationsList = _props$data.organisationsList,
+	                currentUser = _props$data.currentUser,
+	                getOrganisation = _props$data.getOrganisation;
 	
-	            function loadMenu() {
+	
+	            var org = getOrganisation(organisationsList, { id: currentUser.orgId });
+	            this.state.orgLogo = "../../logos/" + org.logo;
+	
+	            console.log(this.state.orgLogo);
+	
+	            function loadMenu(logo) {
 	
 	                var isLoggedIn = _appStore2.default.getUserSession();
 	
@@ -55412,7 +55427,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-md-3' },
-	                        _react2.default.createElement('img', { className: 'logo', src: '../../logos/nippon.png' })
+	                        _react2.default.createElement('img', { id: 'logo', className: 'logo', src: logo })
 	                    )
 	                ) : _react2.default.createElement(
 	                    'div',
@@ -55424,7 +55439,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                loadMenu()
+	                loadMenu(this.state.orgLogo)
 	            );
 	        }
 	    }]);

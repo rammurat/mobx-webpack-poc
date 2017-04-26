@@ -1,19 +1,20 @@
 {
   "organisations": [{
         "id" : "CHV",
-        "name" : "Chevron Products a Division of Chevorn USA"
+        "name" : "Chevron Products a Division of Chevorn USA",
+		"logo" : "chevron.png"
     },{
         "id" : "NPN",
-        "name" : "Nippon"
+        "name" : "Nippon",
+		"logo" : "nippon.png"
     },{
-        "id" : "IOC",
-        "name" : "Indian Oil Corporation"
-    },{
-        "id" : "BPL",
-        "name" : "BP"
+        "id" : "MRC",
+        "name" : "Mercuria Energy Group",
+		"logo" : "mercuria.png"
     },{
         "id" : "SHL",
-        "name" : "Shell"
+        "name" : "Shell",
+		"logo" : "shell.png"
     }],
     "users": [{
         "id" : "1",

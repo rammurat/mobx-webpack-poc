@@ -12,6 +12,8 @@ export default class addTrade extends React.Component {
       constructor(props) {
         super(props);
 
+        moment().format('DD-MM-YYYY');
+
         this.state = {
             tradeNumber: '',
             buyerName: '',
@@ -139,9 +141,9 @@ export default class addTrade extends React.Component {
                 quantityUOM: this.state.quantityUOM,
                 totalQuantity: this.state.totalQuantity,
                 totalQuantityUOM: this.state.totalQuantityUOM,
-                tradeDate: this.state.tradeDate._d,
-                startDate: this.state.startDate._d,
-                endDate: this.state.endDate._d,
+                tradeDate: moment(this.state.tradeDate._d).format('DD-MM-YYYY'),
+                startDate: moment(this.state.startDate._d).format('DD-MM-YYYY'),
+                endDate: moment(this.state.endDate._d).format('DD-MM-YYYY'),
                 productCode: this.state.productCode,
                 deliveryLocation: this.state.deliveryLocation,
                 paymetDays: this.state.paymetDays,
@@ -312,7 +314,7 @@ export default class addTrade extends React.Component {
 
     return (
         <div>
-            <Header/>
+            <Header data={this.props.route.data}/>
             <h4 className="form-signin-heading">Add Trade</h4>
             <div className="row">
                 <form className="form-horizontal"  id="addTrade" name="addTrade" method="post" action="/listing" noValidate>

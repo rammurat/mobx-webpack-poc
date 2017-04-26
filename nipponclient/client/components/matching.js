@@ -5,6 +5,7 @@ const uuidV1 = require('uuid/v1');
 
 import AppStore from '../store/appStore.js';
 import Header from '../components/header.js';
+import utils from '../utils/utils.js';
 
 @observer
 export default class matching extends React.Component{
@@ -64,7 +65,7 @@ export default class matching extends React.Component{
                     if(matchingData.data.TradeNumber.ValB === ""){
                         const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
                             
-                            if(key !== "DealStatus"){
+                            if(key !== "DealStatus" && key !== "BuyerID" && key !== "DealStatus" && key !== "SellerID" && key !== "Owner" && key !== "CreatorUser"){
                                 data.push(<tr key={uuidV1()}>
                                     <td>{key}</td>
                                     <td>{matchingData.data[key].ValA}</td>
@@ -74,7 +75,7 @@ export default class matching extends React.Component{
                     }else{
                         const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
                             
-                            if(key !== "DealStatus"){
+                            if(key !== "DealStatus" && key !== "BuyerID" && key !== "DealStatus" && key !== "SellerID" && key !== "Owner" && key !== "CreatorUser"){
                                 var statusClass = (matchingData.data[key].Match === true) ? "btn btn-success" : "btn btn-warning",
                                     status = (matchingData.data[key].Match === true) ? "Yes" : "No"
                                 data.push(<tr key={uuidV1()}>
@@ -92,7 +93,7 @@ export default class matching extends React.Component{
                 
                 //render html
                 return <div>
-                    <Header/>
+                    <Header data={this.props.route.data}/>
                     <h2>Deal Matching</h2>
                     <div className="well">
                         <span className="pull-left"> <strong>Deal Status</strong> </span> 

@@ -92,7 +92,7 @@ export default class matching extends React.Component{
                 
                 //render html
                 return <div>
-                    <Header/>
+                    <Header data={this.props.route.data}/>
                     <h2>Deal Matching</h2>
                     <div className="well">
                         <span className="pull-left"> <strong>Deal Status</strong> </span> 

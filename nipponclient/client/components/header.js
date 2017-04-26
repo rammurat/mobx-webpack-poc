@@ -7,16 +7,28 @@ import AppStore from '../store/appStore.js';
 
 @observer
 export default class header extends React.Component{
-    
-    render(){
+    constructor(props) {
+        super(props);
+        this.state = {
+            orgLogo : "../../logos/logo.png"
+        }
+    };
 
-        function loadMenu(){
+    render(){
+        const { organisationsList,currentUser,getOrganisation } = this.props.data;
+
+        let org = getOrganisation(organisationsList,{id : currentUser.orgId});
+        this.state.orgLogo = "../../logos/" + org.logo;
+
+        console.log(this.state.orgLogo);
+
+        function loadMenu(logo){
 
             const isLoggedIn = AppStore.getUserSession();
             
             return (isLoggedIn === true) ? (
             <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-10">
                     <nav className="navbar navbar-default">
                         <div className="container-fluid">
                             <div className="navbar-header">
@@ -33,15 +45,15 @@ export default class header extends React.Component{
                         </div>
                     </nav>
                 </div>
-                <div className="col-md-3">
-                    <img className="logo" src="../../logos/nippon.png"/>
+                <div className="col-md-2">
+                    <img id="logo" className="logo pull-right" src={logo}/>
                 </div>
             </div>) : ( <div> </div>)
         }
 
         return(
             <div>
-                {loadMenu()}
+                {loadMenu(this.state.orgLogo)}
             </div>
         );
     }
