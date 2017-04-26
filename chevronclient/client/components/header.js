@@ -28,7 +28,7 @@ export default class header extends React.Component{
             
             return (isLoggedIn === true) ? (
             <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-10">
                     <nav className="navbar navbar-default">
                         <div className="container-fluid">
                             <div className="navbar-header">
@@ -45,8 +45,8 @@ export default class header extends React.Component{
                         </div>
                     </nav>
                 </div>
-                <div className="col-md-3">
-                    <img id="logo" className="logo" src={logo}/>
+                <div className="col-md-2">
+                    <img id="logo" className="logo pull-right" src={logo}/>
                 </div>
             </div>) : ( <div> </div>)
         }

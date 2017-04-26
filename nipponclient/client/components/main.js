@@ -9,9 +9,7 @@ class Main extends Component {
 
         return(
             <div>
-                <div className="container">
-                    {this.props.children}
-                </div>
+                {this.props.children}
             </div>
         );
     }

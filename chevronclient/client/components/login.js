@@ -150,25 +150,26 @@ export default class Login extends React.Component {
   render() {
     return (
         <div>
-            <div className="row">
-                <div className="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                    <form  id="login" name="login" method="post" action="/listing" noValidate>
-                        <h2 className="form-signin-heading">Login</h2>
-                        <div className="form-group">
-                            <label className="sr-only" htmlFor="username" id="usernameLabel">Username</label>
-                            <input name="username" className="form-control" id="username" placeholder="Username" ref="username" onChange={ this.handleChange } required/>
-                            <div className="error" id="usernameError" />
-                        </div>
-                        <div className="form-group">
-                            <label className="sr-only" htmlFor="password" id="passwordLabel">Password</label>
-                            <input name="password" className="form-control" id="password" placeholder="Password" ref="password" onChange={ this.handleChange } required/>
-                            <div className="error" id="passwordError" />
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-primary" onClick={this.handleSubmit}>Login</button>
-                        </div>
-                    </form>
-                </div>
+            <div className="row text-center">
+                <img className="login-logo" src="../../logos/chevron.png"/>
+            </div>
+            <div className="row text-center">
+                <form  id="login" className="login-form well" name="login" method="post" action="/listing" noValidate>
+                    <h2 className="form-signin-heading">Login</h2>
+                    <div className="form-group">
+                        <label className="sr-only" htmlFor="username" id="usernameLabel">Username</label>
+                        <input name="username" className="form-control" id="username" placeholder="Username" ref="username" onChange={ this.handleChange } required/>
+                        <div className="error" id="usernameError" />
+                    </div>
+                    <div className="form-group">
+                        <label className="sr-only" htmlFor="password" id="passwordLabel">Password</label>
+                        <input name="password" className="form-control" id="password" placeholder="Password" ref="password" onChange={ this.handleChange } required/>
+                        <div className="error" id="passwordError" />
+                    </div>
+                    <div className="form-group">
+                        <button className="btn btn-primary" onClick={this.handleSubmit}>Login</button>
+                    </div>
+                </form>
             </div>
         </div>
     );

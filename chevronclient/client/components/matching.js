@@ -5,6 +5,7 @@ const uuidV1 = require('uuid/v1');
 
 import AppStore from '../store/appStore.js';
 import Header from '../components/header.js';
+import {keyMapping} from '../utils/utils.js';
 
 @observer
 export default class matching extends React.Component{
@@ -47,6 +48,7 @@ export default class matching extends React.Component{
                             <th>Type</th>  
                             <th>Trador 1</th>
                             <th>Trador 2</th>
+                            <th>Status</th>
                         </tr>)
                     }else{
                         return(<tr>
@@ -64,9 +66,9 @@ export default class matching extends React.Component{
                     if(matchingData.data.TradeNumber.ValB === ""){
                         const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
                             
-                            if(key !== "DealStatus"){
+                            if(key !== "DealStatus" && key !== "BuyerID" && key !== "DealStatus" && key !== "SellerID" && key !== "Owner" && key !== "CreatorUser"){
                                 data.push(<tr key={uuidV1()}>
-                                    <td>{key}</td>
+                                    <td>{keyMapping[key]}</td>
                                     <td>{matchingData.data[key].ValA}</td>
                                 </tr>) 
                             }
@@ -74,11 +76,11 @@ export default class matching extends React.Component{
                     }else{
                         const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
                             
-                            if(key !== "DealStatus"){
+                            if(key !== "DealStatus" && key !== "BuyerID" && key !== "DealStatus" && key !== "SellerID" && key !== "Owner" && key !== "CreatorUser"){
                                 var statusClass = (matchingData.data[key].Match === true) ? "btn btn-success" : "btn btn-warning",
                                     status = (matchingData.data[key].Match === true) ? "Yes" : "No"
                                 data.push(<tr key={uuidV1()}>
-                                    <td>{key}</td>
+                                    <td>{keyMapping[key]}</td>
                                     <td>{matchingData.data[key].ValA}</td>
                                     <td>{matchingData.data[key].ValB}</td>
                                     <td>{matchingData.data[key].Match}<button type="button" className={statusClass}>{status}</button></td>
@@ -98,7 +100,7 @@ export default class matching extends React.Component{
                         <span className="pull-left"> <strong>Deal Status</strong> </span> 
                         <span className="pull-right"> <button type="button" className={this.state.statusClass}>{this.state.status}</button> </span>
                     </div>
-                    <table className="table table-striped table-responsive">
+                    <table className="table table-striped table-responsive  table-condensed">
                         <thead>
                             {getTableHead()}
                         </thead>

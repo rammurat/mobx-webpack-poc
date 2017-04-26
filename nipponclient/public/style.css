@@ -27,9 +27,6 @@ select.active:invalid {
     text-align: left;
 }
 
-.productTable{
-    overflow-x: scroll;
-}
 .navbar{
     top:5px;
 }
@@ -61,4 +58,9 @@ select.active:invalid {
 
 .well{
     min-height : 75px;
+}
+
+table{
+    max-height: 200px !important;
+    height: 200px !important;
 }

@@ -28261,11 +28261,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    this.props.children
-	                )
+	                this.props.children
 	            );
 	        }
 	    }]);
@@ -54590,6 +54586,11 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
+	                                    item.OwnerName.ValA
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
 	                                    item.BuyerName.ValA
 	                                ),
 	                                _react2.default.createElement(
@@ -54600,42 +54601,12 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    item.BuyerID.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.SellerID.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
 	                                    item.TradeType.ValA
 	                                ),
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
 	                                    item.MarketType.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.Price.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.PriceUOM.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.Quantity.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.QuantityUOM.ValA
 	                                ),
 	                                _react2.default.createElement(
 	                                    'td',
@@ -54655,11 +54626,6 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    item.StartDate.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
 	                                    item.EndDate.ValA
 	                                ),
 	                                _react2.default.createElement(
@@ -54675,11 +54641,6 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    item.PaymetDays.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
 	                                    item.PaymentTerms.ValA
 	                                ),
 	                                _react2.default.createElement(
@@ -54690,27 +54651,12 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    item.Owner.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.OwnerName.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.CreatorUser.ValA
+	                                    item.Price.ValA
 	                                ),
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
 	                                    item.TradeStatus.ValA
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    item.CreationTimestamp.ValA
 	                                )
 	                            ));
 	                        });
@@ -54761,150 +54707,104 @@
 	                            )
 	                        ),
 	                        _react2.default.createElement(
-	                            'table',
-	                            { className: 'table table-striped table-responsive table-bordered' },
+	                            'div',
+	                            { className: 'aa' },
 	                            _react2.default.createElement(
-	                                'thead',
-	                                null,
+	                                'table',
+	                                { className: 'table table-striped table-bordered' },
 	                                _react2.default.createElement(
-	                                    'tr',
+	                                    'thead',
 	                                    null,
 	                                    _react2.default.createElement(
-	                                        'th',
+	                                        'tr',
 	                                        null,
-	                                        'Trade Number'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Buyer Name'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Seller Name'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Buyer ID'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Seller ID'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        ' Trade Type'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        ' Market Type'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Price'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        ' Price UOM'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Quantity'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Quantity UOM'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Total Quantity'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Total QuantityUOM'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Trade Date'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Start Date'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  End Date   '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Product Code   '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        ' Direction  '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        ' Payment Days'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        ' Payment Terms   '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        ' MOT'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Owner ID   '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        '  Owner Name   '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        'Creator User'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        'Trade Status'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        null,
-	                                        'Creation Timestamp'
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            'Trade Number'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Trade Origin   '
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Buyer Name'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Seller Name'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            ' Trade Type'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            ' Market Type'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Total Quantity'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Total Quantity UOM'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Trade Date'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  End Date   '
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Product Code   '
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            ' Delivery Location  '
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            ' Payment Terms   '
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            ' MOT'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            '  Price'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'th',
+	                                            null,
+	                                            'Trade Status'
+	                                        )
 	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'tbody',
+	                                    null,
+	                                    getTable()
 	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tbody',
-	                                null,
-	                                getTable()
 	                            )
 	                        )
 	                    );
@@ -55223,8 +55123,6 @@
 	
 	var _utils = __webpack_require__(/*! ../utils/utils.js */ 397);
 	
-	var _utils2 = _interopRequireDefault(_utils);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55301,6 +55199,11 @@
 	                                    'th',
 	                                    null,
 	                                    'Trador 2'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Status'
 	                                )
 	                            );
 	                        } else {
@@ -55338,7 +55241,7 @@
 	                                        _react2.default.createElement(
 	                                            'td',
 	                                            null,
-	                                            key
+	                                            _utils.keyMapping[key]
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            'td',
@@ -55360,7 +55263,7 @@
 	                                        _react2.default.createElement(
 	                                            'td',
 	                                            null,
-	                                            key
+	                                            _utils.keyMapping[key]
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            'td',
@@ -55430,7 +55333,7 @@
 	                        ),
 	                        _react2.default.createElement(
 	                            'table',
-	                            { className: 'table table-striped table-responsive' },
+	                            { className: 'table table-striped table-responsive  table-condensed' },
 	                            _react2.default.createElement(
 	                                'thead',
 	                                null,
@@ -55468,32 +55371,34 @@
 	"use strict";
 	
 	var utils = {
-	    TradeNumber: "Trade Number",
-	    BuyerName: "Buyer Name",
-	    SellerName: "Seller Name",
-	    BuyerID: "Buyer ID",
-	    SellerID: "Seller ID",
-	    TradeStatus: "Trade Status",
-	    TradeType: "Trade Type",
-	    MarketType: "Market Type",
-	    Price: "Price",
-	    PriceUOM: "Price UOM",
-	    Quantity: "Quantity",
-	    QuantityUOM: "Quantity UOM",
-	    TotalQuantity: "Total Quantity",
-	    TotalQuantityUOM: "Total Quantity UOM",
-	    TradeDate: "Trade Date",
-	    StartDate: "Start Date",
-	    EndDate: "End Date",
-	    ProductCode: "Product Code",
-	    DeliveryLocation: "Delivery Location",
-	    PaymetDays: "Paymet Days",
-	    PaymentTerms: "Payment Terms",
-	    Mot: "Mot",
-	    Owner: "Owner ID",
-	    OwnerName: "Owner Name",
-	    CreatorUser: "Created By",
-	    CreationTimestamp: "Creation Time"
+	    keyMapping: {
+	        TradeNumber: "Trade Number",
+	        BuyerName: "Buyer Name",
+	        SellerName: "Seller Name",
+	        BuyerID: "Buyer ID",
+	        SellerID: "Seller ID",
+	        TradeStatus: "Trade Status",
+	        TradeType: "Trade Type",
+	        MarketType: "Market Type",
+	        Price: "Price",
+	        PriceUOM: "Price UOM",
+	        Quantity: "Quantity",
+	        QuantityUOM: "Quantity UOM",
+	        TotalQuantity: "Total Quantity",
+	        TotalQuantityUOM: "Total Quantity UOM",
+	        TradeDate: "Trade Date",
+	        StartDate: "Start Date",
+	        EndDate: "End Date",
+	        ProductCode: "Product Code",
+	        DeliveryLocation: "Delivery Location",
+	        PaymetDays: "Paymet Days",
+	        PaymentTerms: "Payment Terms",
+	        Mot: "Mot",
+	        Owner: "Owner ID",
+	        OwnerName: "Owner Name",
+	        CreatorUser: "Created By",
+	        CreationTimestamp: "Creation Time"
+	    }
 	};
 	module.exports = utils;
 

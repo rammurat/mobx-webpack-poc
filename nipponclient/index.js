@@ -138,6 +138,534 @@ if (!CONFIG.isLocalServer) {
         response.setHeader('Content-Type', 'application/json');
         response.send(JSON.stringify([{
             "TradeNumber": {
+                "ValA": "Nippon",
+                "ValB": "A01",
+                "Match": false
+            },
+            "BuyerName": {
+                "ValA": "Nippon",
+                "ValB": "A02",
+                "Match": false
+            },
+            "SellerName": {
+                "ValA": "Chevron",
+                "ValB": "A03",
+                "Match": false
+            },
+            "BuyerID": {
+                "ValA": "A04",
+                "ValB": "A04",
+                "Match": true
+            },
+            "SellerID": {
+                "ValA": "A05",
+                "ValB": "A05",
+                "Match": true
+            },
+            "TradeType": {
+                "ValA": "Date Pipeline Fixed Price",
+                "ValB": "A06",
+                "Match": false
+            },
+            "MarketType": {
+                "ValA": "Physical Crude Oil",
+                "ValB": "A07",
+                "Match": false
+            },
+            "Price": {
+                "ValA": "3000",
+                "ValB": "A08",
+                "Match": true
+            },
+            "PriceUOM": {
+                "ValA": "BBL",
+                "ValB": "A09",
+                "Match": false
+            },
+            "Quantity": {
+                "ValA": "300",
+                "ValB": "A10",
+                "Match": false
+            },
+            "QuantityUOM": {
+                "ValA": "BBL",
+                "ValB": "A11",
+                "Match": false
+            },
+            "TotalQuantity": {
+                "ValA": "30000",
+                "ValB": "A12",
+                "Match": true
+            },
+            "TotalQuantityUOM": {
+                "ValA": "BBL",
+                "ValB": "A13",
+                "Match": true
+            },
+            "TradeDate": {
+                "ValA": "23-03-1989",
+                "ValB": "A14",
+                "Match": true
+            },
+            "StartDate": {
+                "ValA": "23-03-1989",
+                "ValB": "A15",
+                "Match": false
+            },
+            "EndDate": {
+                "ValA": "23-03-1989",
+                "ValB": "A16",
+                "Match": true
+            },
+            "ProductCode": {
+                "ValA": "MARS",
+                "ValB": "A17",
+                "Match": true
+            },
+            "DeliveryLocation": {
+                "ValA": "Clovelly",
+                "ValB": "A18",
+                "Match": true
+            },
+            "PaymetDays": {
+                "ValA": "30",
+                "ValB": "A19",
+                "Match": false
+            },
+            "PaymentTerms": {
+                "ValA": "20FFMD",
+                "ValB": "A20",
+                "Match": true
+            },
+            "Mot": {
+                "ValA": "Pipeline",
+                "ValB": "A21",
+                "Match": true
+            },
+            "Owner": {
+                "ValA": "NPN",
+                "ValB": "A22",
+                "Match": false
+            },
+            "OwnerName": {
+                "ValA": "Nippon",
+                "ValB": "A23",
+                "Match": false
+            },
+            "CreatorUser": {
+                "ValA": "1",
+                "ValB": "A24",
+                "Match": false
+            },
+            "TradeStatus": {
+                "ValA": "Active",
+                "ValB": "A25",
+                "Match": false
+            },
+            "CreationTimestamp": {
+                "ValA": "2017-04-24 08:44:25.495732836 +0000 UTC",
+                "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
+                "Match": false
+            },
+            "DealStatus": "Matched"
+        }, {
+            "TradeNumber": {
+                "ValA": "A01",
+                "ValB": "A01",
+                "Match": false
+            },
+            "BuyerName": {
+                "ValA": "A02",
+                "ValB": "A02",
+                "Match": false
+            },
+            "SellerName": {
+                "ValA": "A03",
+                "ValB": "A03",
+                "Match": false
+            },
+            "BuyerID": {
+                "ValA": "A04",
+                "ValB": "A04",
+                "Match": true
+            },
+            "SellerID": {
+                "ValA": "A05",
+                "ValB": "A05",
+                "Match": true
+            },
+            "TradeType": {
+                "ValA": "A06",
+                "ValB": "A06",
+                "Match": false
+            },
+            "MarketType": {
+                "ValA": "A07",
+                "ValB": "A07",
+                "Match": false
+            },
+            "Price": {
+                "ValA": "A08",
+                "ValB": "A08",
+                "Match": true
+            },
+            "PriceUOM": {
+                "ValA": "A09",
+                "ValB": "A09",
+                "Match": false
+            },
+            "Quantity": {
+                "ValA": "A10",
+                "ValB": "A10",
+                "Match": false
+            },
+            "QuantityUOM": {
+                "ValA": "A11",
+                "ValB": "A11",
+                "Match": false
+            },
+            "TotalQuantity": {
+                "ValA": "A12",
+                "ValB": "A12",
+                "Match": true
+            },
+            "TotalQuantityUOM": {
+                "ValA": "A13",
+                "ValB": "A13",
+                "Match": true
+            },
+            "TradeDate": {
+                "ValA": "A14",
+                "ValB": "A14",
+                "Match": true
+            },
+            "StartDate": {
+                "ValA": "A15",
+                "ValB": "A15",
+                "Match": false
+            },
+            "EndDate": {
+                "ValA": "A16",
+                "ValB": "A16",
+                "Match": true
+            },
+            "ProductCode": {
+                "ValA": "A17",
+                "ValB": "A17",
+                "Match": true
+            },
+            "DeliveryLocation": {
+                "ValA": "A18",
+                "ValB": "A18",
+                "Match": true
+            },
+            "PaymetDays": {
+                "ValA": "A19",
+                "ValB": "A19",
+                "Match": false
+            },
+            "PaymentTerms": {
+                "ValA": "A20",
+                "ValB": "A20",
+                "Match": true
+            },
+            "Mot": {
+                "ValA": "A21",
+                "ValB": "A21",
+                "Match": true
+            },
+            "Owner": {
+                "ValA": "A22",
+                "ValB": "A22",
+                "Match": false
+            },
+            "OwnerName": {
+                "ValA": "A23",
+                "ValB": "A23",
+                "Match": false
+            },
+            "CreatorUser": {
+                "ValA": "A24",
+                "ValB": "A24",
+                "Match": false
+            },
+            "TradeStatus": {
+                "ValA": "A25",
+                "ValB": "A25",
+                "Match": false
+            },
+            "CreationTimestamp": {
+                "ValA": "2017-04-24 08:44:25.495732836 +0000 UTC",
+                "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
+                "Match": false
+            },
+            "DealStatus": "Matched"
+        },{
+            "TradeNumber": {
+                "ValA": "A01",
+                "ValB": "A01",
+                "Match": false
+            },
+            "BuyerName": {
+                "ValA": "A02",
+                "ValB": "A02",
+                "Match": false
+            },
+            "SellerName": {
+                "ValA": "A03",
+                "ValB": "A03",
+                "Match": false
+            },
+            "BuyerID": {
+                "ValA": "A04",
+                "ValB": "A04",
+                "Match": true
+            },
+            "SellerID": {
+                "ValA": "A05",
+                "ValB": "A05",
+                "Match": true
+            },
+            "TradeType": {
+                "ValA": "A06",
+                "ValB": "A06",
+                "Match": false
+            },
+            "MarketType": {
+                "ValA": "A07",
+                "ValB": "A07",
+                "Match": false
+            },
+            "Price": {
+                "ValA": "A08",
+                "ValB": "A08",
+                "Match": true
+            },
+            "PriceUOM": {
+                "ValA": "A09",
+                "ValB": "A09",
+                "Match": false
+            },
+            "Quantity": {
+                "ValA": "A10",
+                "ValB": "A10",
+                "Match": false
+            },
+            "QuantityUOM": {
+                "ValA": "A11",
+                "ValB": "A11",
+                "Match": false
+            },
+            "TotalQuantity": {
+                "ValA": "A12",
+                "ValB": "A12",
+                "Match": true
+            },
+            "TotalQuantityUOM": {
+                "ValA": "A13",
+                "ValB": "A13",
+                "Match": true
+            },
+            "TradeDate": {
+                "ValA": "A14",
+                "ValB": "A14",
+                "Match": true
+            },
+            "StartDate": {
+                "ValA": "A15",
+                "ValB": "A15",
+                "Match": false
+            },
+            "EndDate": {
+                "ValA": "A16",
+                "ValB": "A16",
+                "Match": true
+            },
+            "ProductCode": {
+                "ValA": "A17",
+                "ValB": "A17",
+                "Match": true
+            },
+            "DeliveryLocation": {
+                "ValA": "A18",
+                "ValB": "A18",
+                "Match": true
+            },
+            "PaymetDays": {
+                "ValA": "A19",
+                "ValB": "A19",
+                "Match": false
+            },
+            "PaymentTerms": {
+                "ValA": "A20",
+                "ValB": "A20",
+                "Match": true
+            },
+            "Mot": {
+                "ValA": "A21",
+                "ValB": "A21",
+                "Match": true
+            },
+            "Owner": {
+                "ValA": "A22",
+                "ValB": "A22",
+                "Match": false
+            },
+            "OwnerName": {
+                "ValA": "A23",
+                "ValB": "A23",
+                "Match": false
+            },
+            "CreatorUser": {
+                "ValA": "A24",
+                "ValB": "A24",
+                "Match": false
+            },
+            "TradeStatus": {
+                "ValA": "A25",
+                "ValB": "A25",
+                "Match": false
+            },
+            "CreationTimestamp": {
+                "ValA": "2017-04-24 08:44:25.495732836 +0000 UTC",
+                "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
+                "Match": false
+            },
+            "DealStatus": "Matched"
+        }, {
+            "TradeNumber": {
+                "ValA": "A01",
+                "ValB": "A01",
+                "Match": false
+            },
+            "BuyerName": {
+                "ValA": "A02",
+                "ValB": "A02",
+                "Match": false
+            },
+            "SellerName": {
+                "ValA": "A03",
+                "ValB": "A03",
+                "Match": false
+            },
+            "BuyerID": {
+                "ValA": "A04",
+                "ValB": "A04",
+                "Match": true
+            },
+            "SellerID": {
+                "ValA": "A05",
+                "ValB": "A05",
+                "Match": true
+            },
+            "TradeType": {
+                "ValA": "A06",
+                "ValB": "A06",
+                "Match": false
+            },
+            "MarketType": {
+                "ValA": "A07",
+                "ValB": "A07",
+                "Match": false
+            },
+            "Price": {
+                "ValA": "A08",
+                "ValB": "A08",
+                "Match": true
+            },
+            "PriceUOM": {
+                "ValA": "A09",
+                "ValB": "A09",
+                "Match": false
+            },
+            "Quantity": {
+                "ValA": "A10",
+                "ValB": "A10",
+                "Match": false
+            },
+            "QuantityUOM": {
+                "ValA": "A11",
+                "ValB": "A11",
+                "Match": false
+            },
+            "TotalQuantity": {
+                "ValA": "A12",
+                "ValB": "A12",
+                "Match": true
+            },
+            "TotalQuantityUOM": {
+                "ValA": "A13",
+                "ValB": "A13",
+                "Match": true
+            },
+            "TradeDate": {
+                "ValA": "A14",
+                "ValB": "A14",
+                "Match": true
+            },
+            "StartDate": {
+                "ValA": "A15",
+                "ValB": "A15",
+                "Match": false
+            },
+            "EndDate": {
+                "ValA": "A16",
+                "ValB": "A16",
+                "Match": true
+            },
+            "ProductCode": {
+                "ValA": "A17",
+                "ValB": "A17",
+                "Match": true
+            },
+            "DeliveryLocation": {
+                "ValA": "A18",
+                "ValB": "A18",
+                "Match": true
+            },
+            "PaymetDays": {
+                "ValA": "A19",
+                "ValB": "A19",
+                "Match": false
+            },
+            "PaymentTerms": {
+                "ValA": "A20",
+                "ValB": "A20",
+                "Match": true
+            },
+            "Mot": {
+                "ValA": "A21",
+                "ValB": "A21",
+                "Match": true
+            },
+            "Owner": {
+                "ValA": "A22",
+                "ValB": "A22",
+                "Match": false
+            },
+            "OwnerName": {
+                "ValA": "A23",
+                "ValB": "A23",
+                "Match": false
+            },
+            "CreatorUser": {
+                "ValA": "A24",
+                "ValB": "A24",
+                "Match": false
+            },
+            "TradeStatus": {
+                "ValA": "A25",
+                "ValB": "A25",
+                "Match": false
+            },
+            "CreationTimestamp": {
+                "ValA": "2017-04-24 08:44:25.495732836 +0000 UTC",
+                "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
+                "Match": false
+            },
+            "DealStatus": "Matched"
+        },{
+            "TradeNumber": {
                 "ValA": "A01",
                 "ValB": "A01",
                 "Match": false
