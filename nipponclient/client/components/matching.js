@@ -76,14 +76,21 @@ export default class matching extends React.Component{
                     }else{
                         const matchingTable = Object.keys(matchingData.data).forEach(function (key) {
                             
+
                             if(key !== "DealStatus" && key !== "BuyerID" && key !== "DealStatus" && key !== "SellerID" && key !== "Owner" && key !== "CreatorUser"){
                                 var statusClass = (matchingData.data[key].Match === true) ? "btn btn-success" : "btn btn-warning",
-                                    status = (matchingData.data[key].Match === true) ? "Yes" : "No"
+                                    status = (matchingData.data[key].Match === true) ? "Yes" : "No",
+                                    statusButton = "";
+
+                                if(key !== "CreationTimestamp"){
+                                    statusButton = (<button type="button" className={statusClass}>{status}</button>)
+                                }
+
                                 data.push(<tr key={uuidV1()}>
                                     <td>{keyMapping[key]}</td>
                                     <td>{matchingData.data[key].ValA}</td>
                                     <td>{matchingData.data[key].ValB}</td>
-                                    <td>{matchingData.data[key].Match}<button type="button" className={statusClass}>{status}</button></td>
+                                    <td>{statusButton}</td>
                                 </tr>) 
                             }
                         });

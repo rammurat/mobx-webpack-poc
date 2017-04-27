@@ -35729,7 +35729,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'col-sm-6' },
-	                                    _react2.default.createElement(_reactDatepicker2.default, { name: 'endDate', className: 'form-control', id: 'endDate', ref: 'endDate', selected: this.state.endDate, onChange: this.handleEndDate }),
+	                                    _react2.default.createElement(_reactDatepicker2.default, { minDate: this.state.startDate, name: 'endDate', className: 'form-control', id: 'endDate', ref: 'endDate', selected: this.state.endDate, onChange: this.handleEndDate }),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'endDateError' })
 	                                )
 	                            ),
@@ -54711,7 +54711,7 @@
 	                            { className: 'aa' },
 	                            _react2.default.createElement(
 	                                'table',
-	                                { className: 'table table-striped table-bordered' },
+	                                { className: 'table table-striped table-bordered table-condensed' },
 	                                _react2.default.createElement(
 	                                    'thead',
 	                                    null,
@@ -55256,7 +55256,17 @@
 	
 	                                if (key !== "DealStatus" && key !== "BuyerID" && key !== "DealStatus" && key !== "SellerID" && key !== "Owner" && key !== "CreatorUser") {
 	                                    var statusClass = matchingData.data[key].Match === true ? "btn btn-success" : "btn btn-warning",
-	                                        status = matchingData.data[key].Match === true ? "Yes" : "No";
+	                                        status = matchingData.data[key].Match === true ? "Yes" : "No",
+	                                        statusButton = "";
+	
+	                                    if (key !== "CreationTimestamp") {
+	                                        statusButton = _react2.default.createElement(
+	                                            'button',
+	                                            { type: 'button', className: statusClass },
+	                                            status
+	                                        );
+	                                    }
+	
 	                                    data.push(_react2.default.createElement(
 	                                        'tr',
 	                                        { key: uuidV1() },
@@ -55278,12 +55288,7 @@
 	                                        _react2.default.createElement(
 	                                            'td',
 	                                            null,
-	                                            matchingData.data[key].Match,
-	                                            _react2.default.createElement(
-	                                                'button',
-	                                                { type: 'button', className: statusClass },
-	                                                status
-	                                            )
+	                                            statusButton
 	                                        )
 	                                    ));
 	                                }
@@ -55395,7 +55400,7 @@
 	        PaymentTerms: "Payment Terms",
 	        Mot: "Mot",
 	        Owner: "Owner ID",
-	        OwnerName: "Owner Name",
+	        OwnerName: "Trade Origin",
 	        CreatorUser: "Created By",
 	        CreationTimestamp: "Creation Time"
 	    }

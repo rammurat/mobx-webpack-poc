@@ -15,6 +15,10 @@
         "id" : "SHL",
         "name" : "Shell",
 		"logo" : "shell.png"
+    },{
+        "id" : "BP",
+        "name" : "British Petroleum",
+		"logo" : "bp.png"
     }],
     "users": [{
         "id" : "1",
@@ -30,16 +34,22 @@
         "password" : "paul"
     },{
         "id" : "3",
-        "name" : "Syan Smith",
-        "organisationId" : "CHV",
-        "username" : "syan",
-        "password" : "syan"
+        "name" : "Ryan Smith",
+        "organisationId" : "MRC",
+        "username" : "ryan",
+        "password" : "ryan"
     },{
         "id" : "4",
         "name" : "Lauren Iyer",
-        "organisationId" : "NPN",
+        "organisationId" : "SHL",
         "username" : "lauren",
         "password" : "lauren"
+    },{
+        "id" : "5",
+        "name" : "Robin De Souza",
+        "organisationId" : "BP",
+        "username" : "robin",
+        "password" : "robin"
     }
   ]
 }

@@ -32,34 +32,35 @@ export default class listing extends React.Component{
                  function getTable(){
                     var data = [];
                     
-                    listingData.data.forEach(function(item){
-                        let link = '/matching/' + item.TradeNumber.ValA;
-
+                    if(listingData.data && listingData.data.length){
+                        listingData.data.forEach(function(item){
+                            let link = '/matching/' + item.TradeNumber.ValA;
                         
                             data.push(<tr key={uuidV1()}>
-                                <td><Link to={link} activeClassName="active">{item.TradeNumber.ValA}</Link></td>
-                                <td>{item.OwnerName.ValA}</td>
-                                <td>{item.BuyerName.ValA}</td>
-                                <td>{item.SellerName.ValA}</td>
-                                
-                                <td>{item.TradeType.ValA}</td>
-                                <td>{item.MarketType.ValA}</td>
-                                <td>{item.TotalQuantity.ValA}</td>
-                                <td>{item.TotalQuantityUOM.ValA}</td>
-                                
-                                <td>{item.TradeDate.ValA}</td>
-                                <td>{item.EndDate.ValA}</td>
-                                <td>{item.ProductCode.ValA}</td>
-                                <td>{item.DeliveryLocation.ValA}</td>
+                                        <td><Link to={link} activeClassName="active">{item.TradeNumber.ValA}</Link></td>
+                                        <td>{item.OwnerName.ValA}</td>
+                                        <td>{item.BuyerName.ValA}</td>
+                                        <td>{item.SellerName.ValA}</td>
+                                        
+                                        <td>{item.TradeType.ValA}</td>
+                                        <td>{item.MarketType.ValA}</td>
+                                        <td>{item.TotalQuantity.ValA}</td>
+                                        <td>{item.TotalQuantityUOM.ValA}</td>
+                                        
+                                        <td>{item.TradeDate.ValA}</td>
+                                        <td>{item.EndDate.ValA}</td>
+                                        <td>{item.ProductCode.ValA}</td>
+                                        <td>{item.DeliveryLocation.ValA}</td>
 
-                                <td>{item.PaymentTerms.ValA}</td>
-                                <td>{item.Mot.ValA}</td>
-                                <td>{item.Price.ValA}</td>
-                                <td>{item.TradeStatus.ValA}</td>
+                                        <td>{item.PaymentTerms.ValA}</td>
+                                        <td>{item.Mot.ValA}</td>
+                                        <td>{item.Price.ValA}</td>
+                                        <td>{item.TradeStatus.ValA}</td>
 
-                            </tr>)
-                        
-                    });
+                                    </tr>)
+                                
+                            });
+                    }
 
                     return data;
                 }
@@ -73,7 +74,7 @@ export default class listing extends React.Component{
                         <li role="presentation"><a href="#">Unmatched</a></li>
                     </ul>
                     <div className="aa">
-                        <table className="table table-striped table-bordered">
+                        <table className="table table-striped table-bordered table-condensed">
                             <thead>
                                 <tr>
                                     <th>Trade Number</th>  

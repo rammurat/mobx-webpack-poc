@@ -452,7 +452,7 @@ export default class addTrade extends React.Component {
                         <div className="form-group col-md-6" >
                             <label htmlFor="endDate" id="endDateLabel" className="col-sm-6 control-label">End date</label>
                             <div className="col-sm-6">
-                                <DatePicker name="endDate" className="form-control"  id="endDate" ref="endDate" selected={this.state.endDate} onChange={this.handleEndDate} />
+                                <DatePicker minDate={this.state.startDate} name="endDate" className="form-control"  id="endDate" ref="endDate" selected={this.state.endDate} onChange={this.handleEndDate} />
                                 <div className="error" id="endDateError" />
                             </div>
                         </div>
