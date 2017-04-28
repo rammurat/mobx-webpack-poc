@@ -270,7 +270,7 @@ if (!CONFIG.isLocalServer) {
             "DealStatus": "Matched"
         }, {
             "TradeNumber": {
-                "ValA": "A01",
+                "ValA": "Chevron",
                 "ValB": "A01",
                 "Match": false
             },
@@ -402,7 +402,7 @@ if (!CONFIG.isLocalServer) {
             "DealStatus": "Matched"
         },{
             "TradeNumber": {
-                "ValA": "A01",
+                "ValA": "BP",
                 "ValB": "A01",
                 "Match": false
             },
@@ -531,10 +531,10 @@ if (!CONFIG.isLocalServer) {
                 "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
                 "Match": false
             },
-            "DealStatus": "Matched"
+            "DealStatus": "Pending"
         }, {
             "TradeNumber": {
-                "ValA": "A01",
+                "ValA": "Mercuria",
                 "ValB": "A01",
                 "Match": false
             },
@@ -663,10 +663,10 @@ if (!CONFIG.isLocalServer) {
                 "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
                 "Match": false
             },
-            "DealStatus": "Matched"
+            "DealStatus": "Pending"
         },{
             "TradeNumber": {
-                "ValA": "A01",
+                "ValA": "Shell",
                 "ValB": "A01",
                 "Match": false
             },
@@ -795,10 +795,10 @@ if (!CONFIG.isLocalServer) {
                 "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
                 "Match": false
             },
-            "DealStatus": "Matched"
+            "DealStatus": "Pending"
         }, {
             "TradeNumber": {
-                "ValA": "A01",
+                "ValA": "Nippon 22",
                 "ValB": "A01",
                 "Match": false
             },
@@ -927,7 +927,7 @@ if (!CONFIG.isLocalServer) {
                 "ValB": "2017-04-24 08:44:39.221772715 +0000 UTC",
                 "Match": false
             },
-            "DealStatus": "Matched"
+            "DealStatus": "Unmatched"
         }]));
     });
 

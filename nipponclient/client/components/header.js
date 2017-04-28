@@ -20,8 +20,6 @@ export default class header extends React.Component{
         let org = getOrganisation(organisationsList,{id : currentUser.orgId});
         this.state.orgLogo = "../../logos/" + org.logo;
 
-        console.log(this.state.orgLogo);
-
         function loadMenu(logo){
 
             const isLoggedIn = AppStore.getUserSession();

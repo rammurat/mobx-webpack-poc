@@ -8,9 +8,16 @@ const uuidV1 = require('uuid/v1');
 
 export class AppStore{
     @observable currentUser = {};
+    @observable listType = "Pending";
     @observable isLoggedIn = false;
+    @observable activeTab = { name: 'Pending', isActive: true };
 
     @observable usersList = [];
+    @observable tabData = [
+        { name: 'Pending', isActive: true },
+        { name: 'Matched', isActive: false },
+        { name: 'Unmatched', isActive: false }  
+    ];
     
     //observer product list and master categories
     @observable organisationsList = [];
@@ -103,6 +110,9 @@ export class AppStore{
         promiseState: {}
     };
 
+    @action setListType(type){
+        this.listType = type;
+    }
     
     @action fetchListingData(contractId) {
         const form = {contractId : contractId };
@@ -164,6 +174,11 @@ export class AppStore{
         return this.currentUser;
     }
 
+    @action getListType() {
+        
+        return this.listType;
+    }
+
     //Set user session state 
     @action updateUserSession(state) {
         
@@ -176,172 +191,25 @@ export class AppStore{
         return _.findWhere(orgList,query);
     }
 
+    //load organisations
+    @action getTab(state) {
+        let tab = _.findWhere(this.tabData,{name : state})
+        return tab;
+    }
+
+    @action getActiveTab() {
+        return this.activeTab;
+    }
+
+    @action setActiveTab(tab) {
+        this.activeTab = tab;
+    }
+
+
     getUserSession(){
         return this.isLoggedIn;
     }
 
-    @observable formData =[{
-        id : uuidV1(), 
-        fieldKey :  "Trade Number",
-        fieldValue : "SHLTR16TB0342",
-        fieldName : "tradeNumber" ,
-        fieldLabel : "tradeNumberLabel" ,
-        fieldError : "tradeNumberError",
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Buyer Name",
-        fieldValue : "XYZ",
-        fieldName : "buyerName" ,
-        fieldLabel : "buyerNameLabel" ,
-        fieldError : "buyerNameError",
-        fieldType : "select" 
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Seller Name",
-        fieldValue : "ABC",
-        fieldName : "sellerName" ,
-        fieldLabel : "sellerNameLabel" ,
-        fieldError : "sellerNameError",
-        fieldType : "readonly" 
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Trade Type",
-        fieldValue : "Date Pipeline Fixed price",
-        fieldName : "tradeType" ,
-        fieldLabel : "tradeTypeLabel" ,
-        fieldError : "tradeTypeError" ,
-        fieldType : "select"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Market Type",
-        fieldValue : "Physical Crude Oil",
-        fieldName : "marketType" ,
-        fieldLabel : "marketTypeLabel" ,
-        fieldError : "marketTypeError" ,
-        fieldType : "select"
-
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Price",
-        fieldValue : "100",
-        fieldName : "price",
-        fieldLabel : "priceLabel" ,
-        fieldError : "priceError"  ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Price UOM",
-        fieldValue : "BBL",
-        fieldName : "priceUom" ,
-        fieldLabel : "priceUomLabel" ,
-        fieldError : "priceUomError" ,
-        fieldType : "readonly"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Quantity",
-        fieldValue : "100",
-        fieldName : "quantity" ,
-        fieldLabel : "quantityLabel" ,
-        fieldError : "quantityError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Quantity UOM",
-        fieldValue : "BBL",
-        fieldName : "quantityUom" ,
-        fieldLabel : "quantityUomLabel" ,
-        fieldError : "quantityUomError" ,
-        fieldType : "readonly"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Total Quantity",
-        fieldValue : "30000",
-        fieldName : "totalQuantity" ,
-        fieldLabel : "totalQuantityLabel" ,
-        fieldError : "totalQuantityError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Total QuantityUOM",
-        fieldValue : "BBL",
-        fieldName : "totalQuantityUom",
-        fieldLabel : "totalQuantityUomLabel" ,
-        fieldError : "totalQuantityUomError" ,
-        fieldType : "readonly" 
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Trade Date",
-        fieldValue : "24-04-2017",
-        fieldName : "tradeDate" ,
-        fieldLabel : "tradeDateLabel" ,
-        fieldError : "tradeDateError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Start Date",
-        fieldValue : "24-04-2017",
-        fieldName : "startDate" ,
-        fieldLabel : "startDateLabel" ,
-        fieldError : "startDateError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "End Date",
-        fieldValue : "24-04-2017",
-        fieldName : "endDate" ,
-        fieldLabel : "endDateLabel" ,
-        fieldError : "endDateError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Product Code",
-        fieldValue : "MARS",
-        fieldName : "productCode" ,
-        fieldLabel : "productCodeLabel" ,
-        fieldError : "productCodeError" ,
-        fieldType : "select"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Delivery Location",
-        fieldValue : "Clovelly",
-        fieldName : "deliveryLocation",
-        fieldLabel : "deliveryLocationLabel" ,
-        fieldError : "deliveryLocationError" ,
-        fieldType : "select" 
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Payment Days",
-        fieldValue : "20",
-        fieldName : "paymetDays" ,
-        fieldLabel : "paymetDaysLabel" ,
-        fieldError : "paymetDaysError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Payment Terms",
-        fieldValue : "20FFMD",
-        fieldName : "paymentTerms" ,
-        fieldLabel : "paymentTermsLabel" ,
-        fieldError : "paymentTermsError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "MOT",
-        fieldValue : "Pipeline",
-        fieldName : "mot" ,
-        fieldLabel : "motLabel" ,
-        fieldError : "motError" ,
-        fieldType : "input"
-    },{
-        id : uuidV1(), 
-        fieldKey :  "Owner Name",
-        fieldValue : "XYZ",
-        fieldName : "ownerName" ,
-        fieldLabel : "ownerNameLabel" ,
-        fieldError : "ownerNameError" ,
-        fieldType : "readonly"
-    }]
 }
 
 export default new AppStore;
