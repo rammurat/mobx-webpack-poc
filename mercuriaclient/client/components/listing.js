@@ -32,7 +32,7 @@ export default class listing extends React.Component{
                  function getTable(){
                     var data = [];
                     
-                    if(listingData.data && listingData.data.length){
+                    if(listingData.data && listingData.data !== null && listingData.data !== undefined && listingData.data.length){
                         listingData.data.forEach(function(item){
                             let link = '/matching/' + item.TradeNumber.ValA;
                         
