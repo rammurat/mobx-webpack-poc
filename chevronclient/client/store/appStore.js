@@ -8,12 +8,12 @@ const uuidV1 = require('uuid/v1');
 
 export class AppStore{
     @observable currentUser = {};
-    @observable listType = "Pending";
+    @observable listType = "All";
     @observable isLoggedIn = false;
-    @observable activeTab = { name: 'Pending', isActive: true };
-
+    @observable activeTab = { name: 'All', isActive: true };
     @observable usersList = [];
     @observable tabData = [
+        { name: 'All', isActive: true },
         { name: 'Pending', isActive: true },
         { name: 'Matched', isActive: false },
         { name: 'Unmatched', isActive: false }  
@@ -43,14 +43,38 @@ export class AppStore{
         name : "USD/BBL"
     },{
         id : 2,
+        name : "INR/BBL"
+    },{
+        id : 3,
+        name : "GBP/BBL"
+    },{
+        id : 4,
+        name : "EUR/BBL"
+    },{
+        id : 5,
+        name : "RUB/BBL"
+    },{
+        id : 6,
         name : "Other"
     }];
 
     @observable UOMList = [{
         id : 1,
-        name : "BBL"
+        name : "USD"
     },{
         id : 2,
+        name : "INR"
+    },{
+        id : 3,
+        name : "GBP"
+    },{
+        id : 4,
+        name : "EUR"
+    },{
+        id : 5,
+        name : "RUB"
+    },{
+        id : 6,
         name : "Other"
     }];
 
@@ -204,7 +228,6 @@ export class AppStore{
     @action setActiveTab(tab) {
         this.activeTab = tab;
     }
-
 
     getUserSession(){
         return this.isLoggedIn;

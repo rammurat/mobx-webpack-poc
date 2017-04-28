@@ -69,13 +69,36 @@ export default class listing extends React.Component{
                     var data = [],
                         filteredData = [];
                     
-                    if(listingData.data && listingData.data.length){
-                        
-                        filteredData = _.filter(listingData.data,{DealStatus : AppStore.getListType()})
-                        
+                    if(listingData.data && listingData.data !== null && listingData.data !== undefined && listingData.data.length){
+                        let type = AppStore.getListType();
+                        if(type === "All"){
+                            filteredData = listingData.data;
+                        }else{
+                            filteredData = _.filter(listingData.data,{DealStatus : AppStore.getListType()})
+                        }
+                    
                         filteredData.forEach(function(item){
                             let link = '/matching/' + item.TradeNumber.ValA;
-                        
+                            let state = {};
+                            
+                            //set deal status
+                            if(item.DealStatus === "Matched"){
+                                state = {
+                                    status : 'Matched',
+                                    statusClass : 'btn btn-success'
+                                }
+                            }else if(item.DealStatus === "Unmatched"){
+                                state = {
+                                    status : 'Unmatched',
+                                    statusClass : 'btn btn-warning'
+                                }
+                            }else{
+                                state = {
+                                    status : 'Pending',
+                                    statusClass : 'btn btn-default'
+                                }
+                            }
+
                             data.push(<tr key={uuidV1()}>
                                         <td><Link to={link} activeClassName="active">{item.TradeNumber.ValA}</Link></td>
                                         <td>{item.OwnerName.ValA}</td>
@@ -96,10 +119,13 @@ export default class listing extends React.Component{
                                         <td>{item.Mot.ValA}</td>
                                         <td>{item.Price.ValA}</td>
                                         <td>{item.TradeStatus.ValA}</td>
-
+                                        <td><button type="button" className={state.statusClass}>{state.status}</button></td>
+                                        
                                     </tr>)
                                 
                             });
+                    }else{
+                        data.push(<tr key="1"><td colSpan="16" >No data found</td></tr>);
                     }
 
                     return data;
@@ -123,8 +149,8 @@ export default class listing extends React.Component{
 
                                     <th> Trade Type</th>
                                     <th> Market Type</th>
-                                    <th>  Total Quantity</th> 
-                                    <th>  Total Quantity UOM</th>   
+                                    <th>  Notional Amount</th> 
+                                    <th>  Notional Amount UOM</th>   
                                     
                                     <th>  Trade Date</th> 
                                     <th>  End Date   </th>
@@ -135,6 +161,7 @@ export default class listing extends React.Component{
                                     <th> MOT</th>
                                     <th>  Price</th>
                                     <th>Trade Status</th>
+                                    <th>Deal Status</th>
                                 </tr>
                             </thead>
                             <tbody>

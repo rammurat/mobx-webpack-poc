@@ -1,12 +1,15 @@
 'use strict';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import {_} from 'underscore';
 
 import Header from '../components/header.js';
+import MessageModal from '../components/modal-react.js';
+import AppStore from '../store/appStore.js';
 
 export default class addTrade extends React.Component {
       constructor(props) {
@@ -156,6 +159,8 @@ export default class addTrade extends React.Component {
             };
             console.log(form);
 
+            var state = this.state;
+
             //redirect user to dashbaord page 
             fetch('/addTrador', { 
                     method: 'POST', 
@@ -166,8 +171,10 @@ export default class addTrade extends React.Component {
                 .then(function(json){
                     
                     console.log(json);
-                    if(json.Status === "Pending"){
-                        browserHistory.push('/listing');
+                    if(json.envstatus === "success"){
+                        //browserHistory.push('/listing');
+
+                        document.getElementById('modal-button').click();
                     }else{
                         alert("Server error!!");
                     }
@@ -258,7 +265,6 @@ export default class addTrade extends React.Component {
             return true;
         }
     }
-  
     
   render() {
 
@@ -415,7 +421,7 @@ export default class addTrade extends React.Component {
                         </div>
 
                         <div className="form-group col-md-6" >
-                            <label htmlFor="totalQuantity" id="totalQuantityLabel" className="col-sm-6 control-label">Total Quantity</label>
+                            <label htmlFor="totalQuantity" id="totalQuantityLabel" className="col-sm-6 control-label">Notional Amount</label>
                             <div className="col-sm-6">
                                 <input value={this.state.totalQuantity} name="totalQuantity" className="form-control" id="totalQuantity" ref="totalQuantity" readOnly/>
                                 <div className="error" id="totalQuantityError" />
@@ -423,7 +429,7 @@ export default class addTrade extends React.Component {
                         </div>
 
                         <div className="form-group col-md-6" >
-                            <label htmlFor="totalQuantityUom" id="totalQuantityUomLabel" className="col-sm-6 control-label">Total Quantity Uom</label>
+                            <label htmlFor="totalQuantityUom" id="totalQuantityUomLabel" className="col-sm-6 control-label">Notional Amount UOM</label>
                             <div className="col-sm-6">
                                 <select name="totalQuantityUom" className="form-control" id="totalQuantityUom" ref="totalQuantityUom" onChange={ this.handleChange }>
                                     {UOMOptions}
@@ -510,6 +516,7 @@ export default class addTrade extends React.Component {
                         <button className="btn btn-primary center-block" onClick={this.handleSubmit}>Add Trade</button>
                     </div>
                 </form>
+                <MessageModal ref="modal" />
             </div>
         </div>
     );

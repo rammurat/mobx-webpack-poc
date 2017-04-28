@@ -163,7 +163,7 @@ export default class Login extends React.Component {
                     </div>
                     <div className="form-group">
                         <label className="sr-only" htmlFor="password" id="passwordLabel">Password</label>
-                        <input name="password" className="form-control" id="password" placeholder="Password" ref="password" onChange={ this.handleChange } required/>
+                        <input type="password" name="password" className="form-control" id="password" placeholder="Password" ref="password" onChange={ this.handleChange } required/>
                         <div className="error" id="passwordError" />
                     </div>
                     <div className="form-group">

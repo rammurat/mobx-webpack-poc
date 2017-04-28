@@ -1124,7 +1124,7 @@ if (!CONFIG.isLocalServer) {
         ];
 
         response.setHeader('Content-Type', 'application/json');
-        response.send(JSON.stringify({ "Status": true, "TradeNumber": "A01" }));
+        response.send(JSON.stringify({ "envstatus" : "success", "bustatus" : "pending","message" : "Trade added successfully" }));
     });
 
 }
