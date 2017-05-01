@@ -27,7 +27,7 @@ var Tabs = React.createClass({
       <ul className="nav nav-tabs">
         {this.props.tabData.map(function(tab,index){
           return (
-            <Tab key={index} data={tab} isActive={this.props.activeTab === tab} handleClick={this.props.changeTab.bind(this,tab)} />
+            <Tab key={index} data={tab} isActive={this.props.activeTab.id === tab.id} handleClick={this.props.changeTab.bind(this,tab)} />
           );
         }.bind(this))}      
       </ul>
@@ -43,7 +43,7 @@ export default class listing extends React.Component{
         
         const user = AppStore.getUser();
         AppStore.fetchListingData(user.orgId);
-        
+
     }
 
     handleClick(tab) {
@@ -51,10 +51,16 @@ export default class listing extends React.Component{
 
         AppStore.setListType(tab);
         let listType = tab.name; //get type 
-        AppStore.setListType(listType); //set type 
+        AppStore.setListType(listType); //set type
+
+        AppStore.setActiveTab(tab); 
     }
+
     
     render(){
+
+        console.log(this.props.route.data);
+
 
         //get objects from store
         const {listingData,listType} = this.props.route.data;

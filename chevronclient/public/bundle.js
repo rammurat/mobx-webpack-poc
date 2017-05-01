@@ -28360,11 +28360,11 @@
 	
 	        _initDefineProp(this, 'isLoggedIn', _descriptor3, this);
 	
-	        _initDefineProp(this, 'activeTab', _descriptor4, this);
+	        _initDefineProp(this, 'usersList', _descriptor4, this);
 	
-	        _initDefineProp(this, 'usersList', _descriptor5, this);
+	        _initDefineProp(this, 'tabData', _descriptor5, this);
 	
-	        _initDefineProp(this, 'tabData', _descriptor6, this);
+	        _initDefineProp(this, 'activeTab', _descriptor6, this);
 	
 	        _initDefineProp(this, 'organisationsList', _descriptor7, this);
 	
@@ -28502,15 +28502,6 @@
 	
 	            return _underscore._.findWhere(orgList, query);
 	        }
-	
-	        //load organisations
-	
-	    }, {
-	        key: 'getTab',
-	        value: function getTab(state) {
-	            var tab = _underscore._.findWhere(this.tabData, { name: state });
-	            return tab;
-	        }
 	    }, {
 	        key: 'getActiveTab',
 	        value: function getActiveTab() {
@@ -28544,20 +28535,20 @@
 	    initializer: function initializer() {
 	        return false;
 	    }
-	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'activeTab', [_mobx.observable], {
-	    enumerable: true,
-	    initializer: function initializer() {
-	        return { name: 'All', isActive: true };
-	    }
-	}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'usersList', [_mobx.observable], {
+	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'usersList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [];
 	    }
-	}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'tabData', [_mobx.observable], {
+	}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'tabData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
-	        return [{ name: 'All', isActive: true }, { name: 'Pending', isActive: true }, { name: 'Matched', isActive: false }, { name: 'Unmatched', isActive: false }];
+	        return [{ id: "all", name: 'All', isActive: true }, { id: "pending", name: 'Pending', isActive: false }, { id: "matched", name: 'Matched', isActive: false }, { id: "unmatched", name: 'Unmatched', isActive: false }];
+	    }
+	}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'activeTab', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return this.tabData[0];
 	    }
 	}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'organisationsList', [_mobx.observable], {
 	    enumerable: true,
@@ -28709,7 +28700,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class.prototype, 'setListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchListingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchMatchingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addTrador'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'updateUserSession', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'updateUserSession'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getTab'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getActiveTab'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setActiveTab'), _class.prototype)), _class);
+	}), _applyDecoratedDescriptor(_class.prototype, 'setListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchListingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchMatchingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addTrador'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'updateUserSession', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'updateUserSession'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getActiveTab'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setActiveTab'), _class.prototype)), _class);
 	exports.default = new AppStore();
 
 /***/ }),
@@ -74834,7 +74825,7 @@
 	            'ul',
 	            { className: 'nav nav-tabs' },
 	            this.props.tabData.map(function (tab, index) {
-	                return _react2.default.createElement(Tab, { key: index, data: tab, isActive: this.props.activeTab === tab, handleClick: this.props.changeTab.bind(this, tab) });
+	                return _react2.default.createElement(Tab, { key: index, data: tab, isActive: this.props.activeTab.id === tab.id, handleClick: this.props.changeTab.bind(this, tab) });
 	            }.bind(this))
 	        );
 	    }
@@ -74861,11 +74852,15 @@
 	
 	            _appStore2.default.setListType(tab);
 	            var listType = tab.name; //get type 
-	            _appStore2.default.setListType(listType); //set type 
+	            _appStore2.default.setListType(listType); //set type
+	
+	            _appStore2.default.setActiveTab(tab);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	
+	            console.log(this.props.route.data);
 	
 	            //get objects from store
 	            var _props$route$data = this.props.route.data,

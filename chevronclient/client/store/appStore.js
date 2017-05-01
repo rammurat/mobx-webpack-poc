@@ -10,14 +10,15 @@ export class AppStore{
     @observable currentUser = {};
     @observable listType = "All";
     @observable isLoggedIn = false;
-    @observable activeTab = { name: 'All', isActive: true };
+    
     @observable usersList = [];
     @observable tabData = [
-        { name: 'All', isActive: true },
-        { name: 'Pending', isActive: true },
-        { name: 'Matched', isActive: false },
-        { name: 'Unmatched', isActive: false }  
+        { id: "all", name: 'All', isActive: true },
+        { id: "pending", name: 'Pending', isActive: false },
+        { id: "matched", name: 'Matched', isActive: false },
+        { id: "unmatched", name: 'Unmatched', isActive: false }  
     ];
+    @observable activeTab = this.tabData[0];
     
     //observer product list and master categories
     @observable organisationsList = [];
@@ -213,12 +214,6 @@ export class AppStore{
     getOrganisation(orgList,query) {
         
         return _.findWhere(orgList,query);
-    }
-
-    //load organisations
-    @action getTab(state) {
-        let tab = _.findWhere(this.tabData,{name : state})
-        return tab;
     }
 
     @action getActiveTab() {
