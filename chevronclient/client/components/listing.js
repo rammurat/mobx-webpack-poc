@@ -44,6 +44,11 @@ export default class listing extends React.Component{
         const user = AppStore.getUser();
         AppStore.fetchListingData(user.orgId);
 
+        //update list every 5 seconds
+        // setInterval(function(){
+        //     console.log('list updated');
+        //     AppStore.fetchListingData(user.orgId)
+        // }, 5000);
     }
 
     handleClick(tab) {

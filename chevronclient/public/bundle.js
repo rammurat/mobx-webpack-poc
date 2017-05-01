@@ -74842,6 +74842,11 @@
 	        var user = _appStore2.default.getUser();
 	        _appStore2.default.fetchListingData(user.orgId);
 	
+	        //update list every 5 seconds
+	        // setInterval(function(){
+	        //     console.log('list updated');
+	        //     AppStore.fetchListingData(user.orgId)
+	        // }, 5000);
 	        return _this;
 	    }
 	

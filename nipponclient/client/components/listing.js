@@ -1,11 +1,39 @@
+'use strict';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from "mobx-react"; 
 import { Link } from 'react-router';
+import { _ } from 'underscore';
+
 const uuidV1 = require('uuid/v1');
 
 import AppStore from '../store/appStore.js';
 import Header from '../components/header.js';
+
+var Tab = React.createClass({
+  render: function() {
+    return (
+      <li type={this.props.data.name} role="presentation" onClick={this.props.handleClick} className={this.props.isActive ? "active" : null}>
+        <a  href="#">{this.props.data.name}</a>
+      </li>
+    );
+  }
+});
+
+var Tabs = React.createClass({
+  render: function() {
+    return (
+      <ul className="nav nav-tabs">
+        {this.props.tabData.map(function(tab,index){
+          return (
+            <Tab key={index} data={tab} isActive={this.props.activeTab.id === tab.id} handleClick={this.props.changeTab.bind(this,tab)} />
+          );
+        }.bind(this))}      
+      </ul>
+    );
+  }
+});
 
 @observer
 export default class listing extends React.Component{
@@ -16,12 +44,31 @@ export default class listing extends React.Component{
         const user = AppStore.getUser();
         AppStore.fetchListingData(user.orgId);
 
-    };
+        //update list every 5 seconds
+        // setInterval(function(){
+        //     console.log('list updated');
+        //     AppStore.fetchListingData(user.orgId)
+        // }, 5000);
+    }
+
+    handleClick(tab) {
+        console.log('TAB',tab);
+
+        AppStore.setListType(tab);
+        let listType = tab.name; //get type 
+        AppStore.setListType(listType); //set type
+
+        AppStore.setActiveTab(tab); 
+    }
+
     
     render(){
 
+        console.log(this.props.route.data);
+
+
         //get objects from store
-        const {listingData} = this.props.route.data;
+        const {listingData,listType} = this.props.route.data;
 
         switch(listingData.promiseState) {
             case 'pending':
@@ -30,12 +77,39 @@ export default class listing extends React.Component{
             case 'fulfilled':
                 //group item categories
                  function getTable(){
-                    var data = [];
+                    var data = [],
+                        filteredData = [];
                     
                     if(listingData.data && listingData.data !== null && listingData.data !== undefined && listingData.data.length){
-                        listingData.data.forEach(function(item){
+                        let type = AppStore.getListType();
+                        if(type === "All"){
+                            filteredData = listingData.data;
+                        }else{
+                            filteredData = _.filter(listingData.data,{DealStatus : AppStore.getListType()})
+                        }
+                    
+                        filteredData.forEach(function(item){
                             let link = '/matching/' + item.TradeNumber.ValA;
-                        
+                            let state = {};
+                            
+                            //set deal status
+                            if(item.DealStatus === "Matched"){
+                                state = {
+                                    status : 'Matched',
+                                    statusClass : 'btn btn-success'
+                                }
+                            }else if(item.DealStatus === "Unmatched"){
+                                state = {
+                                    status : 'Unmatched',
+                                    statusClass : 'btn btn-warning'
+                                }
+                            }else{
+                                state = {
+                                    status : 'Pending',
+                                    statusClass : 'btn btn-default'
+                                }
+                            }
+
                             data.push(<tr key={uuidV1()}>
                                         <td><Link to={link} activeClassName="active">{item.TradeNumber.ValA}</Link></td>
                                         <td>{item.OwnerName.ValA}</td>
@@ -56,10 +130,13 @@ export default class listing extends React.Component{
                                         <td>{item.Mot.ValA}</td>
                                         <td>{item.Price.ValA}</td>
                                         <td>{item.TradeStatus.ValA}</td>
-
+                                        <td><button type="button" className={state.statusClass}>{state.status}</button></td>
+                                        
                                     </tr>)
                                 
                             });
+                    }else{
+                        data.push(<tr key="1"><td colSpan="16" >No data found</td></tr>);
                     }
 
                     return data;
@@ -68,11 +145,10 @@ export default class listing extends React.Component{
                 return <div className="productTable ">
                     <Header data={this.props.route.data} />
                     <h2>Trade Listing</h2>
-                    <ul className="nav nav-tabs">
-                        <li role="presentation" className="active"><a href="#">Pending</a></li>
-                        <li role="presentation"><a href="#">Matched</a></li>
-                        <li role="presentation"><a href="#">Unmatched</a></li>
-                    </ul>
+                    
+
+                    <Tabs tabData={this.props.route.data.tabData} activeTab={this.props.route.data.activeTab} changeTab={this.handleClick} />          
+
                     <div className="aa">
                         <table className="table table-striped table-bordered table-condensed">
                             <thead>
@@ -84,8 +160,8 @@ export default class listing extends React.Component{
 
                                     <th> Trade Type</th>
                                     <th> Market Type</th>
-                                    <th>  Total Quantity</th> 
-                                    <th>  Total Quantity UOM</th>   
+                                    <th>  Notional Amount</th> 
+                                    <th>  Notional Amount UOM</th>   
                                     
                                     <th>  Trade Date</th> 
                                     <th>  End Date   </th>
@@ -96,6 +172,7 @@ export default class listing extends React.Component{
                                     <th> MOT</th>
                                     <th>  Price</th>
                                     <th>Trade Status</th>
+                                    <th>Deal Status</th>
                                 </tr>
                             </thead>
                             <tbody>
