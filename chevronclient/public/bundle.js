@@ -28287,7 +28287,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18;
+	var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20;
 	
 	var _mobx = __webpack_require__(/*! mobx */ 247);
 	
@@ -28360,35 +28360,39 @@
 	
 	        _initDefineProp(this, 'isLoggedIn', _descriptor3, this);
 	
-	        _initDefineProp(this, 'usersList', _descriptor4, this);
+	        _initDefineProp(this, 'addTradeMessage', _descriptor4, this);
 	
-	        _initDefineProp(this, 'tabData', _descriptor5, this);
+	        _initDefineProp(this, 'usersList', _descriptor5, this);
 	
-	        _initDefineProp(this, 'activeTab', _descriptor6, this);
+	        _initDefineProp(this, 'tabData', _descriptor6, this);
 	
-	        _initDefineProp(this, 'organisationsList', _descriptor7, this);
+	        _initDefineProp(this, 'activeTab', _descriptor7, this);
 	
-	        _initDefineProp(this, 'tradeTypeList', _descriptor8, this);
+	        _initDefineProp(this, 'organisationsList', _descriptor8, this);
 	
-	        _initDefineProp(this, 'marketTypeList', _descriptor9, this);
+	        _initDefineProp(this, 'tradeTypeList', _descriptor9, this);
 	
-	        _initDefineProp(this, 'priceUOMList', _descriptor10, this);
+	        _initDefineProp(this, 'marketTypeList', _descriptor10, this);
 	
-	        _initDefineProp(this, 'UOMList', _descriptor11, this);
+	        _initDefineProp(this, 'priceUOMList', _descriptor11, this);
 	
-	        _initDefineProp(this, 'productCodeList', _descriptor12, this);
+	        _initDefineProp(this, 'quantityUOMList', _descriptor12, this);
 	
-	        _initDefineProp(this, 'deliveryLocation', _descriptor13, this);
+	        _initDefineProp(this, 'UOMList', _descriptor13, this);
 	
-	        _initDefineProp(this, 'paymentTermList', _descriptor14, this);
+	        _initDefineProp(this, 'productCodeList', _descriptor14, this);
 	
-	        _initDefineProp(this, 'motList', _descriptor15, this);
+	        _initDefineProp(this, 'deliveryLocation', _descriptor15, this);
 	
-	        _initDefineProp(this, 'listingData', _descriptor16, this);
+	        _initDefineProp(this, 'paymentTermList', _descriptor16, this);
 	
-	        _initDefineProp(this, 'matchingData', _descriptor17, this);
+	        _initDefineProp(this, 'motList', _descriptor17, this);
 	
-	        _initDefineProp(this, 'tradorStatus', _descriptor18, this);
+	        _initDefineProp(this, 'listingData', _descriptor18, this);
+	
+	        _initDefineProp(this, 'matchingData', _descriptor19, this);
+	
+	        _initDefineProp(this, 'tradorStatus', _descriptor20, this);
 	    }
 	
 	    //observer product list and master categories
@@ -28513,6 +28517,16 @@
 	            this.activeTab = tab;
 	        }
 	    }, {
+	        key: 'getAddTradeMessage',
+	        value: function getAddTradeMessage() {
+	            return this.addTradeMessage;
+	        }
+	    }, {
+	        key: 'setAddTradeMessage',
+	        value: function setAddTradeMessage(tab) {
+	            this.addTradeMessage = tab;
+	        }
+	    }, {
 	        key: 'getUserSession',
 	        value: function getUserSession() {
 	            return this.isLoggedIn;
@@ -28535,27 +28549,32 @@
 	    initializer: function initializer() {
 	        return false;
 	    }
-	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'usersList', [_mobx.observable], {
+	}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'addTradeMessage', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return "Trade added successfully";
+	    }
+	}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'usersList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [];
 	    }
-	}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'tabData', [_mobx.observable], {
+	}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'tabData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{ id: "all", name: 'All', isActive: true }, { id: "pending", name: 'Pending', isActive: false }, { id: "matched", name: 'Matched', isActive: false }, { id: "unmatched", name: 'Unmatched', isActive: false }];
 	    }
-	}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'activeTab', [_mobx.observable], {
+	}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'activeTab', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return this.tabData[0];
 	    }
-	}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'organisationsList', [_mobx.observable], {
+	}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'organisationsList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [];
 	    }
-	}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'tradeTypeList', [_mobx.observable], {
+	}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'tradeTypeList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28566,7 +28585,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'marketTypeList', [_mobx.observable], {
+	}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'marketTypeList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28577,7 +28596,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'priceUOMList', [_mobx.observable], {
+	}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'priceUOMList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28600,7 +28619,18 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'UOMList', [_mobx.observable], {
+	}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'quantityUOMList', [_mobx.observable], {
+	    enumerable: true,
+	    initializer: function initializer() {
+	        return [{
+	            id: 1,
+	            name: "BBL"
+	        }, {
+	            id: 2,
+	            name: "Other"
+	        }];
+	    }
+	}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'UOMList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28623,7 +28653,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'productCodeList', [_mobx.observable], {
+	}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, 'productCodeList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28640,7 +28670,7 @@
 	            name: "POSEIDON"
 	        }];
 	    }
-	}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'deliveryLocation', [_mobx.observable], {
+	}), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, 'deliveryLocation', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28654,7 +28684,7 @@
 	            name: "Houma"
 	        }];
 	    }
-	}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, 'paymentTermList', [_mobx.observable], {
+	}), _descriptor16 = _applyDecoratedDescriptor(_class.prototype, 'paymentTermList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28665,7 +28695,7 @@
 	            name: "Other"
 	        }];
 	    }
-	}), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, 'motList', [_mobx.observable], {
+	}), _descriptor17 = _applyDecoratedDescriptor(_class.prototype, 'motList', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return [{
@@ -28676,7 +28706,7 @@
 	            name: "In-line Transfer"
 	        }];
 	    }
-	}), _descriptor16 = _applyDecoratedDescriptor(_class.prototype, 'listingData', [_mobx.observable], {
+	}), _descriptor18 = _applyDecoratedDescriptor(_class.prototype, 'listingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -28684,7 +28714,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor17 = _applyDecoratedDescriptor(_class.prototype, 'matchingData', [_mobx.observable], {
+	}), _descriptor19 = _applyDecoratedDescriptor(_class.prototype, 'matchingData', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -28692,7 +28722,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _descriptor18 = _applyDecoratedDescriptor(_class.prototype, 'tradorStatus', [_mobx.observable], {
+	}), _descriptor20 = _applyDecoratedDescriptor(_class.prototype, 'tradorStatus', [_mobx.observable], {
 	    enumerable: true,
 	    initializer: function initializer() {
 	        return {
@@ -28700,7 +28730,7 @@
 	            promiseState: {}
 	        };
 	    }
-	}), _applyDecoratedDescriptor(_class.prototype, 'setListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchListingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchMatchingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addTrador'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'updateUserSession', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'updateUserSession'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getActiveTab'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setActiveTab'), _class.prototype)), _class);
+	}), _applyDecoratedDescriptor(_class.prototype, 'setListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchListingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchListingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'fetchMatchingData', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'fetchMatchingData'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addTrador', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addTrador'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getUser', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getUser'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getListType', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getListType'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'updateUserSession', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'updateUserSession'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getActiveTab'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setActiveTab', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setActiveTab'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getAddTradeMessage', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'getAddTradeMessage'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setAddTradeMessage', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setAddTradeMessage'), _class.prototype)), _class);
 	exports.default = new AppStore();
 
 /***/ }),
@@ -35011,6 +35041,7 @@
 	        _this.handleTradeDate = _this.handleTradeDate.bind(_this);
 	        _this.handleStartDate = _this.handleStartDate.bind(_this);
 	        _this.handleEndDate = _this.handleEndDate.bind(_this);
+	        _this.addTradeMessage = _appStore2.default.getAddTradeMessage();
 	        return _this;
 	    }
 	
@@ -35150,6 +35181,7 @@
 	                    if (json.envstatus === "success") {
 	                        //browserHistory.push('/listing');
 	
+	                        _appStore2.default.setAddTradeMessage(json.message); //set message
 	                        document.getElementById('modal-button').click();
 	                    } else {
 	                        alert("Server error!!");
@@ -35260,6 +35292,7 @@
 	                marketTypeList = _props$route$data3.marketTypeList,
 	                priceUOMList = _props$route$data3.priceUOMList,
 	                UOMList = _props$route$data3.UOMList,
+	                quantityUOMList = _props$route$data3.quantityUOMList,
 	                productCodeList = _props$route$data3.productCodeList,
 	                deliveryLocation = _props$route$data3.deliveryLocation,
 	                paymentTermList = _props$route$data3.paymentTermList,
@@ -35307,6 +35340,16 @@
 	            }) : "";
 	
 	            var UOMOptions = UOMList ? UOMList.map(function (item) {
+	                return _react2.default.createElement(
+	                    'option',
+	                    { key: item.id, value: item.name },
+	                    ' ',
+	                    item.name,
+	                    ' '
+	                );
+	            }) : "";
+	
+	            var quantityUOMOptions = quantityUOMList ? quantityUOMList.map(function (item) {
 	                return _react2.default.createElement(
 	                    'option',
 	                    { key: item.id, value: item.name },
@@ -35563,7 +35606,7 @@
 	                                    _react2.default.createElement(
 	                                        'select',
 	                                        { name: 'quantityUom', className: 'form-control', id: 'quantityUom', ref: 'quantityUom', onChange: this.handleChange },
-	                                        UOMOptions
+	                                        quantityUOMOptions
 	                                    ),
 	                                    _react2.default.createElement('div', { className: 'error', id: 'quantityUomError' })
 	                                )
@@ -35749,7 +35792,7 @@
 	                            )
 	                        )
 	                    ),
-	                    _react2.default.createElement(_modalReact2.default, { ref: 'modal' })
+	                    _react2.default.createElement(_modalReact2.default, { data: this.addTradeMessage, ref: 'modal' })
 	                )
 	            );
 	        }
@@ -54455,8 +54498,8 @@
 	          )
 	        ),
 	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Body,
-	          null,
+	          'div',
+	          { className: 'modal-body' },
 	          _react2.default.createElement(
 	            'p',
 	            null,
@@ -75534,12 +75577,12 @@
 	                                _react2.default.createElement(
 	                                    'th',
 	                                    null,
-	                                    'Trador 1'
+	                                    'Counter Party 1'
 	                                ),
 	                                _react2.default.createElement(
 	                                    'th',
 	                                    null,
-	                                    'Trador 2'
+	                                    'Counter Party 2'
 	                                ),
 	                                _react2.default.createElement(
 	                                    'th',
@@ -75559,7 +75602,7 @@
 	                                _react2.default.createElement(
 	                                    'th',
 	                                    null,
-	                                    'Trador 1'
+	                                    'Counter Party 1'
 	                                )
 	                            );
 	                        }

@@ -10,6 +10,7 @@ export class AppStore{
     @observable currentUser = {};
     @observable listType = "All";
     @observable isLoggedIn = false;
+    @observable addTradeMessage = "Trade added successfully";
     
     @observable usersList = [];
     @observable tabData = [
@@ -56,6 +57,14 @@ export class AppStore{
         name : "RUB/BBL"
     },{
         id : 6,
+        name : "Other"
+    }];
+	
+	@observable quantityUOMList = [{
+        id : 1,
+        name : "BBL"
+    },{
+        id : 2,
         name : "Other"
     }];
 
@@ -222,6 +231,15 @@ export class AppStore{
 
     @action setActiveTab(tab) {
         this.activeTab = tab;
+    }
+
+    
+    @action getAddTradeMessage() {
+        return this.addTradeMessage;
+    }
+
+    @action setAddTradeMessage(tab) {
+        this.addTradeMessage = tab;
     }
 
     getUserSession(){

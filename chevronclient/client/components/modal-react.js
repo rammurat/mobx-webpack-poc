@@ -33,11 +33,9 @@ const MessageModal = React.createClass({
             <Modal.Title>Add Trade</Modal.Title>
           </Modal.Header>
           
-          <Modal.Body>
-           
+          <div className="modal-body">
             <p>{this.state.message}. Go back to <Link to="/listing" activeClassName="active">Listing</Link></p>
-
-          </Modal.Body>
+          </div>
           
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>

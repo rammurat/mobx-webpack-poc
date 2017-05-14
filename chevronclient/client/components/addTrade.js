@@ -50,6 +50,7 @@ export default class addTrade extends React.Component {
         this.handleTradeDate = this.handleTradeDate.bind(this);
         this.handleStartDate = this.handleStartDate.bind(this);
         this.handleEndDate = this.handleEndDate.bind(this);
+        this.addTradeMessage = AppStore.getAddTradeMessage();
     }
 
     //update current field state on change 
@@ -173,7 +174,8 @@ export default class addTrade extends React.Component {
                     console.log(json);
                     if(json.envstatus === "success"){
                         //browserHistory.push('/listing');
-
+                        
+                        AppStore.setAddTradeMessage(json.message); //set message
                         document.getElementById('modal-button').click();
                     }else{
                         alert("Server error!!");
@@ -270,7 +272,7 @@ export default class addTrade extends React.Component {
 
     //get objects from store
     const {
-            tradeTypeList,marketTypeList,priceUOMList,UOMList,
+            tradeTypeList,marketTypeList,priceUOMList,UOMList,quantityUOMList,
             productCodeList,deliveryLocation,paymentTermList,
             motList,organisationsList,getOrganisation,currentUser
           } = this.props.route.data;
@@ -295,6 +297,10 @@ export default class addTrade extends React.Component {
     )) : "";
 
     const UOMOptions = UOMList ? UOMList.map(item => (
+        <option key={item.id} value={item.name}> {item.name} </option>
+    )) : "";
+	
+	const quantityUOMOptions = quantityUOMList ? quantityUOMList.map(item => (
         <option key={item.id} value={item.name}> {item.name} </option>
     )) : "";
 
@@ -414,7 +420,7 @@ export default class addTrade extends React.Component {
                             <label htmlFor="quantityUom" id="quantityUomLabel" className="col-sm-6 control-label">Quantity Uom</label>
                             <div className="col-sm-6">
                                 <select name="quantityUom" className="form-control" id="quantityUom" ref="quantityUom" onChange={ this.handleChange }>
-                                    {UOMOptions}
+                                    {quantityUOMOptions}
                                 </select>
                                 <div className="error" id="quantityUomError" />
                             </div>
@@ -516,7 +522,7 @@ export default class addTrade extends React.Component {
                         <button className="btn btn-primary center-block" onClick={this.handleSubmit}>Add Trade</button>
                     </div>
                 </form>
-                <MessageModal ref="modal" />
+                <MessageModal data={this.addTradeMessage} ref="modal" />
             </div>
         </div>
     );

@@ -46,14 +46,14 @@ export default class matching extends React.Component{
                     if(matchingData.data.TradeNumber.ValB !== ""){
                         return(<tr>
                             <th>Type</th>  
-                            <th>Trador 1</th>
-                            <th>Trador 2</th>
+                            <th>Counter Party 1</th>
+                            <th>Counter Party 2</th>
                             <th>Status</th>
                         </tr>)
                     }else{
                         return(<tr>
                             <th>Type</th>  
-                            <th>Trador 1</th>
+                            <th>Counter Party 1</th>
                         </tr>)
                     }
                 }
