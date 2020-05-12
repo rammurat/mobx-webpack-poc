@@ -1,4 +1,4 @@
-# Application Name - "cvn-poc"
+# Application Name - "Mobx-webpack-poc"
 Node, React, React routing and Mobx integrated POC
 
 ## Prerequisite 
